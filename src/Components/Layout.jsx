@@ -1,5 +1,12 @@
 import { Link, Outlet } from 'react-router-dom'
 import '../assets/styles/style.css'  // Make sure to import this CSS file
+import { FaInstagram,FaTwitter,FaLinkedin  } from "react-icons/fa";
+import { CgMail } from "react-icons/cg";
+
+// image
+import footImg from '../assets/images/bloodishero.jpg'
+
+
 
 export default function Layout(){
   return (
@@ -22,7 +29,7 @@ export default function Layout(){
         <div className="footer-top-border"></div>
         <div className="footer-content">
           <div className="footer-logo-area">
-            <img src="logo.png" alt="BloodHope Logo" />
+            <img className='footer-img' src={footImg} alt="BloodHope Logo" />
             <p className="footer-tagline">“Giving life. One drop at a time.”</p>
           </div>
 
@@ -48,16 +55,16 @@ export default function Layout(){
           <div className="footer-contact">
             <h3>Get in Touch</h3>
             <address>
-              📍 123 Life St., Indore, India<br/>
-              📧 <a href="mailto:support@bloodhope.org">support@bloodhope.org</a><br/>
-              ☏ <a href="tel:+919999999999">+91 9999999999</a><br/>
-              ⏰ Mon–Fri: 9 AM–6 PM
+              Bagoniya,Bhopal, India<br/>
+               <Link>vizaymeena@gmail.com</Link><br/>
+               <Link>7987725298</Link><br/>
+               Mon Fri: 9 AM 6 PM
             </address>
             <div className="social-icons">
-              <Link to="#">fb-icon</Link>
-              <Link to="#">tw-icon</Link>
-              <Link to="#">insta-icon</Link>
-              <Link to="#">linkedin-icon</Link>
+              <Link> <FaInstagram/> </Link>
+              <Link><FaTwitter/></Link>
+              <Link><FaLinkedin/></Link>
+              <Link><CgMail/></Link>
             </div>
           </div>
         </div>
