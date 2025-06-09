@@ -1,8 +1,16 @@
 import "../assets/styles/registration.css"
 import React, { useState } from 'react';
-
+import { motion } from 'framer-motion';
 
 const Register = () => {
+
+  
+  const registerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -50 },
+  };
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -25,6 +33,15 @@ const Register = () => {
   };
 
   return (
+    <>
+     <motion.div
+      className="flex justify-center items-center min-h-screen bg-gradient-to-br from-red-100 to-white"
+      variants={registerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.6, ease: "easeInOut" }}
+    >
     <div className="form-wrapper">
       <div className="form-container">
         <h2>Donor Registration</h2>
@@ -78,6 +95,8 @@ const Register = () => {
         </form>
       </div>
     </div>
+    </motion.div>
+    </>
   );
 };
 
