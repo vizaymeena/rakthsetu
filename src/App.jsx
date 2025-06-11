@@ -33,20 +33,21 @@
 
 
 
-import './App.css';
-import Layout from './Components/Layout';
-import Register from './Components/Registration';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import './App.css'
+import Layout from './Components/Layout'
+import Register from './Components/Registration'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
+import Login from './Components/Login'
 
 function AnimatedRoutes() {
   const location = useLocation();
-
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Layout />}>
           <Route path="Register" element={<Register />} />
+          <Route path="Login" element={<Login />} />
         </Route>
       </Routes>
     </AnimatePresence>
@@ -58,5 +59,5 @@ export default function App() {
     <>
       <AnimatedRoutes />
     </>
-  );
+  )
 }
