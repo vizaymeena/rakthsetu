@@ -17,7 +17,7 @@ export default function Layout(){
           <Link to="/Donate">Donate</Link>
           <Link to="/Info">Info</Link>
           <Link to="/Help">Help</Link>
-           <Link to="/Login">Login</Link>
+          <Link to="/Login">Login</Link>
           <Link to="/Register">Register</Link>
          
 
