@@ -10,17 +10,56 @@ let Register = () => {
     exit: { opacity: 0, y: -50 },
   }
 
+  let stateCityData = [
+  {
+    state: "Madhya Pradesh",cities: ["Bhopal", "Indore", "Jabalpur", "Gwalior", "Ujjain"]
+  },
+  {
+    state: "Maharashtra",cities: ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"]
+  },
+  {
+    state: "Uttar Pradesh",cities: ["Lucknow", "Kanpur", "Varanasi", "Agra", "Prayagraj"]
+  },
+  {
+    state: "Rajasthan",cities: ["Jaipur", "Udaipur", "Jodhpur", "Ajmer", "Kota"]
+  },
+  {
+    state: "Tamil Nadu",cities: ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem"]
+  },
+  {
+    state: "Karnataka",cities: ["Bengaluru", "Mysuru", "Hubli", "Mangalore", "Belgaum"]
+  },
+  {
+    state: "Gujarat",cities: ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Gandhinagar"]
+  },
+  {
+    state: "West Bengal",cities: ["Kolkata", "Asansol", "Siliguri", "Durgapur", "Howrah"]
+  },
+  {
+    state: "Bihar",cities: ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Darbhanga"]
+  },
+  { 
+    state: "Punjab", cities: ["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda"] 
+  }
+  ]
+
 // Declaration of component states.
   let [form,setform] = useState({
-    fullName:'fullname',
-    email:'example@gmail.com',
+    fullName:'',
+    email:'',
     phone:'+91' || null,
     bloodGroup:'',
     age:18,  
-    location:'Delhi',
+    state:'',
+    city:'',
     lastDonation:''
   })
-  let{error,setError}=useState({})
+  let[error,setError] = useState({})
+
+
+  let selectedState = stateCityData.find(el=>el.state===form.state)
+  let selectedCity = selectedState?.cities.map((city,index) =>( <option key={index} value={city}>{city}</option>))
+
 
 // onChange setting [name]:values 
   function handleChange(e){
@@ -33,15 +72,17 @@ let Register = () => {
 function validation(){
   let newErrors = {}
 
-  if(!form.fullName.trim()) newErrors.fullName_err = 'name cannot be empty'
-
-  else if(form.fullname.length<6 && form.fullname.length>16) newErrors.fullName_err = 'name must be between 6 and 16 character'
-
+  // fullname validatation 
+  if(!form.fullName.trim()) {
+    newErrors.fullName_err = 'name cannot be empty'
+  } else if(form.fullName.length < 6 || form.fullName.length > 16){
+    newErrors.fullName_err = 'name must be between 6 and 16 character'
+  } 
   else{
-    let spaceUsed = 0;
-    let validSpace = true
+    let spaceUsed = 0; 
+    let validSpace = true;
     for(let i=0;i<form.fullName.length;i++){
-      let char = form.FullName[i]
+      let char = form.fullName[i]
       if(char ===' '){
         spaceUsed++
         if(spaceUsed>1){
@@ -49,7 +90,7 @@ function validation(){
           break;
         }
       }
-      if(char!==' ' && (!char>='A' && !char<='Z') && (!char>='a' && !char<='z')){
+      if(char !==' ' && (!char >= 'A' && !char <= 'Z') && (!char >= 'a' && !char <= 'z')){
         validSpace = false;
         break;
       }
@@ -57,9 +98,33 @@ function validation(){
     if(!validSpace){
        newErrors.fullName_err = 'name can contain only one space between name and surname'
     }
+    }
+
+    // email validation 
+    if((!form.email.includes('@')) || (!form.email.endsWith('.com'))) newErrors.email_err = "invalid email format"
+
+    // age validation 
+    if(isNaN(form.age)) newErrors.age_err = "age must be a number"
+    else if(form.age < 18 || form.age > 65) newErrors.age_err = "age must be in between 18-65 years old"
+
+    // last doantion validation
+
+    let todayDate = new Date()
+    let lastDonationDate = new Date(form.lastDonation)
+    if(!form.lastDonation){
+      newErrors.lastDonation_err = "please provide last doantion date"
+    } else if(isNaN(lastDonationDate.getTime())){
+      newErrors.lastDonation_err = "invalid date format"
+    } else if (lastDonationDate > todayDate) newErrors.lastDonation_err = "last donation date cannot be a future date"
+
+    let diffInDays = (todayDate - lastDonationDate) / (1000 * 60 * 60 * 24)
+    if (diffInDays < 90) {
+      newErrors.lastDonation_err = "You must wait 90 days between donations"
+    }
+  
     setError(newErrors)  // erros has set to react_state 
-    return newErrors.length===0;
-  }
+    return Object.keys(newErrors).length === 0;
+
 }
 
 // Registering the form into fake api using axios 
@@ -98,11 +163,13 @@ function handleSubmit(e){
           <div className="form-group">
             <label>Full Name</label>
             <input type="text" name="fullName" value={form.fullName} onChange={handleChange}  />
+            {error.fullName_err && <p className="error">{error.fullName_err}</p>}
           </div>
 
           <div className="form-group">
             <label>Email ID</label>
             <input type="email" name="email" value={form.email} onChange={handleChange}  />
+            {error.email_err && <p className="error">{error.email_err}</p>}
           </div>
 
           <div className="form-group">
@@ -127,17 +194,32 @@ function handleSubmit(e){
 
           <div className="form-group">
             <label>Age</label>
-            <input type="number" name="age" value={form.age} onChange={handleChange} min="18" max="65" required />
+            <input type="number" name="age" value={form.age} onChange={handleChange} min="18" max="65" />
+            {error.age_err && <p className="error">{error.age_err}</p>}
           </div>
 
           <div className="form-group">
-            <label>City / Location</label>
-            <input type="text" name="location" value={form.location} onChange={handleChange}  />
+           {/* Select State */}
+            <select name="state" value={form.state} onChange={handleChange}>
+              <option value="">-- Select State --</option>
+              {/* used optional chaining for better performance*/}
+              {stateCityData?.map((el,index) => (
+                <option key={index} value={el.state}>{el.state}</option>
+              ))}
+            </select>
+
+            {/* Select City */}
+            <select name="city" value={form.city} onChange={handleChange}>
+              <option value=''>Select City</option>
+              {selectedCity || []}
+            </select>
+            
           </div>
 
           <div className="form-group">
             <label>Last Donation Date</label>
             <input type="date" name="lastDonation" value={form.lastDonation} onChange={handleChange} />
+            {error.lastDonation_err && <p className="error">{error.lastDonation_err}</p>}
           </div>
 
           <button type="submit">Register Now</button>
