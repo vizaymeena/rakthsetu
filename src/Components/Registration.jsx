@@ -110,6 +110,7 @@ function validation(){
     // last doantion validation
 
     let todayDate = new Date()
+    // console.log(todayDate)
     let lastDonationDate = new Date(form.lastDonation)
     if(!form.lastDonation){
       newErrors.lastDonation_err = "please provide last doantion date"
