@@ -35,7 +35,7 @@
 
 import './App.css'
 import Layout from './Components/Layout'
-import Register from './Components/Registration'
+import Register from './pages/Registration'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Login from './Components/Login'

@@ -1,6 +1,9 @@
 import "../assets/styles/registration.css"
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { stateCityData } from "../data/staticStateCity.jsx"  // state and relative city for donar registration
+import axios from 'axios'
+import { validation } from "../utlis/validateDonorForm.js.jsx"
 
 let Register = () => {
 // Framer-Motion Animation properties
@@ -10,49 +13,17 @@ let Register = () => {
     exit: { opacity: 0, y: -50 },
   }
 
-  let stateCityData = [
-  {
-    state: "Madhya Pradesh",cities: ["Bhopal", "Indore", "Jabalpur", "Gwalior", "Ujjain"]
-  },
-  {
-    state: "Maharashtra",cities: ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"]
-  },
-  {
-    state: "Uttar Pradesh",cities: ["Lucknow", "Kanpur", "Varanasi", "Agra", "Prayagraj"]
-  },
-  {
-    state: "Rajasthan",cities: ["Jaipur", "Udaipur", "Jodhpur", "Ajmer", "Kota"]
-  },
-  {
-    state: "Tamil Nadu",cities: ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem"]
-  },
-  {
-    state: "Karnataka",cities: ["Bengaluru", "Mysuru", "Hubli", "Mangalore", "Belgaum"]
-  },
-  {
-    state: "Gujarat",cities: ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Gandhinagar"]
-  },
-  {
-    state: "West Bengal",cities: ["Kolkata", "Asansol", "Siliguri", "Durgapur", "Howrah"]
-  },
-  {
-    state: "Bihar",cities: ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Darbhanga"]
-  },
-  { 
-    state: "Punjab", cities: ["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda"] 
-  }
-  ]
-
 // Declaration of component states.
   let [form,setform] = useState({
     fullName:'',
     email:'',
-    phone:'+91' || null,
+    phone: '',
     bloodGroup:'',
     age:18,  
     state:'',
     city:'',
-    lastDonation:''
+    lastDonation:'',
+    profilePic:''
   })
   let[error,setError] = useState({})
 
@@ -62,90 +33,70 @@ let Register = () => {
 
 
 // onChange setting [name]:values 
-  function handleChange(e){
-    let {name,value} = e.target
-    setform((prev)=>({...prev,[name]:value}))  // form fields get set  
+ function handleChange(e) {
+  let { name, value, type, files } = e.target;
+
+  if (type === 'file') {
+    let file = files[0];
+
+    if (file) {
+      let reader = new FileReader();
+
+      reader.onloadend = () => {
+        let base64String = reader.result
+        setform(prev => ({
+          ...prev,
+          profilePic: base64String,
+        }))
+      }
+      reader.readAsDataURL(file)
+    }
+  } else {
+    setform(prev => ({
+      ...prev,
+      [name]: value,
+    }));
   }
-
-// form validation  
-
-function validation(){
-  let newErrors = {}
-
-  // fullname validatation 
-  if(!form.fullName.trim()) {
-    newErrors.fullName_err = 'name cannot be empty'
-  } else if(form.fullName.length < 6 || form.fullName.length > 16){
-    newErrors.fullName_err = 'name must be between 6 and 16 character'
-  } 
-  else{
-    let spaceUsed = 0; 
-    let validSpace = true;
-    for(let i=0;i<form.fullName.length;i++){
-      let char = form.fullName[i]
-      if(char ===' '){
-        spaceUsed++
-        if(spaceUsed>1){
-          validSpace=false
-          break;
-        }
-      }
-      if(char !==' ' && (!char >= 'A' && !char <= 'Z') && (!char >= 'a' && !char <= 'z')){
-        validSpace = false;
-        break;
-      }
-    }
-    if(!validSpace){
-       newErrors.fullName_err = 'name can contain only one space between name and surname'
-    }
-    }
-
-    // email validation 
-    if((!form.email.includes('@')) || (!form.email.endsWith('.com'))) newErrors.email_err = "invalid email format"
-
-    // age validation 
-    if(isNaN(form.age)) newErrors.age_err = "age must be a number"
-    else if(form.age < 18 || form.age > 65) newErrors.age_err = "age must be in between 18-65 years old"
-
-    // last doantion validation
-
-    let todayDate = new Date()
-    // console.log(todayDate)
-    let lastDonationDate = new Date(form.lastDonation)
-    if(!form.lastDonation){
-      newErrors.lastDonation_err = "please provide last doantion date"
-    } else if(isNaN(lastDonationDate.getTime())){
-      newErrors.lastDonation_err = "invalid date format"
-    } else if (lastDonationDate > todayDate) newErrors.lastDonation_err = "last donation date cannot be a future date"
-
-    let diffInDays = (todayDate - lastDonationDate) / (1000 * 60 * 60 * 24)
-    if (diffInDays < 90) {
-      newErrors.lastDonation_err = "You must wait 90 days between donations"
-    }
-  
-    setError(newErrors)  // erros has set to react_state 
-    return Object.keys(newErrors).length === 0;
-
 }
+
+
+
 
 // Registering the form into fake api using axios 
 function handleSubmit(e){
   e.preventDefault()
-
-  if(validation()){
-    console.log('form submitted as per validation logic')
-    
+//3. called post and submit to json
+  let checkEmailExist= async(email)=>{
+    await axios.get(`http://localhost:3000/users?email=${email}`)
+    .then(res=> {
+        let alreadyExist = `Email ${res.data} already exists.`
+        return alreadyExist
+    })
   }
+
+  let Post= async()=>{
+     await axios.post(`http://localhost:3000/users`,form)
+      .then((res)=> console.log(res.data))
+      .catch((err)=> console.log(err))
+  }
+  const newError = validation(form)  // returned via validation func.
+  setError(newError)
+//1. If all ok
+  if(Object.keys(newError).length == 0){
+    
+    if(checkEmailExist()){
+      alert("email already exists")
+      return;
+    } 
+    else{
+        Post() //2. Call post
+        console.log('Form successfully submitted')
+    }
+  } 
   else{
     console.log('form fields are not upto the validation logic ')
   }
-  
 }
-
-
-
-
-
 
   return (
     <>
@@ -201,6 +152,7 @@ function handleSubmit(e){
 
           <div className="form-group">
            {/* Select State */}
+           <label htmlFor="">State</label>
             <select name="state" value={form.state} onChange={handleChange}>
               <option value="">-- Select State --</option>
               {/* used optional chaining for better performance*/}
@@ -210,6 +162,7 @@ function handleSubmit(e){
             </select>
 
             {/* Select City */}
+            <label htmlFor="">City</label>
             <select name="city" value={form.city} onChange={handleChange}>
               <option value=''>Select City</option>
               {selectedCity || []}
@@ -222,6 +175,14 @@ function handleSubmit(e){
             <input type="date" name="lastDonation" value={form.lastDonation} onChange={handleChange} />
             {error.lastDonation_err && <p className="error">{error.lastDonation_err}</p>}
           </div>
+
+          <div>
+            <label htmlFor="">Profile Pic</label>
+            <input type="file" name="profilePic" accept="image/png, image/jpeg" onChange={handleChange} />
+          </div>
+          {form.profilePic && (
+          <img src={form.profilePic} alt="Preview" style={{ width: '100px' }} />
+          )}
 
           <button type="submit">Register Now</button>
         </form>
