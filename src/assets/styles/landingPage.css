@@ -1,0 +1,239 @@
+
+.wallpaperDiv{
+    height: 93vh;
+    width: 100%;
+    position: relative;
+}
+.wallpaperDiv img{
+    height: 100%;
+    width: 100%;
+}
+
+.positionAbs{
+    position: absolute;
+    z-index: 1;
+    top: 30%;
+    right: 50%;
+    padding-left: 10px;
+}
+.clientActions{
+    width: 300px;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    gap: 25px;
+    position: absolute;
+    z-index: 1;
+    top: 55%;
+    left: 5%;
+    padding-left: 10px;
+}
+.donor_button,.request_button{
+    width: fit-content;
+}
+
+/* scroll indicator */
+/* Add this */
+.lock-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: red;
+  font-size: 2rem;
+  animation: bounce 1.5s infinite;
+  z-index: 2;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
+}
+
+
+/* our services */
+.servicesClass{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.service img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+
+}
+.service{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* select blood type */
+.selectBloodClass{
+    height: 80vh;
+    background-color: rgba(196, 196, 196, 0.155);
+}
+.bloodCategory{
+    height: 100%;
+}
+.bloodGroup{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+.bloodGroup .selectHeading{
+    margin: 10px 0 10px 10px;
+    color: gray;
+    font-size: 18px;
+
+}.selectBloodClass {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+}
+
+.bloodCategory {
+    height: 90%;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(99, 68, 128, 0.185); /* glass mor div */
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    padding: 20px;
+    box-shadow: 0 4px 30px rgba(67, 66, 66, 0.354);
+}
+
+.selectHeading {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.bloodGroupInner{
+    display: flex;
+    gap: 20px;
+    margin-left: 10px;
+    flex-wrap: wrap;
+}
+
+.bloodGroupInner .bloodType{
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    padding: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Glass morphism effect */
+    background: rgba(198, 198, 198, 0.126);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(156, 39, 39, 0.18);
+    box-shadow: 0 8px 5px 0 rgba(124, 4, 4, 0.37);
+    
+    color: rgba(205, 17, 17, 0.445);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bloodGroupInner .bloodType:hover {
+    background: rgba(96, 96, 168, 0.176);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px 0 rgba(90, 95, 158, 0.5);
+}
+.takeFrom p,
+.giveTo p{
+    padding: 5px 0 0 5px;
+    width: 50%;
+    border: 2px solid rgba(128, 128, 128, 0.199);
+    height: 100px;
+    color: gray;
+}
+.takeFrom{
+     margin-top: 40px;
+}
+
+
+/* Process Steps */
+.process-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.step {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.step.reverse {
+  flex-direction: row-reverse;
+}
+
+.step .text {
+  flex: 1;
+  padding: 1rem;
+}
+
+.step .image {
+  flex: 0.5;
+  padding: 0.5rem;
+}
+
+.step img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Gallery */
+.gallery {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.gallery h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.gallery-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.gallery-images img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.gallery-images img:hover {
+  transform: scale(1.05);
+}

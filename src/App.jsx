@@ -40,6 +40,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Login from './Components/Login'
 
+
 function AnimatedRoutes() {
   const location = useLocation();
   return (
@@ -58,6 +59,7 @@ export default function App() {
   return (
     <>
       <AnimatedRoutes />
+      
     </>
   )
 }
