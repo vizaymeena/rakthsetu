@@ -2,7 +2,7 @@ import { Link, Outlet } from 'react-router-dom'
 import '../assets/styles/style.css'  // Make sure to import this CSS file
 import { FaInstagram,FaTwitter,FaLinkedin  } from "react-icons/fa";
 import { CgMail } from "react-icons/cg";
-import Wallpaper, { LearnAboutBlood } from './LandingPage';
+import Wallpaper, { BloodDonationSteps, LearnAboutBlood } from './LandingPage';
 // image
 import footImg from '../assets/images/bloodishero.jpg'
 
@@ -28,6 +28,7 @@ export default function Layout(){
         <Outlet/>
         <Wallpaper/>
         <LearnAboutBlood/>
+        <BloodDonationSteps/>
       </main>
 
       <footer className="site-footer">
