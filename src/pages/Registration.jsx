@@ -1,7 +1,7 @@
 import "../assets/styles/registration.css"
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { stateCityData } from "../data/staticStateCity.jsx"  // state and relative city for donar registration
+import { stateCityData } from "../data/staticData.jsx"  // state and relative city for donar registration
 import axios from 'axios'
 import { validation } from "../utlis/validateDonorForm.js.jsx"
 
