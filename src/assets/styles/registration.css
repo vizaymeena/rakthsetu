@@ -1,62 +1,74 @@
-
-.form-wrapper {
-  background: linear-gradient(135deg, #b30000, #ff4d4d);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.form-container {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.form-container h2 {
+.registerContainer {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   text-align: center;
-  color: #b30000;
-  margin-bottom: 1.5rem;
 }
 
-.form-group {
-  margin-bottom: 1rem;
+.registerContainer h2 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #333;
+  font-weight: 600;
 }
 
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.4rem;
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-input, select {
-  width: 100%;
-  padding: 0.6rem;
+.input {
+  padding: 12px 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 16px;
+  transition: border 0.3s, box-shadow 0.3s;
 }
 
-input:focus, select:focus {
-  border-color: #b30000;
+.input:focus {
+  border-color: #d62828;
   outline: none;
+  box-shadow: 0 0 0 2px rgba(214, 40, 40, 0.1);
 }
 
-button {
-  width: 100%;
-  background-color: #b30000;
-  color: white;
+.registerBtn {
+  padding: 14px 0;
+  background: #d62828;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
   border: none;
-  padding: 0.8rem;
-  font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s, transform 0.2s;
 }
 
-button:hover {
-  background-color: #800000;
+.registerBtn:hover {
+  background: #b71c1c;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .registerContainer {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .registerContainer h2 {
+    font-size: 22px;
+  }
+
+  .input {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .registerBtn {
+    font-size: 14px;
+    padding: 12px 0;
+  }
 }

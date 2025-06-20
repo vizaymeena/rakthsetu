@@ -1,5 +1,5 @@
 // Registration form
-let stateCityData = [
+export let stateCityData = [
   { state: "Madhya Pradesh", cities: ["Bhopal", "Indore", "Jabalpur", "Gwalior", "Ujjain"] },
   { state: "Maharashtra", cities: ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"] },
   { state: "Uttar Pradesh", cities: ["Lucknow", "Kanpur", "Varanasi", "Agra", "Prayagraj"] },
@@ -12,48 +12,48 @@ let stateCityData = [
   { state: "Punjab", cities: ["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda"] }
 ];
 
-export {stateCityData}
 
 // Homepage
-let bloodCompatibility = {
-  'A+': { 
-    receive:['A+', 'A-', 'O+', 'O-'], 
-    donate: ['A+', 'AB+'] 
-  },
-  'O+': { 
-    receive: ['O+', 'O-'], 
-    donate: ['O+', 'A+', 'B+', 'AB+'] 
-  },
-  'B+': { 
-    receive: ['B+', 'B-', 'O+', 'O-'], 
-    donate: ['B+', 'AB+'] 
-  },
-  
-  'AB+': { 
-    receive: ['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-'], 
-    donate: ['AB+'] 
-  },
-  
-  
-  'A-': { 
-    receive: ['A-', 'O-'], 
-    donate: ['A+', 'A-', 'AB+', 'AB-'] 
-  },
-  
-  'O-': { 
-    receive: ['O-'], 
-    donate: ['Anyone'] 
-  },
-  
-  'B-': { 
-    receive: ['B-', 'O-'], 
-    donate: ['B+', 'B-', 'AB+', 'AB-'] 
-  },
-  
-  'AB-': { 
-    receive: ['A-', 'B-', 'AB-', 'O-'],
-    donate: ['AB+', 'AB-'] 
-  }  
-};
 
-export{bloodCompatibility}
+export let bloodCompatibility = {
+  'A+': {
+    receive: ['A+', 'A-', 'O+', 'O-'],
+    donate: ['A+', 'AB+']
+  },
+
+  'O+': {
+    receive: ['O+', 'O-'],
+    donate: ['O+', 'A+', 'B+', 'AB+']
+  },
+
+  'B+': {
+    receive: ['B+', 'B-', 'O+', 'O-'],
+    donate: ['B+', 'AB+']
+  },
+
+  'AB+': {
+    receive: ['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-'],
+    donate: ['AB+']
+  },
+
+  'A-': {
+    receive: ['A-', 'O-'],
+    donate: ['A+', 'A-', 'AB+', 'AB-']
+  },
+
+  'O-': {
+    receive: ['O-'],
+    donate: ['Anyone']
+  },
+
+  'B-': {
+    receive: ['B-', 'O-'],
+    donate: ['B+', 'B-', 'AB+', 'AB-']
+  },
+
+  'AB-': {
+    receive: ['A-', 'B-', 'AB-', 'O-'],
+    donate: ['AB+', 'AB-']
+  }
+}
+

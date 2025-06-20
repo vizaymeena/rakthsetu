@@ -1,29 +1,85 @@
-import { Link, Outlet } from 'react-router-dom'
-import '../assets/styles/style.css'  // Make sure to import this CSS file
+// HOOKS
 
+
+// COMPONENT
+import { Link, Outlet } from 'react-router-dom'
+import { useLogin } from '../contexts/LoginContext';
+// ASSTES
+import '../assets/styles/style.css'  
 import { FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { CgMail } from 'react-icons/cg';
 import footImg from '../assets/images/bloodishero.jpg';
+import { useEffect, useState } from 'react';
 
 
+// LAYOUT COMPONENT
 export default function Layout() {
+  let {admin,user,setLogin} = useLogin()
+
+ 
+  
+
+
+  // HANDLE LOGOUT
+  let handleLogout=()=>{
+
+    if(admin){
+       console.log(`Deleting role : ${admin}`)
+       sessionStorage.removeItem("admin")
+       setLogin({
+        admin:'',
+        user:''
+       })
+    }
+    else{
+       console.log(`Deleting role : ${user}`)
+       sessionStorage.removeItem("user")
+       setLogin({
+        admin:'',
+        user:''
+       })
+    }    
+  }
+
+
   return (
     <>
-      <header className="site-header">
-        <div className="container nav-container">
-          <div className="logo">
-            <h1><Link to="/">RakthSetu</Link></h1>
-          </div>
-          <nav className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/Donate">Donate</Link>
-            <Link to="/Info">Info</Link>
-            <Link to="/Help">Help</Link>
-            <Link to="/Login">Login</Link>
-            <Link to="/Register">Register</Link>
-          </nav>
+ <header className="siteHeader">
+  <div className="navContainer flex justify-between items-center">
+
+    {/* Logo */}
+    <div className="logo">
+      <h1><Link to="/">RakthSetu</Link></h1>
+    </div>
+
+    {/* Nav Links */}
+    <nav className="navLinks flex space-x-6">
+      <Link to="/">Home</Link>
+      <Link to="/Donate">Donate</Link>
+      <Link to="/Info">Info</Link>
+      <Link to="/Help">Help</Link>
+      {admin && <Link to="/Admindashboard">Admin Dashboard</Link>}
+      {user && <Link to="/Userdashboard">User Dashboard</Link>}
+      {(!admin && !user) && <Link to="/Login">Login</Link>}
+    </nav>
+
+    {/* User Area */}
+    <div className="userArea flex items-center space-x-4">
+      {(admin || user) && (
+        <div className="userCard flex items-center space-x-3">
+          <img src="" alt="Profile" className="profilePic rounded-full" />
+          <span className="userEmail">{admin ? admin : user}</span>
+          <button onClick={handleLogout} className="logoutBtn">Logout</button>
         </div>
-      </header>
+      )}
+      {(!admin && !user) && (
+        <Link to="/Register" className="registerBtn">Guest</Link>
+      )}
+    </div>
+
+  </div>
+</header>
+
 
       <main className="site-main">
         <Outlet />

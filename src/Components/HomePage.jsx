@@ -1,10 +1,10 @@
 import { useEffect,useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import image1 from '../assets/images/homepageImages/pexels-artempodrez-6823619.jpg';
 import searchBlood from '../assets/images/homepageImages/searchblood.jpg'
 import bloodbank from '../assets/images/homepageImages/bloodbak.webp'
 import donationcamp from '../assets/images/homepageImages/donationcamp.jpg'
-import '../assets/styles/landingPage.css'
+import '../assets/styles/homePageHero.css'
 
 
 let Wallpaper=()=>{
@@ -23,7 +23,7 @@ let Wallpaper=()=>{
         </div>
         <div className='clientActions'>
             <button className='request_button'>Request Blood</button>
-            <button className='donor_button'>Become Donor</button>
+            <Link to='/Donate' className='donor_button'>Become Donor</Link>
         </div>
         <div className='scrollIndicator'>▼</div>
     </div>
@@ -55,7 +55,7 @@ let Wallpaper=()=>{
 
 
 
-import { bloodCompatibility } from '../data/staticData';
+import { bloodCompatibility } from '../data/staticdata';
 let LearnAboutBlood=()=>{
 
   let[selectedType,setSelect] = useState('')

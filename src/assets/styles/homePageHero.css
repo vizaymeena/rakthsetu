@@ -203,7 +203,6 @@
 
 
 /* Donation Process */
-
 .donationSteps {
   padding: 2rem;
   text-align: center;
@@ -217,7 +216,6 @@
   margin-bottom: 2rem;
 }
 
-/* Flex container for steps */
 .stepsContainer {
   display: flex;
   justify-content: center;
@@ -226,7 +224,6 @@
   gap: 1rem;
 }
 
-/* Each step */
 .stepCard {
   background-color: #fff;
   padding: 1.5rem;
@@ -241,13 +238,11 @@
   transform: translateY(-5px);
 }
 
-/* Emoji/Icon */
 .stepIcon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-/* Titles and text */
 .stepTitle {
   font-size: 1.2rem;
   color: #333;
@@ -259,19 +254,137 @@
   color: #666;
 }
 
-/* Arrow between steps */
 .stepArrow {
   font-size: 2rem;
   color: #555;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .stepsContainer {
-    flex-direction: column;
-  }
 
-  .stepArrow {
-    transform: rotate(90deg);
+
+
+/* Media Query */
+
+/* Large Desktops: 1440px and below */
+@media (max-width: 1440px) {
+  .positionAbs {
+    top: 18%;
+    padding: 1.8rem;
+    font-size: 1rem;
+  }
+  .clientActions {
+    bottom: 18%;
+  }
+}
+
+/* Laptops / Medium Screens: 1024px and below */
+@media (max-width: 1024px) {
+  .positionAbs {
+    top: 15%;
+    font-size: 0.95rem;
+    padding: 1.6rem;
+  }
+  .clientActions {
+    flex-direction: column;
+    gap: 1rem;
+    bottom: 15%;
+  }
+  .servicesClass {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .resultBox {
+    flex: 1 1 90%;
+  }
+  .stepsContainer {
+    flex-wrap: wrap;
+  }
+}
+
+/* Tablets: 768px and below */
+@media (max-width: 768px) {
+  .positionAbs {
+    top: 10%;
+    padding: 1.4rem;
+    font-size: 0.9rem;
+    line-height: 1.6rem;
+  }
+  .clientActions {
+    flex-direction: column;
+    gap: 1rem;
+    bottom: 12%;
+  }
+  .wallpaperDiv img {
+    object-position: center;
+  }
+  .sectionTitle, .stepsTitle {
+    font-size: 1.8rem;
+  }
+  .bloodTypeItem {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.95rem;
+  }
+  .resultBox {
+    flex: 1 1 100%;
+  }
+  .stepCard {
+    width: 85%;
+  }
+}
+
+/* Mobiles: 480px and below */
+@media (max-width: 480px) {
+  .positionAbs {
+    top: 8%;
+    padding: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.5rem;
+  }
+  .clientActions {
+    bottom: 10%;
+  }
+  .request_button, .donor_button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  .service img {
+    height: 80px;
+    width: 80px;
+  }
+  .bloodTypeItem {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .sectionTitle, .stepsTitle {
+    font-size: 1.6rem;
+  }
+  .stepCard {
+    width: 95%;
+  }
+}
+
+/* Small Mobiles: 360px and below */
+@media (max-width: 360px) {
+  .positionAbs {
+    top: 6%;
+    padding: 0.9rem;
+    font-size: 0.8rem;
+    line-height: 1.4rem;
+  }
+  .clientActions {
+    bottom: 8%;
+  }
+  .request_button, .donor_button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  .service img {
+    height: 70px;
+    width: 70px;
+  }
+  .sectionTitle, .stepsTitle {
+    font-size: 1.4rem;
+  }
+  .stepCard {
+    width: 100%;
   }
 }
