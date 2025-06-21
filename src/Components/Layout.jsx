@@ -58,8 +58,8 @@ export default function Layout() {
       <Link to="/Donate">Donate</Link>
       <Link to="/Info">Info</Link>
       <Link to="/Help">Help</Link>
-      {admin && <Link to="/Admindashboard">Admin Dashboard</Link>}
-      {user && <Link to="/Userdashboard">User Dashboard</Link>}
+      {admin && <Link to="/AdminDashboard">Admin Dashboard</Link>}
+      {user && <Link to="/UserDashboard">User Dashboard</Link>}
       {(!admin && !user) && <Link to="/Login">Login</Link>}
     </nav>
 
@@ -67,7 +67,7 @@ export default function Layout() {
     <div className="userArea flex items-center space-x-4">
       {(admin || user) && (
         <div className="userCard flex items-center space-x-3">
-          <img src="" alt="Profile" className="profilePic rounded-full" />
+          <img  alt="Profile" className="profilePic rounded-full" />
           <span className="userEmail">{admin ? admin : user}</span>
           <button onClick={handleLogout} className="logoutBtn">Logout</button>
         </div>

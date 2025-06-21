@@ -9,6 +9,7 @@ import {Wallpaper,BloodDonationSteps,LearnAboutBlood} from './Components/HomePag
 import Register from './pages/Registration'
 import Login from './pages/Login'
 import { AdminDashboard } from './pages/AdminDashboard'
+import { UserDashboard } from './pages/userDashboard'
 
 
 
@@ -29,8 +30,11 @@ let AnimatedRoutes=()=>{
           <Route path="Donate" element={<Donate/>}/>
 
           <Route path="AdminDashboard" element={<AdminDashboard/>}></Route>
+          <Route path="UserDashboard" element={<UserDashboard/>}/>
 
         </Route>
+
+        
       </Routes>
    
   )
