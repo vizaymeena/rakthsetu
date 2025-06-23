@@ -1,151 +1,223 @@
-
-.donationMain{
-    min-height: 85vh;
-    width: 100%;
-    border: 2px solid black;
+:root {
+  --primary: #d62828;
+  --background: #f6f7f9;
+  --text: #333;
+  --card-bg: #ffffff;
+  --border: #e0e0e0;
 }
 
-.slider{
-    height: 90vh;
-    width: 100%;
-    position: relative;
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--background);
+  color: var(--text);
 }
 
-.slider img{
-    height: 90vh;
-    width: 100%;
+.donation-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
 }
-.dots {
-  position: absolute;
-  z-index: 1;
-  width: 95%;
-  height: 50px;
-  top: 45%;
-  left: 5%;
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-section h1 {
+  font-size: 48px;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.hero-section p {
+  font-size: 18px;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Stats Section */
+.stats-section {
   display: flex;
-  gap: 85%;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 60px;
 }
 
-.dots .prev,
-.dots .next {
-  color: white;
-  font-size: 30px;
-  line-height: 50px;
-  font-weight: 1000;
-  border: 2px solid white;
-  width: 50px;
-  height: 50px;
+.stat-card {
+  flex: 1;
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 16px;
   text-align: center;
-  line-height: 40px;
-  border-radius:20px ;
-}
-.dots .prev:hover,
-.dots .next:hover {
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid var(--border);
 }
 
-
-/* Donor form */
-/* =============================
-📦 Donor Form Container
-============================= */
-.donorFormContainer {
-  max-width: 950px;
-  margin: 50px auto;
-  padding: 2rem;
-  background: #fdfdfd;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+.stat-card h2 {
+  font-size: 36px;
+  color: var(--primary);
+  margin-bottom: 8px;
 }
 
-/* =============================
-📌 Title Styling
-============================= */
-.donorFormContainer h2 {
-  text-align: center;
-  color: #d62828;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
+.stat-card p {
+  font-size: 16px;
+  color: #555;
 }
 
-/* =============================
-📑 Form Layout
-============================= */
-.donorForm {
+/* 2-Column Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+/* Info + Process */
+.info-section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 30px;
 }
 
-/* Group inputs in rows */
-.formGroup {
+.card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid var(--border);
+}
+
+.card h3 {
+  font-size: 22px;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.card ul, .card ol {
+  list-style: none;
+  padding-left: 0;
+  color: #555;
+}
+
+.card ul li, .card ol li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+
+/* Form Section */
+.form-section {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 60px auto;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.form-section form {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Form Row (label + input stacked vertically) */
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Label Styling */
+.formRow label {
+  font-size: 15px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Inputs and Selects */
+.formRow input[type="text"],
+.formRow input[type="number"],
+.formRow input[type="date"],
+.formRow input[type="email"],
+.formRow select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.formRow input[type="text"]:focus,
+.formRow input[type="number"]:focus,
+.formRow input[type="date"]:focus,
+.formRow input[type="email"]:focus,
+.formRow select:focus {
+  border-color: #d62828;
+  box-shadow: 0 0 0 3px rgba(214,40,40,0.12);
+}
+
+/* 2 Column Layout (for side-by-side fields like State/City) */
+.twoColumn {
+  display: flex;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
-/* =============================
-📥 Input, Select, Textarea Styling
-============================= */
-.donorForm input,
-.donorForm select,
-.donorForm textarea {
+.twoColumn .formRow {
   flex: 1;
-  padding: 12px 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  background: #fff;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  min-width: 200px;
 }
 
-/* Focus Effect */
-.donorForm input:focus,
-.donorForm select:focus,
-.donorForm textarea:focus {
-  border-color: #d62828;
-  outline: none;
-  box-shadow: 0 0 5px rgba(214, 40, 40, 0.15);
+/* Consent Checkbox */
+.consentGroup label {
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  line-height: 1.5;
 }
 
-/* Textarea Height */
-.donorForm textarea {
-  min-height: 80px;
-  resize: vertical;
+.consentGroup input[type="checkbox"] {
+  margin-top: 4px;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
-/* =============================
-🎨 Submit Button
-============================= */
-.registerButton {
-  padding: 14px;
+/* Submit Button */
+.form-section input[type="submit"] {
   background: #d62828;
   color: #fff;
+  padding: 16px;
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
+  border-radius: 10px;
+  font-size: 17px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.registerButton:hover {
-  background: #b71c1c;
+.form-section input[type="submit"]:hover {
+  background: #b31f1f;
+  transform: translateY(-1px);
 }
 
-/* =============================
-📱 Responsive Design
-============================= */
-@media (max-width: 768px) {
-  .formGroup {
-    flex-direction: column;
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .form-section {
+    padding: 30px 20px;
   }
 
-  .donorForm input,
-  .donorForm select,
-  .donorForm textarea {
-    min-width: 100%;
+  .form-section form {
+    gap: 20px;
+  }
+
+  .twoColumn {
+    flex-direction: column;
   }
 }

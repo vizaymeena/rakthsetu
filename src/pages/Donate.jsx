@@ -1,134 +1,237 @@
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
+
 import '../assets/styles/donate.css'
 import { useLogin } from "../contexts/LoginContext"
-// static images
-import { slide01 as image1, slide02 as image2,  slide03 as image3 } from '../assets/images/donationPage'
-let images = [ image1,  image2, image3 ]
+import { slide02 as image2, slide03 as image3, slide04 as image4 } from '../assets/images/donationPage'
+import { stateCityData} from "../data/staticdata"
+let images = [image2, image3, image4]
 
-export let Donate=()=>{
+export let Donate = () => {
 
-  let[currentIndex,setCurrentIndex] = useState(0);
-  let[isPause,setPause] = useState(false);
-  let[form,setForm] = useState({
+  let [form, setForm] = useState({
     name: "",
     email: "",
-    contact: "",
     gender: "",
-    bloodGroup: "",
+    contact: "",
+    // given below are donation details..
     age: "",
+    weight:"",
+    bloodGroup: "",
     state: "",
     city: "",
-    address: "",
-    donationDate: "",
-    timeSlot: "",
-    message: "",
+    lastDonationDate: "",
+    surgery_illness:false,
+    medical_history:false,
+    consent:false
   })
-  let {admin,user} = useLogin()
+  
+  // custom context hooks for user login credintial
+  let { admin, user } = useLogin()
+  let respectiveCity = stateCityData.find((el)=> el == form.state)
 
-  let handleSubmit=()=>{
+// side effects
+useEffect( () => {
+  let emailToCheck = admin || user;
+  console.log("Email to check:", emailToCheck);
+  if (emailToCheck) {
+    axios.get(`http://localhost:3000/users?email=${emailToCheck}`)
+      .then(res => {
+        console.log("Response data:", res.data);
 
+        if (res.data.length > 0) {
+          let userData = res.data[0];
+          setForm(prev => ({
+            ...prev,
+            name: userData.fullName || "",
+            email: userData.email || "",
+            contact: userData.contact || "",
+            gender: userData.gender || ""
+          }));
+          console.log("User found:", userData.fullName);
+        } else {
+          console.log("User not found in JSON server for this email.");
+        }
+      })
+      .catch(err => console.log("Axios error:", err));
   }
-  let handleChange=()=>{
+}, [admin, user])
 
+
+
+
+// Handle Change 
+
+  let handleSubmit = (e) => {
+    e.preventDefault()
+    alert("Form submitted!")
   }
 
+  let handleChange = (e) => {
+    let { name, value } = e.target
+    setForm({ ...form, [name]: value })
+  }
 
-
-
-  return(
+  return (
     <>
-    <section id="DonationBody">
-      <div className="donationMain">
-        
-        <div className="slider">
-          <div className="slideImgDiv">
-            <img src={images[currentIndex]} alt="" />
-          </div>
+    <section className="donation-page">
 
-          <div className="dots">
-            {/* Prev slide */}
-            <span  
-            onClick={
-              ()=>setCurrentIndex(prev=>(prev-1+images.length)%images.length)
-            }
-            className="prev">⟨</span>
+     <div className="hero-section">
+       <h1>Donate Blood. Be a Lifesaver.</h1>
+       <p>Your one donation can impact up to 3 lives. It only takes a few minutes to be a hero.</p>
+     </div>
 
-            {/* Next slide */}
-            <span onClick={
-               ()=>setCurrentIndex(prev=>(prev+1)%images.length)
-            } 
-            className="next">⟩</span>
-          </div>
+    <div className="stats-section">
+      <div className="stat-card">
+        <h2>428</h2>
+        <p>Lives Saved</p>
+      </div>
+      <div className="stat-card">
+        <h2>320</h2>
+        <p>Total Donors</p>
+      </div>
+      <div className="stat-card">
+        <h2>8</h2>
+        <p>Active Camps</p>
+      </div>
+    </div>
+
+    <div className="content-grid">
+      <div className="info-section">
+
+        <div className="card">
+          <h3>Eligibility Criteria</h3>
+          <ul>
+            <li>Age: 18-65 years</li>
+            <li>Weight: 50kg minimum</li>
+            <li>No recent major illness</li>
+            <li>No recent tattoos/piercings</li>
+          </ul>
         </div>
 
-
-      <div className="donorFormContainer">
-  <h2>Register as a Blood Donor</h2>
-
-  <form onSubmit={handleSubmit} className="donorForm">
-    <div className="formGroup">
-      <input type="text" name="name" placeholder="Full Name" value={form.name} onChange={handleChange}  />
-      <input type="email" name="email" placeholder="Email Address" value={form.email} onChange={handleChange}  />
-      <input type="tel" name="contact" placeholder="Contact Number" value={form.contact} onChange={handleChange}  />
-    </div>
-
-    <div className="formGroup">
-      <select name="gender" value={form.gender} onChange={handleChange} >
-        <option value="">Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
-      <select name="bloodGroup" value={form.bloodGroup} onChange={handleChange} >
-        <option value="">Select Blood Group</option>
-        <option value="A+">A+</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B-">B-</option>
-        <option value="AB+">AB+</option>
-        <option value="AB-">AB-</option>
-        <option value="O+">O+</option>
-        <option value="O-">O-</option>
-      </select>
-      <input type="number" name="age" placeholder="Age" value={form.age} onChange={handleChange}  />
-    </div>
-
-    <div className="formGroup">
-      <input type="text" name="state" placeholder="State" value={form.state} onChange={handleChange}  />
-      <input type="text" name="city" placeholder="City" value={form.city} onChange={handleChange}  />
-      <input type="text" name="pinCode" placeholder="Pin Code" value={form.pinCode} onChange={handleChange}  />
-    </div>
-
-    <div className="formGroup">
-      <textarea name="address" placeholder="Full Address" value={form.address} onChange={handleChange} ></textarea>
-    </div>
-
-    <div className="formGroup">
-      <input type="date" name="donationDate" value={form.donationDate} onChange={handleChange}  />
-      <select name="timeSlot" value={form.timeSlot} onChange={handleChange} >
-        <option value="">Select Time Slot</option>
-        <option value="Morning (9am-11am)">Morning (9am-11am)</option>
-        <option value="Midday (11am-1pm)">Midday (11am-1pm)</option>
-        <option value="Afternoon (2pm-4pm)">Afternoon (2pm-4pm)</option>
-      </select>
-    </div>
-
-    <div className="formGroup">
-      <textarea name="message" placeholder="Any message for us (optional)" value={form.message} onChange={handleChange}></textarea>
-    </div>
-    {
-      admin || user ? <button type="submit" className="registerButton">Register as Donor</button>:
-      <button onClick={()=>alert("Please login first")} >Register as Donor</button>
-    }
-  </form>
-</div>
-
-
+        <div className="card">
+          <h3>Donation Process</h3>
+          <ol>
+            <li>Fill the form</li>
+            <li>Quick health checkup</li>
+            <li>Donate (10-15 mins)</li>
+            <li>Get certificate & refreshments</li>
+          </ol>
+        </div>
 
       </div>
 
+{/* Form  */}
+    <div className="form-section">
+     <form onSubmit={handleSubmit}>
+
+      <div className="formRow">
+        <label>Name:</label>
+        <input type="text" name="name" value={form.name}   disabled />
+      </div>
+
+      <div className="formRow">
+        <label>Email:</label>
+        <input type="email" name="email" value={form.email} disabled/>
+      </div>
+
+      <div className="formRow">
+        <label>Gender</label>
+        <select name="gender" value={form.gender} disabled>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div className="twoColumn">
+        <div className="formRow">
+          <label>Age</label>
+          <input type="number" min={18} max={65} placeholder="Between 18-65 years" onChange={handleChange} />
+        </div>
+
+        <div className="formRow">
+          <label>Weight</label>
+          <input type="number" placeholder="Min 50 kg" onChange={handleChange}/>
+        </div>
+      </div>
+
+      <div className="formRow">
+        <label>Blood Group</label>
+        <select name="bloodGroup" value={form.bloodGroup} onChange={handleChange} >
+          <option value="">Select Blood Group</option>
+          {['A+','A-','B+','B-','AB+','AB-','O+','O-'].map(el=><option key={el}>{el}</option>)}
+          
+        </select>
+      </div>
+
+      <div className="twoColumn">
+        <div className="formRow">
+          <label>State</label>
+          <select name="state" onChange={handleChange}>
+            <option value="">Select State</option>
+            {stateCityData && stateCityData.state.map((el,key)=><option key={key} value={el.state}> {el.state} </option>) }
+          </select>
+        </div>
+
+        <div className="formRow">
+          <label>City</label>
+          <select name="city" value={form.city} onChange={handleChange}> 
+            <option value="">Select City</option>
+            {respectiveCity.state && respectiveCity.state.cities.map((city,key)=>{
+              <option key={key} value={city}>{city}</option>}
+              )}
+          </select>
+        </div>
+      </div>
+
+      <div className="formRow">
+        <label>Last Donation</label>
+        <input name="lastDonationDate" type="date" value={form.lastDonationDate} onChange={handleChange} />
+      </div>
+
+      <div className="twoColumn">
+        <div className="formRow">
+          <label>Recent illness or Surgery</label>
+          <select name="illness_surgery" value={form.surgery_illness} onChange={handleChange}>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+
+        <div className="formRow">
+          <label>Medical History</label>
+          <select name="medical_history" value={form.medical_history} onChange={handleChange}>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="formRow">
+        <label>Contact:</label>
+        <input name="contact" type="text" placeholder="9876543210" value={form.contact} onChange={handleChange} />
+      </div>
+
+      <div className="formRow consentGroup">
+        <label>
+          <input name="consent" type="checkbox" value={form.consent} handleChange={handleChange} />
+          I hereby provide my consent to donate blood and allow my personal information to be used for blood records and communication.
+        </label>
+      </div>
+
+      {admin || user && <input type="submit" value="Register As Donor" onChange={handleChange}/>}
+      
+      <button type="submit" onClick={()=>alert("Please Login first")}>Register As Donor</button> 
+
+      </form>
+    </div>
+
+    </div>
+
     </section>
+
     </>
   )
 }
-
