@@ -53,6 +53,24 @@
       "password": "1234"
     }
   ],
+  "blood_donor": [
+    {
+      "id": "aeaa",
+      "name": "vijay meena",
+      "email": "vizaymeena@gmail.com",
+      "gender": "male",
+      "contact": "7987725298",
+      "age": "25",
+      "weight": "56",
+      "bloodGroup": "O+",
+      "state": "Madhya Pradesh",
+      "city": "Bhopal",
+      "lastDonationDate": "2025-06-10",
+      "surgery_illness": false,
+      "medical_history": false,
+      "consent": true
+    }
+  ],
   "blood_request": [],
   "camp": []
 }

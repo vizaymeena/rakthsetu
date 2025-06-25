@@ -10,8 +10,8 @@ let images = [image2, image3, image4]
 
 export let Donate = () => {
   let [form, setForm] = useState({
-    name: "",
-    email: "",
+    name: "Vijay Meena",
+    email: "example@gmail.com",
     gender: "",
     contact: "",
     age: "",
@@ -69,7 +69,8 @@ export let Donate = () => {
   // Handle form submit
   let handleSubmit = (e) => {
     e.preventDefault()
-    alert("Form submitted!")
+    axios.post(`http://localhost:3000/blood_donor`,form)
+    console.log('donor submitted successfully')
   }
 
   return (
