@@ -5,18 +5,24 @@
   padding: 0;
 }
 
-/* Site Header */
+/* Header Container */
 .siteHeader {
-  background-color: #ffffff;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 50;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  padding: 12px 0;
 }
 
-/* Nav Container */
+/* Flex Container */
 .navContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,124 +30,117 @@
 
 /* Logo */
 .logo h1 a {
-  text-decoration: none;
-  color: #d62828;
-  font-size: 1.5rem;
+  font-size: 28px;
   font-weight: 700;
+  color: #d90429;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-/* Nav Links */
+.logo h1 a:hover {
+  color: #ef233c;
+}
+
+/* Navigation Links */
 .navLinks {
   display: flex;
-  gap: 1.5rem;
+  gap: 24px;
 }
 
 .navLinks a {
-  text-decoration: none;
   color: #333;
-  font-size: 1rem;
   font-weight: 500;
+  text-decoration: none;
+  font-size: 16px;
+  position: relative;
   transition: color 0.3s ease;
 }
 
+.navLinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  width: 0%;
+  background: #d90429;
+  transition: width 0.3s ease;
+}
+
 .navLinks a:hover {
-  color: #d62828;
+  color: #d90429;
+}
+
+.navLinks a:hover::after {
+  width: 100%;
 }
 
 /* User Area */
 .userArea {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 16px;
 }
 
+/* User Card */
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Profile Picture */
 .profilePic {
-  width: 32px;
-  height: 32px;
-  background-color: #ccc;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
+  border: 2px solid #d90429;
   object-fit: cover;
 }
 
+/* User Email */
 .userEmail {
-  font-size: 0.9rem;
+  font-size: 14px;
+  font-weight: 600;
   color: #333;
 }
 
-.logoutBtn,
-.registerBtn {
-  padding: 0.4rem 0.9rem;
-  background-color: #d62828;
+/* Logout Button */
+.logoutBtn {
+  background: #d90429;
   color: #fff;
+  padding: 6px 12px;
+  font-size: 12px;
   border: none;
-  border-radius: 6px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 0.9rem;
+  transition: background 0.3s ease;
 }
 
-.logoutBtn:hover,
+.logoutBtn:hover {
+  background: #ef233c;
+}
+
+/* Register Button */
+.registerBtn {
+  background: #d90429;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
 .registerBtn:hover {
-  background-color: #b81f1f;
+  background: #ef233c;
 }
 
-/* Hamburger Styles */
-.navToggle {
-  display: none;
-}
-
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-
-.hamburger .line {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  transition: 0.3s ease;
-}
-
-/* Hide nav links on mobile initially */
-@media screen and (max-width: 768px) {
-  .navLinks {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    flex-direction: column;
-    width: 100%;
-    background-color: #fff;
-    padding: 1rem 0;
-    gap: 1rem;
-    display: none;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-    z-index: 20;
-  }
-
-  .navLinks a {
-    padding: 0.5rem 1rem;
-  }
-
-  /* Show menu when navToggle is checked */
-  .navToggle:checked + .hamburger + .navLinks {
-    display: flex;
-  }
-}
-
-/* Hamburger Animation to X */
-.navToggle:checked + .hamburger .line:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.navToggle:checked + .hamburger .line:nth-child(2) {
-  opacity: 0;
-}
-
-.navToggle:checked + .hamburger .line:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
 
 
 
