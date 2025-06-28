@@ -191,7 +191,7 @@ body {
 }
 
 /* Submit Button */
-.form-section input[type="submit"] {
+.form-section .donorButton {
   background: #d62828;
   color: #fff;
   padding: 16px;
@@ -202,11 +202,15 @@ body {
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.form-section input[type="submit"]:hover {
+.form-section .donorButton:hover {
   background: #b31f1f;
   transform: translateY(-1px);
 }
-
+.errorMsg {
+  color: #d90429;
+  font-size: 14px;
+  margin-top: 5px;
+}
 /* Mobile Responsive */
 @media (max-width: 600px) {
   .form-section {

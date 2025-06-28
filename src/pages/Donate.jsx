@@ -26,6 +26,7 @@ export let Donate = () => {
   })
 
   let [cities, setCities] = useState([])
+  let [message,setMessage] = useState("")
 
   let { admin, user } = useLogin()
 
@@ -69,7 +70,13 @@ export let Donate = () => {
   // Handle form submit
   let handleSubmit = (e) => {
     e.preventDefault()
+    if(new Date(form.lastDonationDate) > new Date()){
+      setMessage("Last doantion date cannot be a future date")
+      return 
+    }
+    setMessage("")
     axios.post(`http://localhost:3000/blood_donor`,form)
+
     console.log('donor submitted successfully')
   }
 
@@ -136,12 +143,12 @@ export let Donate = () => {
               <div className="twoColumn">
                 <div className="formRow">
                   <label>Age</label>
-                  <input type="number" min={18} max={65} name="age" value={form.age} onChange={handleChange} />
+                  <input type="number" min={18} max={65} name="age" value={form.age} onChange={handleChange} required />
                 </div>
 
                 <div className="formRow">
                   <label>Weight</label>
-                  <input type="number" min={50} name="weight" value={form.weight} onChange={handleChange} />
+                  <input type="number" min={50} max={130} name="weight" value={form.weight} onChange={handleChange} required />
                 </div>
               </div>
 
@@ -180,6 +187,7 @@ export let Donate = () => {
               <div className="formRow">
                 <label>Last Donation</label>
                 <input name="lastDonationDate" type="date" value={form.lastDonationDate} onChange={handleChange} />
+                {message && <p className="errorMsg">{message}</p>}
               </div>
 
               <div className="twoColumn">
@@ -213,8 +221,8 @@ export let Donate = () => {
               </div>
 
               {admin || user
-                ? <input type="submit" value="Register As Donor" />
-                : <button type="button" onClick={() => alert("Please Login first")}>Register As Donor</button>
+                ? <input className="donorButton" type="submit" value="Register As Donor" />
+                : <button className="donorButton" type="button" onClick={() => alert("Please Login first")}>Register As Donor</button>
               }
             </form>
           </div>
