@@ -9,6 +9,7 @@ import { stateCityData } from "../data/staticdata"
 let images = [image2, image3, image4]
 
 export let Donate = () => {
+  
   let [form, setForm] = useState({
     name: "Vijay Meena",
     email: "example@gmail.com",
@@ -26,9 +27,39 @@ export let Donate = () => {
   })
 
   let [cities, setCities] = useState([])
-  let [message,setMessage] = useState("")
+  let [message,setMessage] = useState({
+    lastDonationDate:"",
+    age:"",
+    weight:"",
+    consent:"",
+    contact:"",
+    alreadyExits:""
+
+  })
 
   let { admin, user } = useLogin()
+
+
+  // isDonorExists
+  useEffect(()=>{
+
+    if(!form.email) return ; // exit early base condition if email is empty
+   
+    let checkDonor = async () =>{
+      try{
+        let res = await axios.get(`http://localhost:3000/blood_donor?email=${form.email}`)
+        if(res.data.length>0){
+          setMessage((prev)=>({...prev,alreadyExits:"Donor already exists with this email"}))
+          return 
+        }
+      } catch(error){
+            console.log(`error is :${error}`)
+      }
+       setMessage((prev)=>({...prev,alreadyExits:""}))
+    }
+    checkDonor()
+    },[form.email])
+
 
   // Fetch logged-in user data if available
   useEffect(() => {
@@ -61,6 +92,9 @@ export let Donate = () => {
     }
   }, [form.state])
 
+
+  
+
   // Handle input changes
   let handleChange = (e) => {
     let { name, value, type, checked } = e.target
@@ -70,14 +104,69 @@ export let Donate = () => {
   // Handle form submit
   let handleSubmit = (e) => {
     e.preventDefault()
-    if(new Date(form.lastDonationDate) > new Date()){
-      setMessage("Last doantion date cannot be a future date")
+
+    if(!form.age || form.age < 18 || form.age > 65){
+      setMessage(prev => ({ ...prev, age: "Age must be between 18 and 65" }))
+      return
+    }
+    
+    setMessage(prev => ({ ...prev, age: "" }))
+
+    if(!form.weight || form.weight < 50){
+        setMessage(prev => ({ ...prev, weight: "Weight must be at least 50kg" }))
+        return
+    }
+
+    setMessage(prev => ({ ...prev, weight: "" }))
+
+    if(!form.lastDonationDate){
+      setMessage((prev)=>({...prev,lastDonationDate:"ensure last doantion date is provided"}))
       return 
     }
-    setMessage("")
-    axios.post(`http://localhost:3000/blood_donor`,form)
 
+    setMessage((prev)=>({...prev,lastDonationDate:""}))
+
+    if(new Date(form.lastDonationDate) > new Date()){
+      setMessage((prev)=>(
+        {...prev, lastDonationDate:"last donation date cannot be a future date"}
+      ))
+      return 
+    }
+
+    setMessage((prev)=>({...prev,lastDonationDate:""}))
+
+    if(!form.contact){
+      setMessage((prev)=>({...prev,contact:"make sure contact information is provided"}))
+      return 
+    }
+
+    setMessage((prev)=>({...prev,contact:""}))
+    
+    if(form.consent==false){
+      setMessage((prev)=>({...prev,consent:"ensure your consent has provided"}))
+      console.log("consent field of form has not been selected by the client")
+      return 
+    }
+
+    setMessage((prev)=>({...prev,consent:""}))
+    axios.post(`http://localhost:3000/blood_donor`,form)
     console.log('donor submitted successfully')
+
+    setForm((prev)=>({...prev,
+       name: "",
+       email: "",
+       gender: "",
+       contact: "",
+       age: "",
+       weight: "",
+       bloodGroup: "",
+       state: "",
+       city: "",
+       lastDonationDate: "",
+       surgery_illness: false,
+       medical_history: false,
+       consent: false
+    }))
   }
 
   return (
@@ -143,12 +232,14 @@ export let Donate = () => {
               <div className="twoColumn">
                 <div className="formRow">
                   <label>Age</label>
-                  <input type="number" min={18} max={65} name="age" value={form.age} onChange={handleChange} required />
+                  <input type="number" min={18} max={65} name="age" value={form.age} onChange={handleChange}  />
+                  {message.age && <p className="errorMsg">{message.age}</p>}
                 </div>
 
                 <div className="formRow">
                   <label>Weight</label>
-                  <input type="number" min={50} max={130} name="weight" value={form.weight} onChange={handleChange} required />
+                  <input type="number" min={50} max={130} name="weight" value={form.weight} onChange={handleChange}  />
+                   {message.weight && <p className="errorMsg">{message.weight}</p>}
                 </div>
               </div>
 
@@ -187,7 +278,7 @@ export let Donate = () => {
               <div className="formRow">
                 <label>Last Donation</label>
                 <input name="lastDonationDate" type="date" value={form.lastDonationDate} onChange={handleChange} />
-                {message && <p className="errorMsg">{message}</p>}
+                {message.lastDonationDate && <p className="errorMsg">{message.lastDonationDate}</p>}
               </div>
 
               <div className="twoColumn">
@@ -211,6 +302,7 @@ export let Donate = () => {
               <div className="formRow">
                 <label>Contact:</label>
                 <input name="contact" type="text" value={form.contact} onChange={handleChange} />
+                {message.contact && <p className="errorMsg">{message.contact}</p>}
               </div>
 
               <div className="formRow consentGroup">
@@ -218,7 +310,10 @@ export let Donate = () => {
                   <input name="consent" type="checkbox" checked={form.consent} onChange={handleChange} />
                   I hereby provide my consent to donate blood and allow my personal information to be used for blood records and communication.
                 </label>
+                {message.consent && <p className="errorMsg">{message.consent}</p>}
               </div>
+               
+              {message.alreadyExits && <p className="errorMsg">{message.alreadyExits}</p>}
 
               {admin || user
                 ? <input className="donorButton" type="submit" value="Register As Donor" />

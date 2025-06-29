@@ -2,13 +2,16 @@ import { useState } from "react"
 import axios from "axios"
 import "../assets/styles/login.css"
 import {Link, replace, useNavigate} from 'react-router-dom'
+import { useLogin } from "../contexts/LoginContext"
 
 let Login = () => {
   let redirect = useNavigate()
-  let [login,setLogin] = useState({
+  let [login,checkLogin] = useState({
     email:'',
     password:''
   })
+
+  let { setLogin } = useLogin()
 
   // Admin Created 
   let admin = {
@@ -19,7 +22,7 @@ let Login = () => {
   // HANDLE CHANGE
   let handleChange=(e)=>{
     let {name,value} = e.target
-    setLogin(prev => ({...prev,[name]:value}))
+    checkLogin(prev => ({...prev,[name]:value}))
   }
   
   let checkData = async function (email){
@@ -52,12 +55,20 @@ let Login = () => {
         // admin based login.
         if(login.email === admin.email ){
           sessionStorage.setItem('admin',admin.email)  // success session store
+          setLogin(()=>({
+            admin:admin.email,
+            user:null
+          }))
           redirect('/',{replace:true })
         }
 
         // user based login.
         else if(login.email === user){
           sessionStorage.setItem('user',user)  // success session store
+          setLogin(()=>({
+            admin:null,
+            user:login.email
+          }))
           redirect('/',{replace:true})
         }
     } 

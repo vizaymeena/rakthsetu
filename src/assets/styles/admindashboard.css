@@ -1,125 +1,74 @@
 .dashboardContainer {
-  padding: 2rem;
-  background: #f9fafb;
-  min-height: 100vh;
-}
-
-.dashboardHeading {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #b91c1c;
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.dashboardCards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.dashboardCard {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
-}
-
-.cardTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.cardValue {
-  font-size: 2.25rem;
-  font-weight: 800;
-}
-
-.cardValue.donors {
-  color: #dc2626;
-}
-
-.cardValue.pending {
-  color: #facc15;
-}
-
-.cardValue.camps {
-  color: #16a34a;
-}
-
-.chartContainer {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  border: 1px solid #e5e7eb;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
-}
-
-.sectionTitle {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.requestsContainer {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
-}
-
-.requestList {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
 }
 
-.requestCard {
-  padding: 1rem;
+.leftsidebar {
+  width: 260px;
+  background: #20232a;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.leftsidebar h1 {
+  font-size: 26px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #e63946;
+}
+
+.listDiv ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listDiv li {
+  margin-bottom: 10px;
+}
+
+.menuHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
 }
 
-.requestDetails {
+.menuHeader:hover {
+  background: #2d323e;
+}
+
+.dropdownIcon {
+  font-size: 16px;
+}
+
+.filterOptions {
+  background: #2d323e;
+  padding: 10px;
+  margin-top: 4px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 10px;
 }
 
-.requestName {
-  font-size: 1.125rem;
-  font-weight: 600;
+.filterOptions span {
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 5px;
+  transition: background 0.2s ease;
 }
 
-.requestInfo {
-  color: #4b5563;
-  font-size: 0.95rem;
+.filterOptions span:hover {
+  background: #3c4049;
 }
 
-.requestActions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.approveBtn {
-  background: #16a34a;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-}
-
-.rejectBtn {
-  background: #dc2626;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+.rightBody {
+  flex: 1;
+  background: #f5f5f5;
+  padding: 20px;
 }
