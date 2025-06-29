@@ -28,33 +28,189 @@
       "gender": "female",
       "phone": "9876543210"
     },
-    {
-      "id": "967e",
-      "name": "Jatin",
-      "email": "jatinparmar@gmail.com",
-      "gender": "male",
-      "contact": "1234567890",
-      "password": "1234"
-    },
-    {
-      "id": "254f",
-      "name": "Jatin",
-      "email": "jatinparmar@gmail.com",
-      "gender": "male",
-      "contact": "1234567890",
-      "password": "1234"
-    },
-    {
-      "id": "6e64",
-      "name": "jatin",
-      "email": "jatinparmar2@gmail.com",
-      "gender": "male",
-      "contact": "1234567890",
-      "password": "1234"
-    }
+      {
+    "id": "f3f78",
+    "fullName": "Aman Singh",
+    "email": "amansingh@example.com",
+    "gender": "male",
+    "phone": "9876543210"
+  },
+  {
+    "id": "8db1e",
+    "fullName": "Ritika Verma",
+    "email": "ritikaverma@example.com",
+    "gender": "female",
+    "phone": "9873502211"
+  },
+  {
+    "id": "29c8d",
+    "fullName": "Neha Meena",
+    "email": "nehameena@example.com",
+    "gender": "female",
+    "phone": "9871203412"
+  },
+  {
+    "id": "54a31",
+    "fullName": "Ravi Rathore",
+    "email": "ravirathore@example.com",
+    "gender": "male",
+    "phone": "9833302215"
+  },
+  {
+    "id": "9fd2a",
+    "fullName": "Priya Yadav",
+    "email": "priyayadav@example.com",
+    "gender": "female",
+    "phone": "8821403390"
+  },
+  {
+    "id": "a3ba0",
+    "fullName": "Suman Choudhary",
+    "email": "sumanchoudhary@example.com",
+    "gender": "male",
+    "phone": "9642201190"
+  },
+  {
+    "id": "c5e6d",
+    "fullName": "Ritika Sharma",
+    "email": "ritikasharma@example.com",
+    "gender": "female",
+    "phone": "9988003322"
+  },
+  {
+    "id": "7c18e",
+    "fullName": "Seema Singh",
+    "email": "seemasingh@example.com",
+    "gender": "female",
+    "phone": "7894561230"
+  },
+  {
+    "id": "ee130",
+    "fullName": "Manish Verma",
+    "email": "manishverma@example.com",
+    "gender": "male",
+    "phone": "9001213345"
+  },
+  {
+    "id": "d1ad7",
+    "fullName": "Vijay Meena",
+    "email": "vijaymeena@example.com",
+    "gender": "male",
+    "phone": "9123456789"
+  },
+  {
+    "id": "d8f99",
+    "fullName": "Ankit Patel",
+    "email": "ankitpatel@example.com",
+    "gender": "male",
+    "phone": "9000000001"
+  },
+  {
+    "id": "cb6ee",
+    "fullName": "Ravi Gupta",
+    "email": "ravigupta@example.com",
+    "gender": "male",
+    "phone": "9876543300"
+  },
+  {
+    "id": "3af3e",
+    "fullName": "Priya Singh",
+    "email": "priyasingh@example.com",
+    "gender": "female",
+    "phone": "8000000002"
+  },
+  {
+    "id": "2ee09",
+    "fullName": "Aman Jain",
+    "email": "amanjain@example.com",
+    "gender": "male",
+    "phone": "9876000000"
+  },
+  {
+    "id": "39f47",
+    "fullName": "Seema Rathore",
+    "email": "seemarathore@example.com",
+    "gender": "female",
+    "phone": "9755544332"
+  },
+  {
+    "id": "0193e",
+    "fullName": "Ritika Choudhary",
+    "email": "ritikachoudhary@example.com",
+    "gender": "female",
+    "phone": "7888899990"
+  },
+  {
+    "id": "f3c35",
+    "fullName": "Ankit Meena",
+    "email": "ankitmeena@example.com",
+    "gender": "male",
+    "phone": "9332211000"
+  },
+  {
+    "id": "de44e",
+    "fullName": "Neha Rathore",
+    "email": "neharathore@example.com",
+    "gender": "female",
+    "phone": "9999999999"
+  },
+  {
+    "id": "a9629",
+    "fullName": "Suman Meena",
+    "email": "sumanmeena@example.com",
+    "gender": "male",
+    "phone": "8888877777"
+  },
+  {
+    "id": "a750f",
+    "fullName": "Ravi Verma",
+    "email": "raviverma@example.com",
+    "gender": "male",
+    "phone": "9666666666"
+  },
+  {
+    "id": "0842f",
+    "fullName": "Neha Sharma",
+    "email": "nehasharma@example.com",
+    "gender": "female",
+    "phone": "8999988888"
+  },
+  {
+    "id": "4aa4c",
+    "fullName": "Seema Yadav",
+    "email": "seemayadav@example.com",
+    "gender": "female",
+    "phone": "9123456765"
+  },
+  {
+    "id": "7cf66",
+    "fullName": "Manish Gupta",
+    "email": "manishgupta@example.com",
+    "gender": "male",
+    "phone": "9111112233"
+  },
+  {
+    "id": "1c90e",
+    "fullName": "Priya Rathore",
+    "email": "priyarathore@example.com",
+    "gender": "female",
+    "phone": "9888777666"
+  },
+  {
+    "id": "05a0b",
+    "fullName": "Aman Verma",
+    "email": "amanverma@example.com",
+    "gender": "male",
+    "phone": "9555577777"
+  }
   ],
-  "blood_donor": [
-   
+
+
+
+
+
+
+  "blood_donor": [ 
     {
       "id": "6194",
       "name": "vijay meena",

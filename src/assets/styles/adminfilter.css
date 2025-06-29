@@ -1,0 +1,98 @@
+.filter_allUsers {
+  padding: 5px 2px;
+  background-color: #b4b3b1;
+  border-radius: 1rem;
+  color: rgba(22, 19, 19, 0.811);
+  /* box-shadow: 0 2px 8px rgba(0,0,0,0.08); */
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: #5a6d8d;
+
+  /* box-shadow: 0 2px 6px rgba(0,0,0,0.05); */
+}
+
+.userThead {
+  background-color: #283d5e;
+  color: #ffffff;
+  text-align: left;
+}
+
+.userThead th {
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.userTbody td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.95rem;
+  color: #e1e1e1;
+}
+
+.userTbody tr:nth-child(even) {
+  background-color: #383f4a;
+}
+
+.userTbody tr:hover {
+  background-color: #4376a5;
+  cursor: pointer;
+}
+
+.userTbody tr:last-child td {
+  border-bottom: none;
+}
+
+.userTable th,
+.userTable td {
+  transition: all 0.25s ease-in-out;
+}
+
+.userTable th {
+  user-select: none;
+}
+
+.userTable tr {
+  transition: background-color 0.2s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .userTable thead {
+    display: none;
+  }
+
+  .userTable, .userTable tbody, .userTable tr, .userTable td {
+    display: block;
+    width: 100%;
+  }
+
+  .userTable tr {
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 0.5rem;
+    background-color: #fff;
+  }
+
+  .userTable td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .userTable td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #495057;
+  }
+}

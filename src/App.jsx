@@ -10,7 +10,7 @@ import Register from './pages/Registration'
 import Login from './pages/Login'
 import { AdminDashboard } from './pages/AdminDashboard'
 import { UserDashboard } from './pages/userDashboard'
-
+import { FilterPage } from './Components/AdminFilterPage'
 
 
 
@@ -33,37 +33,7 @@ let AnimatedRoutes=()=>{
 
         {/* Admin Dashboard (without Layout) */}
         <Route path="/AdminDashboard" element={<AdminDashboard />}>
-          {/* user filter */}
-          <Route path="user/email"/>
-          <Route path="user/name"/>
-          <Route path="user/gender"/>
-          <Route path="user/newUser"/>
-          <Route path="user/oldUser"/>
-
-
-          {/* BloodDonor Filter  */}
-          <Route path="donor/name"/>
-          <Route path="donor/email"/>
-          <Route path="donor/gender"/>
-          <Route path="donor/latest"/>
-          <Route path="donor/active"/>
-          <Route path="donor/inactive"/>
-          <Route path="donor/donationPeriod"/>
-          <Route path="donor/location"/>
-          <Route path="donor/camp"/>
-
-          {/* BloodRequest Filter */}
-          <Route path="req/date"/>
-          <Route path="req/urgent"/>
-          <Route path="req/city"/>
-
-          {/* BloodCamp Filter */}
-          <Route path="camp/city"/>
-          <Route path="camp/date"/>
-
-          
-
-      
+          <Route path=":category/:filterType" element={<FilterPage />} />
         </Route>
 
         {/* User Dashboard (without Layout) */}

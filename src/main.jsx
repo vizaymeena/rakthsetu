@@ -6,12 +6,12 @@ import { BrowserRouter } from 'react-router-dom'
 import { LoginProvider } from './contexts/LoginContext.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  
     
     <BrowserRouter>
     <LoginProvider>
       <App />
     </LoginProvider>
     </BrowserRouter>
-  </StrictMode>,
+ 
 )

@@ -16,40 +16,42 @@ export let AdminDashboard = () => {
     {
       name: 'Users',
       filters: [
-        {label:'Filter By Email',path:'user/email'},
-        {label:'Filter By Name',path:'admin/user/name'},
-        {label:'Filter By Gender',path:'admin/user/gender'},
-        {label:'New Users',path:'admin/user/newUser'},
-        {label:'Old Users',path:'admin/user/oldUser'}
+        {label:'Show All User',path:'user/showAllUser'},
+        {label:'New Users',path:'user/newUser'},
+        {label:'Old Users',path:'user/oldUser'}
       ],
     },
     {
       name: 'Donors',
       filters: [
-        {label:'Filter By Email',path:'admin/donor/email'},
-        {label:'Filter By Name',path:'admin/donor/name'},
-        {label:'Filter By Gender',path:'admin/donor/gender'},
-        {label:'Latest Donors',path:'admin/donor/latest'},
-        {label:'Active Donor',path:'admin/donor/active'},
-        {label:'Inactive Donor',path:'admin/donor/inactive'},
-        {label:'Donor Donation Period',path:'admin/donor/donationPeriod'},
-        {label:'Donor By Location',path:'admin/donor/location'},
-        {label:'Nearby Donor To Camp',path:'admin/donor/camp'},
+        {label:'Show All Donor',path:'donor/showAllDonor'},
+        // {label:'Filter By Name',path:'donor/name'},
+        // {label:'Filter By Gender',path:'donor/gender'},
+        {label:'Latest Donors',path:'donor/latest'},
+        {label:'Active Donor',path:'donor/active'},
+        {label:'Inactive Donor',path:'donor/inactive'},
+        // {label:'Donor Donation Period',path:'donor/donationPeriod'},
+        // {label:'Donor By Location',path:'donor/location'},
+        // {label:'Nearby Donor To Camp',path:'donor/camp'},
       ],
     },
     {
       name: 'Blood Request',
       filters: [
-        {label:'Request By Date',path:"admin/req/date"},
-        {label:'Request By Requirement',path:"admin/req/urgent"},
-        {label:'Request By Location',path:"admin/req/city"},
+        {label:'All Request',path:"req/showAllReq"},
+        {label:'New Request',path:"req/newReq"},
+        {label:'Pending Request',path:"req/pendingReq"},
+        {label:'Approved Request',path:"req/approvedReq"},
+        {label:'Failed Request',path:"req/failedReq"},
+
+
       ],
     },
     {
       name: 'Blood Camps',
       filters: [
-        {label:'Search By City', path:'admin/camp/city'},
-        {label:'Search By Date', path:'admin/camp/date'}
+        {label:'Ongoing Camps', path:'camp/ongoing'},
+        {label:'Upcoming', path:'camp/upcoming'},
       ],
     },
   ]
