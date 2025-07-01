@@ -28,6 +28,7 @@ export const FilterPage = () => {
                 <th>Email</th>
                 <th>Gender</th>
                 <th>Contact</th>
+                <th>Actions</th>
             </thead>
             <tbody className="userTbody">
                  {data.map((el, idx) => (
@@ -36,6 +37,11 @@ export const FilterPage = () => {
                   <td>{el.email}</td>
                   <td>{el.gender}</td>
                   <td>{el.phone}</td>
+                  <td>
+                    <button>Update</button>
+                    <button>Remove</button>
+                  </td>
+                  
                 </tr>
               ))}
             </tbody>
@@ -44,5 +50,5 @@ export const FilterPage = () => {
     </div>
     }
     </>
-  );
-};
+  )
+}
