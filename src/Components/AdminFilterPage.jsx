@@ -37,9 +37,9 @@ export const FilterPage = () => {
                   <td>{el.email}</td>
                   <td>{el.gender}</td>
                   <td>{el.phone}</td>
-                  <td>
-                    <button>Update</button>
-                    <button>Remove</button>
+                  <td className="ActionButton">
+                    <button className="update">Update</button>
+                    <button className="remove">Remove</button>
                   </td>
                   
                 </tr>

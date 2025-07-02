@@ -61,6 +61,31 @@
 .userTable tr {
   transition: background-color 0.2s ease;
 }
+.ActionButton{
+  display: flex;
+  gap: 10px;
+}
+.ActionButton button{
+  color: red;
+  padding: 5px;
+}
+.ActionButton .update{
+  color: black;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+.ActionButton .remove{
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition:transform 0.3s ease-in-out;
+}
+.update:hover,
+.remove:hover{
+  transform: scale(0.9);
+}
 
 @media screen and (max-width: 768px) {
   .userTable thead {
