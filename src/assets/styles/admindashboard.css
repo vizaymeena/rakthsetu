@@ -1,3 +1,6 @@
+body{
+  height: max-content;
+}
 .dashboardContainer {
   display: flex;
   height: 100vh;
@@ -9,6 +12,7 @@
   background: #20232a;
   color: #ffffff;
   padding: 20px;
+  height: 100%;
 }
 
 .leftsidebar h1 {
@@ -17,7 +21,9 @@
   text-align: center;
   color: #e63946;
 }
-
+.listDiv{
+  height: max-content;
+}
 .listDiv ul {
   list-style: none;
   padding: 0;
@@ -70,5 +76,5 @@
 .rightBody {
   flex: 1;
   background: #f5f5f5;
-  padding: 20px;
+  /* padding: 20px; */
 }

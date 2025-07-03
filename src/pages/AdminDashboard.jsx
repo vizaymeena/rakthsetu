@@ -25,14 +25,9 @@ export let AdminDashboard = () => {
       name: 'Donors',
       filters: [
         {label:'Show All Donor',path:'donor/showAllDonor'},
-        // {label:'Filter By Name',path:'donor/name'},
-        // {label:'Filter By Gender',path:'donor/gender'},
         {label:'Latest Donors',path:'donor/latest'},
         {label:'Active Donor',path:'donor/active'},
         {label:'Inactive Donor',path:'donor/inactive'},
-        // {label:'Donor Donation Period',path:'donor/donationPeriod'},
-        // {label:'Donor By Location',path:'donor/location'},
-        // {label:'Nearby Donor To Camp',path:'donor/camp'},
       ],
     },
     {
