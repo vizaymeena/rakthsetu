@@ -72,7 +72,9 @@
   width: 100%;
   border-collapse: collapse;
 }
-
+.dataTable th{
+  cursor: pointer;
+}
 .dataTable th, 
 .dataTable td {
   text-align: left;
