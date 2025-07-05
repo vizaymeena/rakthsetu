@@ -11,6 +11,7 @@ import Login from './pages/Login'
 import { AdminDashboard } from './pages/AdminDashboard'
 import { UserDashboard } from './pages/userDashboard'
 import { FilterPage } from './Components/AdminFilterPage'
+import EditUserProfile from './Components/EditUserProfile'
 
 
 
@@ -34,8 +35,9 @@ let AnimatedRoutes=()=>{
         {/* Admin Dashboard (without Layout) */}
         <Route path="/AdminDashboard" element={<AdminDashboard />}>
           <Route path=":category/:filterType" element={<FilterPage />} />
+          
         </Route>
-
+        <Route path="/users/edit/:id" element={<EditUserProfile />} />
         {/* User Dashboard (without Layout) */}
         <Route path="/UserDashboard" element={<UserDashboard />} />
       </Routes>

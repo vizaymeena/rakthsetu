@@ -1,158 +1,170 @@
-.adminContainer {
-  padding: 30px;
-  background: #f9fafc;
-  min-height: 100vh;
+/* Base resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Header (Search + Filter) */
-.adminHeader {
+/* Layout Container */
+.adminContainer {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  color: #333;
+}
+
+/* Controls: Search + Sort */
+.controls {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 25px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
-
-.searchBar {
-  display: flex;
-  gap: 10px;
-}
-
-.searchBar input {
-  padding: 10px 12px;
+.searchInput,
+.sortSelect {
+  flex: 1;
+  min-width: 180px;
+  padding: 0.6rem 1rem;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.sortSelect {
+  max-width: 200px;
 }
 
-.primaryBtn {
-  padding: 10px 20px;
-  background: #2563eb;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.primaryBtn:hover {
-  background: #1d4ed8;
-}
-
-.filterBar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.selectContainer select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-/* Title */
-.resultsTitle {
-  margin-bottom: 20px;
-  color: #111827;
-  font-size: 24px;
-}
-
-/* Table Styling */
-.tableWrapper {
+/* Table wrapper for overflow */
+.tableContainer {
   overflow-x: auto;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
+/* Table styling */
 .dataTable {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 1rem;
+  background: #fafafa;
 }
-.dataTable th{
-  cursor: pointer;
-}
-.dataTable th, 
+.dataTable th,
 .dataTable td {
+  border: 1px solid #e0e0e0;
+  padding: 0.75rem 1rem;
   text-align: left;
-  padding: 16px;
-  border-bottom: 1px solid #e5e7eb;
 }
-
 .dataTable th {
-  background: #f1f5f9;
-  color: #374151;
-  font-weight: 600;
+  background: #f4f4f7;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
-
+.dataTable tbody tr:nth-child(even) {
+  background: #fcfcfc;
+}
 .dataTable tbody tr:hover {
-  background: #f9fafb;
+  background: #e8f4ff;
+}
+.actionButtonDiv{
+  display: flex;
+  gap: 10px;
 }
 
-/* Action Buttons */
-.editBtn, .removeBtn {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-right: 8px;
-}
-
-.editBtn {
-  background: #055823;
-  color: #ffffff;
-  font-weight: 450;
-  letter-spacing: 1.5px;
-}
-
-.editBtn:hover {
-  background: #067730;
-}
-
+/* Button styling */
+.editBtn,
 .removeBtn {
-  background: #7c0808;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.editBtn {
+  background-color: #1976d2;
   color: #fff;
-    font-weight: 450;
-  letter-spacing: 1.5px;
 }
-
+.removeBtn {
+  background-color: #d32f2f;
+  color: #fff;
+}
+.editBtn:hover,
 .removeBtn:hover {
-  background: #dc2626;
+  opacity: 0.85;
 }
 
-
-/* pagination */
+/* Pagination */
 .paginationControls {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 25px;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
 }
-
+.prev,.next{
+  color: white;
+}
+.pageBtn,
 .paginationControls button {
-  padding: 8px 14px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #f9fafb;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #bbb;
+  background: rgba(228, 228, 228, 0.58);
   cursor: pointer;
-  transition: 0.3s ease;
+  border-radius: 3px;
+  transition: background 0.2s ease;
 }
-
-.paginationControls button:hover {
-  background: #e5e7eb;
+.activePage {
+  background: #1976d2 !important;
+  color: white;
+  border-color: #1976d2;
 }
-
-.paginationControls button:disabled {
+.pageBtn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.activePage {
-  background: #2563eb !important;
-  color: #fff;
-  border-color: #2563eb;
+/* 'No records' row text */
+.noRecords {
+  padding: 1rem;
+  font-style: italic;
+  color: #666;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+  }
+  .dataTable th,
+  .dataTable td {
+    padding: 0.5rem;
+  }
+}
+
+
+
+.sortButtons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.sortBtn {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #888;
+  background: #f0f0f5;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sortBtn:hover {
+  background: #e0e0ea;
+}
+.sortBtn.asc {
+  background: #d1e7fd;
+}
+.sortBtn.desc {
+  background: #c0d4fa;
 }

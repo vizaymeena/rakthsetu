@@ -17,17 +17,12 @@ export let AdminDashboard = () => {
       name: 'Users',
       filters: [
         {label:'Show All User',path:'user/showAllUser'},
-        {label:'New Users',path:'user/newUser'},
-        {label:'Old Users',path:'user/oldUser'}
       ],
     },
     {
       name: 'Donors',
       filters: [
         {label:'Show All Donor',path:'donor/showAllDonor'},
-        {label:'Latest Donors',path:'donor/latest'},
-        {label:'Active Donor',path:'donor/active'},
-        {label:'Inactive Donor',path:'donor/inactive'},
       ],
     },
     {
@@ -54,7 +49,7 @@ export let AdminDashboard = () => {
   return (
     <div className="dashboardContainer">
       <div className="leftsidebar">
-        <h1>Rakth Setu</h1>
+        <Link className='h1' to='/'>Rakth Setu</Link>
         <div className="listDiv">
           <ul>
             {sidebarSections.map((section) => (
