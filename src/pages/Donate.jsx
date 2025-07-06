@@ -21,9 +21,10 @@ export let Donate = () => {
     state: "",
     city: "",
     lastDonationDate: "",
-    surgery_illness: false,
-    medical_history: false,
-    consent: false
+    surgery_illness: 'no',
+    medical_history: 'no',
+    consent: false,
+    active:false
   })
 
   let [cities, setCities] = useState([])
@@ -34,7 +35,6 @@ export let Donate = () => {
     consent:"",
     contact:"",
     alreadyExits:""
-
   })
 
   let { admin, user } = useLogin()
@@ -163,8 +163,8 @@ export let Donate = () => {
        state: "",
        city: "",
        lastDonationDate: "",
-       surgery_illness: false,
-       medical_history: false,
+       surgery_illness: 'no',
+       medical_history: 'no',
        consent: false
     }))
   }
@@ -285,16 +285,16 @@ export let Donate = () => {
                 <div className="formRow">
                   <label>Recent illness or Surgery</label>
                   <select name="surgery_illness" value={form.surgery_illness} onChange={handleChange}>
-                    <option value={false}>No</option>
-                    <option value={true}>Yes</option>
+                    <option value={'no'}>No</option>
+                    <option value={'yes'}>Yes</option>
                   </select>
                 </div>
 
                 <div className="formRow">
                   <label>Medical History</label>
                   <select name="medical_history" value={form.medical_history} onChange={handleChange}>
-                    <option value={false}>No</option>
-                    <option value={true}>Yes</option>
+                    <option value={'no'}>No</option>
+                    <option value={'yes'}>Yes</option>
                   </select>
                 </div>
               </div>

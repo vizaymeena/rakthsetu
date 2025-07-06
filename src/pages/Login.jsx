@@ -16,7 +16,7 @@ let Login = () => {
   // Admin Created 
   let admin = {
     email:'vizaymeena@gmail.com',
-    password:'vizay1999'
+    password:'1234'
   }
  
   // HANDLE CHANGE
@@ -39,18 +39,7 @@ let Login = () => {
   let handleSubmit = async (e) => {
     e.preventDefault()
 
-    let user = await checkData(login.email)
-    console.log("print this line"+ "  " + user)
-    console.log()
-
-    if(!user){
-      alert("Please,register yourself first.")
-      return false  // cancel if user does not match with records.
-    } 
-
-
     //  admin and user into session storage
-   
     try{
         // admin based login.
         if(login.email === admin.email ){
@@ -60,9 +49,18 @@ let Login = () => {
             user:null
           }))
           redirect('/',{replace:true })
+
+          return
         }
 
+        
         // user based login.
+        let user = await checkData(login.email)
+        if(!user){
+          alert("Please,register yourself first.")
+          return false  // cancel if user does not match with records.
+        } 
+
         else if(login.email === user){
           sessionStorage.setItem('user',user)  // success session store
           setLogin(()=>({

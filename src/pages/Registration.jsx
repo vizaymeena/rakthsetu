@@ -66,7 +66,7 @@ let Register = () => {
       // post data
       axios.post(`http://localhost:3000/users`,context)
       alert("Successfully registered")
-      return true
+      return 
     } 
     catch(error){
       console.log(error)
