@@ -1,6 +1,7 @@
 // Registration form
 export let stateCityData = [
-  { state: "Madhya Pradesh", cities: ["Bhopal", "Indore", "Jabalpur", "Gwalior", "Ujjain"] },
+  { state: "Madhya Pradesh", 
+    cities: ["Bhopal", "Indore", "Jabalpur", "Gwalior", "Ujjain"] },
   { state: "Maharashtra", cities: ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"] },
   { state: "Uttar Pradesh", cities: ["Lucknow", "Kanpur", "Varanasi", "Agra", "Prayagraj"] },
   { state: "Rajasthan", cities: ["Jaipur", "Udaipur", "Jodhpur", "Ajmer", "Kota"] },
