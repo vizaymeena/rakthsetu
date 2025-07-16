@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import axios from 'axios'
 import "../assets/styles/adminfilter.css"
 import { useNavigate } from "react-router-dom"
+import CampCreateForm from "../pages/Camp"
 
 export let FilterPage = () => {
   let { category ,filterType } = useParams()
@@ -23,7 +24,8 @@ export let FilterPage = () => {
     recordsPerPage = 5
   }
  
-
+let isBloodRequestPage = category=="req"
+let isAddCamp = category =="camp" && filterType =="addcamp"
 
   let navigate = useNavigate()
 
@@ -48,11 +50,12 @@ export let FilterPage = () => {
 
   let filteredData = useMemo(() => {
     if (!searchTerm) return data
-    let l = searchTerm.toLowerCase()
+    let x = searchTerm.toLowerCase()
     return data.filter(el =>
-      el.fullName.toLowerCase().includes(l) ||
-      el.email.toLowerCase().includes(l) ||
-      el.phone.includes(l)
+      el.fullName.toLowerCase().includes(x) ||
+      el.patientName.toLowerCase().includes(x) || 
+      el.email.toLowerCase().includes(x) ||
+      el.phone.includes(x)
     )
   }, [data, searchTerm])
 
@@ -226,7 +229,33 @@ export let FilterPage = () => {
         ))}
       </section>
     </div>
-  );
+  )
+  }
+  else if(category == "req"){
+
+    block_content = (
+     <>
+      <div className="reqCardContainer">
+        {currentRecords.map((req) => (
+          <div className="reqCard" key={req.id}>
+            <h3>{req.patientName} ({req.gender})<span className={`urgencyTag ${req.urgency.toLowerCase()}`}>{req.urgency}</span></h3>
+            <p><strong>Age:</strong> {req.age} yrs | <strong>Weight:</strong> {req.weight} kg </p>
+            <p><strong>Blood Group:</strong> {req.bloodGroup}</p>
+            <p><strong>Hospital:</strong> {req.hospital}, {req.city}, {req.state}</p>
+            <p><strong>Reason:</strong> {req.reason}</p>
+            <p><strong>Contact:</strong> 📞 {req.contact}</p>
+            <details>
+              <summary>Doctor Note</summary>
+              <p className="note">{req.doctorNote}</p>
+            </details>
+          </div>
+        ))}
+      </div>
+     </>
+     )
+  } 
+  else if(isAddCamp){
+    block_content = <CampCreateForm/>
   }
 
 
@@ -268,7 +297,23 @@ export let FilterPage = () => {
             {sortField === col && (sortOrder === "asc" ? " ▲" : " ▼")}
           </button>
         ))}
+        {isBloodRequestPage && (
+          <>
+          <button className={`sortBtn ${sortField == "urgency" ? sortOrder : ""}`} onClick={()=>handleSort("urgecy")}>
+            Urgency {sortField=="urgency" && (sortOrder==="asc"? "▲" : "▼")}
+          </button>
+
+           <button className={`sortBtn ${sortField == "age" ? sortOrder : ""}`} onClick={()=>handleSort("age")}>
+            Age {sortField=="age" && (sortOrder==="asc"? "▲" : "▼")}
+          </button>
+
+           <button className={`sortBtn ${sortField == "weight" ? sortOrder : ""}`} onClick={()=>handleSort("weight")}>
+            Weight {sortField=="weight" && (sortOrder==="asc"? "▲" : "▼")}
+          </button>
+          </>
+        )}
       </div>
+      
 
       {/* display records on basis of :- user , bloodRequest , bloodDonor , bloodCamp */}
       { block_content }

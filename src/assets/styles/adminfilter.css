@@ -258,3 +258,73 @@
   margin: 0;
   color: #4b5563;
 }
+
+
+/* blood request design */
+
+.reqCardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.reqCard {
+  background-color: #fff;
+  border-left: 6px solid #e53935;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.reqCard:hover {
+  transform: scale(1.02);
+}
+
+.reqCard h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reqCard .urgencyTag {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 6px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.urgencyTag.high {
+  background-color: #d32f2f;
+}
+
+.urgencyTag.medium {
+  background-color: #f9a825;
+}
+
+.urgencyTag.low {
+  background-color: #388e3c;
+}
+
+.reqCard p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.reqCard summary {
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.reqCard .note {
+  font-size: 0.85rem;
+  color: #444;
+  margin-top: 0.5rem;
+}

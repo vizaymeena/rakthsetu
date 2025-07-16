@@ -1,0 +1,68 @@
+.bloodRequestContainer {
+  margin-top: 100px;
+  padding: 30px;
+  margin: 50px  auto 0px;
+  
+  max-width: 50%;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.formTitle {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #d62828;
+}
+
+.bloodRequestForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 45%;
+}
+
+.formRow label {
+  min-width: 120px;
+  font-weight: 500;
+  color: #333;
+}
+
+.formInput {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.formInput:focus {
+  border-color: #d62828;
+}
+
+
+.formButton {
+  width: 100%;
+  margin-top: 25px;
+  display: block;
+  padding: 12px 24px;
+  background-color: #d62828;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.formButton:hover {
+  background-color: #b71c1c;
+}

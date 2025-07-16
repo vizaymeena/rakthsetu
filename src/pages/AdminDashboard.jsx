@@ -29,19 +29,13 @@ export let AdminDashboard = () => {
       name: 'Blood Request',
       filters: [
         {label:'All Request',path:"req/showAllReq"},
-        {label:'New Request',path:"req/newReq"},
-        {label:'Pending Request',path:"req/pendingReq"},
-        {label:'Approved Request',path:"req/approvedReq"},
-        {label:'Failed Request',path:"req/failedReq"},
-
-
       ],
     },
     {
       name: 'Blood Camps',
       filters: [
-        {label:'Ongoing Camps', path:'camp/ongoing'},
-        {label:'Upcoming', path:'camp/upcoming'},
+        {label:'Add Camp ', path:'camp/addcamp'},
+        {label:'Blood Camps', path:'camp/ongoing'},
       ],
     },
   ]

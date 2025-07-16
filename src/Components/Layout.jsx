@@ -55,9 +55,9 @@ export default function Layout() {
     {/* Nav Links */}
     <nav className="navLinks flex space-x-6">
       <Link to="/">Home</Link>
-      <Link to="/Donate">Donate</Link>
-      <Link to="/Info">Info</Link>
-      <Link to="/Help">Help</Link>
+      <Link to="/Donate">Donors</Link>
+      <Link to="/BloodRequest">Blood Request</Link>
+      <Link to="/BloodCamp">Camp</Link>
       {admin && <Link to="/AdminDashboard">Admin Dashboard</Link>}
       {user && <Link to="/UserDashboard">User Dashboard</Link>}
       {(!admin && !user) && <Link to="/Login">Login</Link>}

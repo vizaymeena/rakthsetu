@@ -12,6 +12,7 @@ import { AdminDashboard } from './pages/AdminDashboard'
 import { UserDashboard } from './pages/userDashboard'
 import { FilterPage } from './Components/AdminFilterPage'
 import { EditUserProfile , EditDonorProfile } from './Components/EditByAdmin'
+import BloodReq from './pages/BloodRequest'
 
 
 
@@ -30,6 +31,10 @@ let AnimatedRoutes=()=>{
           <Route path="Register" element={<Register />} />
           <Route path="Login" element={<Login />} />
           <Route path="Donate" element={<Donate />} />
+          <Route path="BloodRequest" element={<BloodReq />} />
+          
+
+
         </Route>
 
         {/* Admin Dashboard (without Layout) */}
