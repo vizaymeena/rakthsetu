@@ -2,8 +2,10 @@ import { useEffect, useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 import "../assets/styles/adminfilter.css"
+import "../assets/styles/campform.css"
+
 import { useNavigate } from "react-router-dom"
-import CampCreateForm from "../pages/Camp"
+
 
 export let FilterPage = () => {
   let { category ,filterType } = useParams()
@@ -254,10 +256,7 @@ let isAddCamp = category =="camp" && filterType =="addcamp"
      </>
      )
   } 
-  else if(isAddCamp){
-    block_content = <CampCreateForm/>
-  }
-
+ 
 
 
 
