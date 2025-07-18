@@ -1,336 +1,302 @@
-import { useEffect, useState, useMemo } from "react"
-import { useParams } from "react-router-dom"
-import axios from 'axios'
-import "../assets/styles/adminfilter.css"
-import "../assets/styles/campform.css"
+import { useEffect, useState, useMemo } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "../assets/styles/adminfilter.css";
+import "../assets/styles/campform.css";
 
-import { useNavigate } from "react-router-dom"
+// react-icons
+import { FaCheck } from "react-icons/fa6";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faTint,
+  faPhone,
+  faHospital,
+  faNotesMedical,
+  faMapMarkerAlt,
+  faHeartbeat,
+} from "@fortawesome/free-solid-svg-icons";
 
 
 export let FilterPage = () => {
-  let { category ,filterType } = useParams()
-  let [data, setData] = useState([])
-  let [searchTerm, setSearchTerm] = useState("")
-  let [sortField, setSortField] = useState("")
-  let [sortOrder, setSortOrder] = useState("asc")
-  let [currentPage, setCurrentPage] = useState(1)
-  // records per page category wise
-  let recordsPerPage 
-  if(category == 'user'){
-    recordsPerPage = 5
-  } else if(category == 'donor'){
-    recordsPerPage = 6
-  } else if(category == 'req'){
-    recordsPerPage = 8
-  } else if (category == 'camp'){
-    recordsPerPage = 5
-  }
- 
-let isBloodRequestPage = category=="req"
-let isAddCamp = category =="camp" && filterType =="addcamp"
+  let { category, filterType } = useParams();
+  let [data, setData] = useState([]);
+  let [searchTerm, setSearchTerm] = useState("");
+  let [sortField, setSortField] = useState("");
+  let [sortOrder, setSortOrder] = useState("asc");
+  let [currentPage, setCurrentPage] = useState(1);
+  let navigate = useNavigate();
 
-  let navigate = useNavigate()
+  let recordsPerPage = 5;
+  if (category === "donor") recordsPerPage = 6;
+  else if (category === "req") recordsPerPage = 8;
+
+  let isBloodRequestPage = category === "req";
+  let hideControls = category === "camp" && filterType === "addcamp";
 
   useEffect(() => {
-    let url 
-    if(category=='user'){
-      url = `http://localhost:3000/users`
-    } else if(category == 'donor'){
-      url = `http://localhost:3000/blood_donor`
-    } else if(category == 'req'){
-      url = `http://localhost:3000/blood_request`
-    } else if(category == 'camp'){
-      url = `http://localhost:3000/blood_camp`
+    const endpoints = {
+      user: "http://localhost:3000/users",
+      donor: "http://localhost:3000/blood_donor",
+      req: "http://localhost:3000/blood_request",
+      camp: "http://localhost:3000/blood_camp",
+    };
+    if (endpoints[category]) {
+      axios
+        .get(endpoints[category])
+        .then((res) => setData(res.data))
+        .catch((err) => console.log(err));
     }
+  }, [category, filterType]);
 
-    if(url){
-      axios.get(url)
-      .then(res => setData(res.data))
-      .catch(err => console.log(err))
-    }
-  }, [filterType])
+  const filteredData = useMemo(() => {
+    if (!searchTerm) return data;
+    const x = searchTerm.toLowerCase();
+    return data.filter(
+      (el) =>
+        el.fullName?.toLowerCase().includes(x) ||
+        el.patientName?.toLowerCase().includes(x) ||
+        el.email?.toLowerCase().includes(x) ||
+        el.phone?.includes(x)
+    );
+  }, [data, searchTerm]);
 
-  let filteredData = useMemo(() => {
-    if (!searchTerm) return data
-    let x = searchTerm.toLowerCase()
-    return data.filter(el =>
-      el.fullName.toLowerCase().includes(x) ||
-      el.patientName.toLowerCase().includes(x) || 
-      el.email.toLowerCase().includes(x) ||
-      el.phone.includes(x)
-    )
-  }, [data, searchTerm])
+  const sortedData = useMemo(() => {
+    if (!sortField) return filteredData;
+    const sorted = [...filteredData].sort((a, b) => {
+      const v1 = (a[sortField] || "").toString().toLowerCase();
+      const v2 = (b[sortField] || "").toString().toLowerCase();
+      return v1.localeCompare(v2);
+    });
+    return sortOrder === "asc" ? sorted : sorted.reverse();
+  }, [filteredData, sortField, sortOrder]);
 
- let sortedData = useMemo(() => {
-  let base = Array.isArray(filteredData) ? filteredData : []
-  if (!sortField) return base
+  const last = currentPage * recordsPerPage;
+  const first = last - recordsPerPage;
+  const currentRecords = sortedData.slice(first, last);
+  const totalPages = Math.ceil(sortedData.length / recordsPerPage);
 
-  let arr = [...base].sort((a, b) => {
-    let v1 = (a[sortField] || "").toString().toLowerCase()
-    let v2 = (b[sortField] || "").toString().toLowerCase()
-    if (v1 < v2) return -1
-    if (v1 > v2) return 1
-    return 0
-  })
-
-  return sortOrder === "asc" ? arr : arr.reverse()
-}, [filteredData, sortField, sortOrder])
-
-
-  console.log('sortedData : ' , sortedData)
-  console.log('filterDataArray :' ,filteredData)
-
-
-
-
-  let last = currentPage * recordsPerPage
-  let first = last - recordsPerPage
-  let currentRecords = sortedData.slice(first, last)
-  let totalPages = Math.ceil(sortedData.length / recordsPerPage)
-
-  let handleSort = (col) => {
+  const handleSort = (col) => {
     if (sortField === col) {
-      setSortOrder(prev => (prev === "asc" ? "desc" : "asc"))
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
     } else {
-      setSortField(col)
-      setSortOrder("asc")
+      setSortField(col);
+      setSortOrder("asc");
     }
-    setCurrentPage(1)
-  }
+    setCurrentPage(1);
+  };
 
-
-
-  // api end points
   const categoryEndpoints = {
-  user: "users",
-  donor: "blood_donor",
-  req: "blood_request",
-  camp: "blood_camp"
-  }
-  
-  let handleRemove = (id) => {
-      let endpoint = categoryEndpoints[category]
-      if (!endpoint) return
-      
-      axios.delete(`http://localhost:3000/${endpoint}/${id}`)
-        .then(() => axios.get(`http://localhost:3000/${endpoint}`))
-        .then(res => {
-          let fresh = res.data
-          setData(fresh)
-          let newTotal = Math.ceil(fresh.length / recordsPerPage)
-          if (currentPage > newTotal) {
-            setCurrentPage(newTotal || 1)
-          }
-        })
-        .catch(err => console.error("Delete error:", err))
-    }
+    user: "users",
+    donor: "blood_donor",
+    req: "blood_request",
+    camp: "blood_camp",
+  };
 
-    let handleEdit = (id) => {
-      let endpoint = categoryEndpoints[category]
-      if (!endpoint) return
-      navigate(`/${endpoint}/edit/${id}`)
-    }
+  const handleRemove = (id) => {
+    const endpoint = categoryEndpoints[category];
+    if (!endpoint) return;
+    axios
+      .delete(`http://localhost:3000/${endpoint}/${id}`)
+      .then(() => axios.get(`http://localhost:3000/${endpoint}`))
+      .then((res) => {
+        const fresh = res.data;
+        setData(fresh);
+        const newTotal = Math.ceil(fresh.length / recordsPerPage);
+        if (currentPage > newTotal) {
+          setCurrentPage(newTotal || 1);
+        }
+      })
+      .catch((err) => console.error("Delete error:", err));
+  };
 
+  const handleEdit = (id) => {
+    const endpoint = categoryEndpoints[category];
+    if (!endpoint) return;
+    navigate(`/${endpoint}/edit/${id}`);
+  };
 
+  let block_content;
 
-
-  // Records categories wise
-  let block_content 
-  if(category == "user"){
-     block_content = (
-      <div className="tableContainer">
-        <table className="dataTable">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Gender</th>
-              <th>Contact</th>
-              <th>Actions</th>
+if (category === "user") {
+  block_content = (
+    <div className="tableContainer">
+      <table className="dataTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Contact</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentRecords.map(el => (
+            <tr key={el.id}>
+              <td>{el.fullName}</td>
+              <td>{el.email}</td>
+              <td>{el.gender}</td>
+              <td>{el.phone}</td>
+              <td>
+                <button className="editBtn" onClick={() => handleEdit(el.id)}>Edit</button>
+                <button className="removeBtn" onClick={() => handleRemove(el.id)}>Remove</button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {currentRecords.map(el => (
-              <tr key={el.id}>
-                <td>{el.fullName}</td>
-                <td>{el.email}</td>
-                <td>{el.gender}</td>
-                <td>{el.phone}</td>
-                <td>
-                  <button className="editBtn" onClick={() => handleEdit(el.id)}>Edit</button>
-                  <button className="removeBtn" onClick={() => handleRemove(el.id)}>Remove</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-     )
-  } else if(category == 'donor'){
-     block_content = (
-      <div className="donorSection">
-      <header className="donorHeader">
-        <h2>Donor List</h2>
-      </header>
-
-      <section className="donorGrid">
-        {currentRecords.map(donor => (
-          <article key={donor.id} className={`donorCard ${donor.active ? "activeDonor" : "inactiveDonor"}`}>
-            <div className="donorCardHeader">
-              <h3 className="donorName">{donor.name}</h3>
-              <span className="statusBadge">{donor.active ? "Active" : "Inactive"}</span>
-            </div>
-        
-            <dl className="donorDetails">
-              <div>
-                <dt>Blood Group</dt>
-                <dd>{donor.bloodGroup}</dd>
-              </div>
-              <div>
-                <dt>Age</dt>
-                <dd>{donor.age}</dd>
-              </div>
-              <div>
-                <dt>Gender</dt>
-                <dd>{donor.gender}</dd>
-              </div>
-              <div>
-                <dt>Contact</dt>
-                <dd>{donor.contact}</dd>
-              </div>
-              <div>
-                <dt>City</dt>
-                <dd>{donor.city}</dd>
-              </div>
-              <div>
-                <dt>State</dt>
-                <dd>{donor.state}</dd>
-              </div>
-              <div>
-                <dt>Last Donation</dt>
-                <dd>{donor.lastDonationDate}</dd>
-              </div>
-              <div>
-                <dt>illness</dt>
-                <dd>{donor.surgery_illness}</dd>
-              </div>
-               <div>
-                <dt>Medical History</dt>
-                <dd>{donor.medical_history}</dd>
-              </div>
-              <div>
-                <dt>Consent</dt>
-                <dd>{donor.consent ? "Yes" : "No"}</dd>
-              </div>
-              <div style={{display:"flex",justifyContent:'space-between',width:"100%"}}>
-                <button onClick={()=>handleEdit(donor.id)} >Update</button>
-                <button onClick={()=>handleRemove(donor.id)} >Remove</button>
-              </div>
-            </dl>
-          </article>
-        ))}
-      </section>
+          ))}
+        </tbody>
+      </table>
     </div>
-  )
-  }
-  else if(category == "req"){
+  );
+}
 
-    block_content = (
-     <>
-      <div className="reqCardContainer">
-        {currentRecords.map((req) => (
-          <div className="reqCard" key={req.id}>
-            <h3>{req.patientName} ({req.gender})<span className={`urgencyTag ${req.urgency.toLowerCase()}`}>{req.urgency}</span></h3>
-            <p><strong>Age:</strong> {req.age} yrs | <strong>Weight:</strong> {req.weight} kg </p>
-            <p><strong>Blood Group:</strong> {req.bloodGroup}</p>
-            <p><strong>Hospital:</strong> {req.hospital}, {req.city}, {req.state}</p>
-            <p><strong>Reason:</strong> {req.reason}</p>
-            <p><strong>Contact:</strong> 📞 {req.contact}</p>
-            <details>
-              <summary>Doctor Note</summary>
-              <p className="note">{req.doctorNote}</p>
-            </details>
-          </div>
-        ))}
+else if (category === "req") {
+  block_content = (
+    <>
+     <div className="gridContainer">
+    {currentRecords.map(request=>(
+   
+      <div className="bloodRequestCard">
+      <h2><FontAwesomeIcon icon={faUser} /> {request.patientName}</h2>
+      <div className="card-section">
+        <p><strong>Gender:</strong> {request.gender}</p>
+        <p><strong>Age:</strong> {request.age}</p>
+        <p><strong>Weight:</strong> {request.weight} kg</p>
+        <p><strong><FontAwesomeIcon icon={faTint} /> Blood Group:</strong> {request.bloodGroup}</p>
+        <p><strong>Urgency:</strong> {request.urgency}</p>
       </div>
-     </>
-     )
-  } 
- 
-
-
-
-  let goTo = n => setCurrentPage(n)
-  let next = () => currentPage < totalPages && setCurrentPage(n => n + 1)
-  let prev = () => currentPage > 1 && setCurrentPage(n => n - 1)
-
-
-
-
-
-
-  return (
-    <div className="adminContainer">
-      <div className="controls">
-        <input
-          className="searchInput"
-          type="search"
-          placeholder="Search name, email, or phone..."
-          value={searchTerm}
-          onChange={e => {
-            setSearchTerm(e.target.value)
-            setCurrentPage(1)
-          }}
-        />
+      <div className="card-section">
+        <p><FontAwesomeIcon icon={faHospital} /> <strong>Hospital:</strong> {request.hospital}</p>
+        <p><FontAwesomeIcon icon={faNotesMedical} /> <strong>Reason:</strong> {request.reason}</p>
+        <p><strong>Doctor's Note:</strong> {request.doctorNote}</p>
       </div>
-
-      {/* Sorting Button Bar */}
-      <div className="sortButtons">
-        {["fullName", "email", "gender"].map(col => (
-          <button
-            key={col}
-            className={`sortBtn ${sortField === col ? sortOrder : ""}`}
-            onClick={() => handleSort(col)}
-          >
-            {col === "fullName" ? "Name" : col.charAt(0).toUpperCase() + col.slice(1)} {/* E + mail = Email */}
-            {sortField === col && (sortOrder === "asc" ? " ▲" : " ▼")}
-          </button>
-        ))}
-        {isBloodRequestPage && (
-          <>
-          <button className={`sortBtn ${sortField == "urgency" ? sortOrder : ""}`} onClick={()=>handleSort("urgecy")}>
-            Urgency {sortField=="urgency" && (sortOrder==="asc"? "▲" : "▼")}
-          </button>
-
-           <button className={`sortBtn ${sortField == "age" ? sortOrder : ""}`} onClick={()=>handleSort("age")}>
-            Age {sortField=="age" && (sortOrder==="asc"? "▲" : "▼")}
-          </button>
-
-           <button className={`sortBtn ${sortField == "weight" ? sortOrder : ""}`} onClick={()=>handleSort("weight")}>
-            Weight {sortField=="weight" && (sortOrder==="asc"? "▲" : "▼")}
-          </button>
-          </>
-        )}
+      <div className="card-section location-contact">
+        <p><FontAwesomeIcon icon={faMapMarkerAlt} /> {request.city}, {request.state}</p>
+        <p><FontAwesomeIcon icon={faPhone} /> {request.contact}</p>
       </div>
-      
-
-      {/* display records on basis of :- user , bloodRequest , bloodDonor , bloodCamp */}
-      { block_content }
-
-
-      <div className="paginationControls">
-        <button onClick={prev} disabled={currentPage === 1}>Prev</button>
-        {[...Array(totalPages)].map((_, i) => (
-          <button
-            key={i}
-            className={`pageBtn ${currentPage === i + 1 ? "activePage" : ""}`}
-            onClick={() => goTo(i + 1)}
-          >
-            {i + 1}
-          </button>
-        ))}
-        <button onClick={next} disabled={currentPage === totalPages}>Next</button>
+      <div className="actionBtn">
+        <button className="actionBtn1">Edit</button>
+        <button className="actionBtn2">Remove</button>
       </div>
     </div>
+  
+    ))}
+     </div>
+    </>
   )
 }
+
+else if (category === "donor") {
+  block_content = (
+   <div className="donorCardContainer">
+  {currentRecords.map(donor => (
+    <div className="donorCard" key={donor.id}>
+      <div className="donorHeader">
+        <h2>{donor.name}</h2>
+        <span className="bloodGroupTag">{donor.bloodGroup}</span>
+      </div>
+
+      <div className="donorDetails">
+        <p><strong>Age:</strong> {donor.age}</p>
+        <p><strong>Gender:</strong> {donor.gender}</p>
+        <p><strong>Contact:</strong> {donor.contact}</p>
+        <p><strong>Email:</strong> {donor.email}</p>
+        <p><strong>Location:</strong> {donor.city}, {donor.state}</p>
+        <p><strong>Last Donation:</strong> {donor.lastDonationDate}</p>
+        <p><strong>Medical History:</strong> {donor.medical_history === "yes" ? "Yes" : "No"}</p>
+        <p><strong>Recent Surgery/Illness:</strong> {donor.surgery_illness === "yes" ? "Yes" : "No"}</p>
+        <p><strong>Consent Given:</strong> {donor.consent ? "True" : "False"}</p>
+        <p><strong>Active Donor:</strong> {donor.active === "yes" ? "Active" : "Inactive"}</p>
+      </div>
+
+      <div className="cardActions">
+        <button className="editBtn" onClick={() => handleEdit(donor.id)}>Edit</button>
+        <button className="removeBtn" onClick={() => handleRemove(donor.id)}>Remove</button>
+      </div>
+    </div>
+  ))}
+</div>
+
+  );
+}
+
+
+  const goTo = (n) => setCurrentPage(n);
+  const next = () => currentPage < totalPages && setCurrentPage((n) => n + 1);
+  const prev = () => currentPage > 1 && setCurrentPage((n) => n - 1);
+
+  return (
+    <>
+      {!hideControls && (
+        <div className="adminContainer">
+          <div className="controls">
+            <input
+              className="searchInput"
+              type="search"
+              placeholder="Search name, email, or phone..."
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setCurrentPage(1);
+              }}
+            />
+          </div>
+
+          <div className="sortButtons">
+            {["fullName", "email", "gender"].map((col) => (
+              <button
+                key={col}
+                className={`sortBtn ${sortField === col ? sortOrder : ""}`}
+                onClick={() => handleSort(col)}
+              >
+                {col === "fullName" ? "Name" : col.charAt(0).toUpperCase() + col.slice(1)}
+                {sortField === col && (sortOrder === "asc" ? " ▲" : " ▼")}
+              </button>
+            ))}
+
+            {isBloodRequestPage && (
+              <>
+                <button
+                  className={`sortBtn ${sortField === "urgency" ? sortOrder : ""}`}
+                  onClick={() => handleSort("urgency")}
+                >
+                  Urgency {sortField === "urgency" && (sortOrder === "asc" ? "▲" : "▼")}
+                </button>
+                <button
+                  className={`sortBtn ${sortField === "age" ? sortOrder : ""}`}
+                  onClick={() => handleSort("age")}
+                >
+                  Age {sortField === "age" && (sortOrder === "asc" ? "▲" : "▼")}
+                </button>
+                <button
+                  className={`sortBtn ${sortField === "weight" ? sortOrder : ""}`}
+                  onClick={() => handleSort("weight")}
+                >
+                  Weight {sortField === "weight" && (sortOrder === "asc" ? "▲" : "▼")}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {block_content}
+
+      {!hideControls && (
+        <div className="paginationControls">
+          <button onClick={prev} disabled={currentPage === 1}>Prev</button>
+          {[...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              className={`pageBtn ${currentPage === i + 1 ? "activePage" : ""}`}
+              onClick={() => goTo(i + 1)}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button onClick={next} disabled={currentPage === totalPages}>Next</button>
+        </div>
+      )}
+    </>
+  );
+};

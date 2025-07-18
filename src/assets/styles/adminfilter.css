@@ -52,7 +52,7 @@
 .dataTable th,
 .dataTable td {
   border: 1px solid #e0e0e0;
-  padding: 0.75rem 1rem;
+  padding: 0.1rem 1rem;
   text-align: left;
 }
 .dataTable th {
@@ -155,8 +155,9 @@
 .sortBtn.desc {
   background: #c0d4fa;
 }
-/* Blood Donor Card Design */
 
+
+/* Blood Donor Card Design */
 .donorName{
   color: rgb(69, 22, 150) !important;
 }
@@ -171,7 +172,6 @@
   margin-bottom: 1.25rem;
 }
 
-/* Donor Cards Grid */
 .donorGrid {
   display: grid;
   grid-template-columns: 2fr;
@@ -193,138 +193,154 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-/* Individual Donor Card */
-.donorCard {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
-  padding: 1.25rem;
-  box-shadow: 0 0 5px rgba(0,0,0,0.04);
-  transition: box-shadow 0.2s ease;
-}
-
-.donorCard:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-/* Card Header */
-.donorCardHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.donorCardHeader h3 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #111827;
-}
-
-.statusBadge {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 9999px;
-  background: #d1d5db;
-  color: #374151;
-}
-
-.activeDonor .statusBadge {
-  background: #d1fae5;
-  color: #065f46;
-}
-
-.inactiveDonor .statusBadge {
-  background: #e5e7eb;
-  color: #6b7280;
-}
-
-/* Donor Details List */
-.donorDetails {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 0.5rem;
-  column-gap: 0.75rem;
-  font-size: 0.875rem;
-  color: #374151;
-}
-
-.donorDetails dt {
-  font-weight: 600;
-}
-
-.donorDetails dd {
-  margin: 0;
-  color: #4b5563;
-}
-
-
-/* blood request design */
-
-.reqCardContainer {
+.donorCardContainer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
-  padding: 2rem;
+  padding: 1rem;
 }
 
-.reqCard {
-  background-color: #fff;
-  border-left: 6px solid #e53935;
+.donorCard {
+  background: #fff;
+  border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
-  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 0 15px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.reqCard:hover {
-  transform: scale(1.02);
+.donorCard:hover {
+  transform: translateY(-4px);
 }
 
-.reqCard h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+.donorHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
-.reqCard .urgencyTag {
-  padding: 4px 10px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  border-radius: 6px;
+.bloodGroupTag {
+  background: crimson;
   color: #fff;
-  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-weight: bold;
 }
 
-.urgencyTag.high {
-  background-color: #d32f2f;
-}
-
-.urgencyTag.medium {
-  background-color: #f9a825;
-}
-
-.urgencyTag.low {
-  background-color: #388e3c;
-}
-
-.reqCard p {
-  margin: 6px 0;
+.donorDetails p {
+  margin: 0.25rem 0;
   font-size: 0.9rem;
-  line-height: 1.4;
 }
 
-.reqCard summary {
-  font-weight: 600;
-  cursor: pointer;
+.cardActions {
   margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
-.reqCard .note {
-  font-size: 0.85rem;
-  color: #444;
-  margin-top: 0.5rem;
+.editBtn,
+.removeBtn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
 }
+
+.editBtn {
+  background-color: #2196f3;
+  color: white;
+}
+
+.removeBtn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* blood request design */
+.gridContainer {
+  width: 100%;
+  max-width: 1200px; /* Optional: to limit crazy-wide containers */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  box-sizing: border-box;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.bloodRequestCard {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  transition: transform 0.2s;
+  width: 100%; /* Full width inside grid cell */
+}
+
+
+.bloodRequestCard h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #c62828;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-section {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.card-section strong {
+  color: #444;
+}
+
+.location-contact {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card-section p {
+  margin: 5px 0;
+}
+.actionBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+}
+.actionBtn1,
+.actionBtn2{
+  width: 100px;
+  padding: 8px 8px;
+  letter-spacing: 2px;
+  font-weight: 550;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.3s ease-in-out;
+}
+.actionBtn1{
+  background-color: green;
+  color: white;
+}
+.actionBtn2{
+  background-color: red;
+  color: white;
+}
+.actionBtn1:hover,.actionBtn2:hover{
+  transform: scale(0.9);
+}
+.actionBtn1:hover{
+  background-color: rgb(4, 65, 4);
+}
+.actionBtn2:hover{
+  background-color: rgb(88, 4, 4);
+}
+
