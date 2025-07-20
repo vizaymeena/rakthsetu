@@ -35,7 +35,7 @@ export let AdminDashboard = () => {
       name: 'Blood Camps',
       filters: [
         {label:'Add Camp ', path:'camp/addcamp'},
-        {label:'Blood Camps', path:'camp/ongoing'},
+        {label:'Show All Camps', path:'camp/showallcamp'},
       ],
     },
   ]

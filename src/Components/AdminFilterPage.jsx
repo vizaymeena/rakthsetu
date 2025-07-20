@@ -4,6 +4,9 @@ import axios from "axios";
 import "../assets/styles/adminfilter.css";
 import "../assets/styles/campform.css";
 
+// campformCard
+import { CampFormCard } from "./CampForm";
+
 // react-icons
 import { FaCheck } from "react-icons/fa6";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -39,7 +42,7 @@ export let FilterPage = () => {
       user: "http://localhost:3000/users",
       donor: "http://localhost:3000/blood_donor",
       req: "http://localhost:3000/blood_request",
-      camp: "http://localhost:3000/blood_camp",
+      camp: "http://localhost:3000/camp",
     };
     if (endpoints[category]) {
       axios
@@ -220,6 +223,37 @@ else if (category === "donor") {
   );
 }
 
+else if (category === 'camp' && filterType === 'addcamp') {
+  block_content = (
+   <CampFormCard/>
+  );
+}
+
+else if (category === 'camp' && filterType === "showallcamp") {
+  block_content = (
+    <div className="campDataContainer">
+      {currentRecords.map((el, key) => (
+        <div className="campCard" key={key}>
+          <h2 className="campName"> {el.campName}</h2>
+          <p><strong>Organiser:</strong> {el.organiserName}</p>
+          <p><strong>Location:</strong> {el.location}, {el.city}, {el.state}</p>
+          <p><strong>Date:</strong> {el.date}</p>
+          <p><strong>Time:</strong> {el.time}</p>
+          <p><strong>Contact:</strong>  {el.contact}</p>
+          <p><strong>Email:</strong>  {el.email}</p>
+          <p className="description">{el.description}</p>
+          <p className="actionButton">
+            <button className="btnE" onClick={()=>handleEdit(el.id)}>Edit</button>
+            <button className="btnD" onClick={()=>handleEdit(el.id)}>Remove</button>
+          </p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+
+
 
   const goTo = (n) => setCurrentPage(n);
   const next = () => currentPage < totalPages && setCurrentPage((n) => n + 1);
@@ -280,7 +314,12 @@ else if (category === "donor") {
         </div>
       )}
 
+
+
       {block_content}
+
+
+
 
       {!hideControls && (
         <div className="paginationControls">
