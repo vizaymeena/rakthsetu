@@ -1,83 +1,82 @@
-body{
-  height: max-content;
-}
-.dashboardContainer {
+.dashboard {
   display: flex;
   height: 100vh;
-  font-family: 'Poppins', sans-serif;
 }
 
-.leftsidebar {
+.sidebar {
   width: 260px;
-  background: #20232a;
-  color: #ffffff;
-  padding: 20px;
-  height: 100%;
+  background: #1f1f2e;
+  color: #fff;
+  padding: 1.5rem;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
 
-.leftsidebar .h1 {
-  font-size: 26px;
-  margin-left: 20px;
-  letter-spacing: 2px;
-  text-shadow: 1px 1px rgb(181, 95, 34);
-  text-align: center;
-  color: #e63946;
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #e74c3c;
   text-decoration: none;
-}
-.listDiv{
-  height: max-content;
-}
-.listDiv ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  margin-bottom: 2rem;
+  display: block;
 }
 
-.listDiv li {
-  margin-bottom: 10px;
+.navMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.menuHeader {
+.sectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  padding: 12px;
-  border-radius: 8px;
-  transition: background 0.3s ease;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.menuHeader:hover {
-  background: #2d323e;
+.sectionHeader:hover {
+  color: #f39c12;
 }
 
-.dropdownIcon {
-  font-size: 16px;
+.chevron {
+  transition: transform 0.3s ease;
 }
 
-.filterOptions {
-  background: #2d323e;
-  padding: 10px;
-  margin-top: 4px;
-  border-radius: 6px;
-  display: flex;
+.chevron.rotate {
+  transform: rotate(180deg);
+}
+
+.sectionLinks {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  display: none;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.5rem;
 }
 
-.filterOptions span {
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 5px;
-  transition: background 0.2s ease;
+.sectionLinks.show {
+  display: flex;
 }
 
-.filterOptions span:hover {
-  background: #3c4049;
+.navLink {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
 }
 
-.rightBody {
+.navLink:hover,
+.navLink.active {
+  color: #fff;
+  font-weight: bold;
+}
+
+.mainContent {
   flex: 1;
-  background: #f5f5f5;
-  /* padding: 20px; */
+  padding: 2rem;
+  background-color: #f9f9f9;
+  overflow-y: auto;
 }

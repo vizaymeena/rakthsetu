@@ -35,6 +35,7 @@ export let FilterPage = () => {
   else if (category === "req") recordsPerPage = 8;
 
   let isBloodRequestPage = category === "req";
+
   let hideControls = category === "camp" && filterType === "addcamp";
 
   useEffect(() => {
@@ -93,7 +94,7 @@ export let FilterPage = () => {
     user: "users",
     donor: "blood_donor",
     req: "blood_request",
-    camp: "blood_camp",
+    camp: "camp",
   };
 
   const handleRemove = (id) => {
@@ -116,10 +117,15 @@ export let FilterPage = () => {
   const handleEdit = (id) => {
     const endpoint = categoryEndpoints[category];
     if (!endpoint) return;
-    navigate(`/${endpoint}/edit/${id}`);
+    console.log("endpoint is here ",endpoint)
+    navigate(`/${endpoint}/edit/${id}`);   
   };
 
-  let block_content;
+
+
+
+ // 
+let block_content;
 
 if (category === "user") {
   block_content = (

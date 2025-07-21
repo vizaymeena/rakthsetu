@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import '../assets/styles/admindashboard.css';
-import { Link,Outlet } from 'react-router-dom'
-export let AdminDashboard = () => {
+
+export const AdminDashboard = () => {
   const [openSections, setOpenSections] = useState({});
+  const location = useLocation();
 
   const toggleSection = (sectionName) => {
     setOpenSections((prev) => ({
@@ -11,65 +13,74 @@ export let AdminDashboard = () => {
     }));
   };
 
-  // Sidebar data structure
   const sidebarSections = [
     {
       name: 'Users',
       filters: [
-        {label:'Show All User',path:'user/showAllUser'},
+        { label: 'Show All Users', path: 'user/showAllUser' },
       ],
     },
     {
       name: 'Donors',
       filters: [
-        {label:'Show All Donor',path:'donor/showAllDonor'},
+        { label: 'Show All Donors', path: 'donor/showAllDonor' },
       ],
     },
     {
-      name: 'Blood Request',
+      name: 'Blood Requests',
       filters: [
-        {label:'All Request',path:"req/showAllReq"},
+        { label: 'All Requests', path: 'req/showAllReq' },
       ],
     },
     {
       name: 'Blood Camps',
       filters: [
-        {label:'Add Camp ', path:'camp/addcamp'},
-        {label:'Show All Camps', path:'camp/showallcamp'},
+        { label: 'Add Camp', path: 'camp/addcamp' },
+        { label: 'Show All Camps', path: 'camp/showallcamp' },
       ],
     },
-  ]
+  ];
 
   return (
-    <div className="dashboardContainer">
-      <div className="leftsidebar">
-        <Link className='h1' to='/'>Rakth Setu</Link>
-        <div className="listDiv">
-          <ul>
-            {sidebarSections.map((section) => (
-              <li key={section.name}>
-                <div className="menuHeader" onClick={() => toggleSection(section.name)}>
-                  <span>{section.name}</span>
-                  <span className="dropdownIcon">▼</span>
-                </div>
-                {openSections[section.name] && (
-                  <div className="filterOptions">
-                    {section.filters.map((obj, idx) => (
-                      <Link key={idx} to={obj.path} className="filterLink">
-                        {obj.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+    <div className="dashboard">
+      <aside className="sidebar">
+        <Link className="logo" to="/">🩸 Rakth Setu</Link>
 
-      <div className="rightBody">
-       <Outlet/>
-      </div>
+        <nav className="navMenu">
+          {sidebarSections.map((section) => (
+            <div key={section.name} className="navSection">
+              <div
+                className="sectionHeader"
+                role="button"
+                onClick={() => toggleSection(section.name)}
+                aria-expanded={!!openSections[section.name]}
+                tabIndex={0}
+              >
+                <span>{section.name}</span>
+                <span className={`chevron ${openSections[section.name] ? 'rotate' : ''}`}>▼</span>
+              </div>
+
+              <div
+                className={`sectionLinks ${openSections[section.name] ? 'show' : ''}`}
+              >
+                {section.filters.map((filter) => (
+                  <Link
+                    key={filter.path}
+                    to={filter.path}
+                    className={`navLink ${location.pathname.includes(filter.path) ? 'active' : ''}`}
+                  >
+                    {filter.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </nav>
+      </aside>
+
+      <main className="mainContent">
+        <Outlet />
+      </main>
     </div>
-  )
-}
+  );
+};
