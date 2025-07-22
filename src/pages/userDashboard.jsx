@@ -67,7 +67,7 @@ export let UserDashboard=()=>{
       <div className="rightBodyContainer">
 
         <div>
-          <h1>Hello Mrs Dipti</h1>
+          <h4>Hello Mrs Dipti</h4>
         </div>
 
         <div>
@@ -94,7 +94,7 @@ export let UserDashboard=()=>{
                     <span><strong>Contact:</strong> {el.contact}</span>
                     <span><strong>Hospital:</strong> {el.hospital}</span>
                     <span><strong>Reason:</strong> {el.reason}</span>
-                     {/* <span><strong>Doctor Note:</strong> {el.doctorNote}</span> */}
+                     <span style={{width:'100%'}}><strong style={{width:'100%'}}>Doctor Note:</strong> {el.doctorNote}</span>
                   </div>
                 </div>
               ))}
@@ -103,14 +103,14 @@ export let UserDashboard=()=>{
 
 
           <div className="userDash_DonationResults">
-            <h4>Your Donation</h4>
+             <h4>Nearby Camps</h4>
             <div>
 
             </div>
           </div>
 
           <div>
-            <h4>Nearby Camps</h4>
+           
             <div>
 
             </div>

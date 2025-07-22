@@ -104,39 +104,46 @@
 
 /* right side */
 .rightBodyContainer{
+    background-color: rgb(192, 172, 237);
+    overflow-y: auto;   /* Enable vertical scrolling */
+    height: 100vh;      /* Match sidebar height */
+    padding: 1rem;
     width: 88%;
     background-color: rgb(192, 172, 237);
 }
+.userDash_RequestResults h4 {
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
 .gridContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
-  margin-top: 1rem;
 }
 
+/* Card Styling */
 .requestCard {
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 12px;
-  padding: 1.2rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease;
 }
 
-.requestCard:hover {
-  transform: translateY(-4px);
+
+/* Title Section */
+.cardTitle {
+  text-align: center;
+  margin-bottom: 1rem;
 }
-.cardTitle{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
 .cardTitle h4 {
-  margin-bottom: 0.3rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #c1121f;
+  margin-bottom: 0.3rem;
 }
 
 .cardTitle p {
@@ -147,37 +154,58 @@
 
 .status {
   font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 5px;
-  display: inline-block;
-  margin-top: 0.5rem;
+  padding: 4px 12px;
+  border-radius: 6px;
   font-size: 0.85rem;
+  display: inline-block;
+  text-transform: capitalize;
   color: white;
+  margin-top: 0.5rem;
 }
 
+/* Status Colors */
 .pending {
-padding: 4px 20px;
-  color: white;
   background-color: #fca311;
 }
+
 .approved {
   background-color: #2a9d8f;
 }
+
 .cancel {
   background-color: #e63946;
 }
 
+/* Info Grid */
 .cardDetails {
-  margin-top: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
   gap: 0.5rem 1rem;
   font-size: 0.9rem;
-  color: #333;
+  color: #444;
 }
 
+
 .cardDetails span {
+  background: #f7f7f7;
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.05);
   line-height: 1.3;
+}
+
+
+ .cardDetails .doctorNote {
+  grid-column: 2 / -1;              /* Stretch full width */
+  background: #fff8e1;
+  border-left: 4px solid #fca311;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-style: italic;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  color: #333;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.05);
 }
 
 
