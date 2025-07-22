@@ -42,7 +42,7 @@ let AnimatedRoutes=()=>{
         {/* "/AdminDashboard/user/showAllUser/AdminDashboard/users/edit/2585"  */}
         <Route path="/AdminDashboard" element={<AdminDashboard />}>
           <Route path=":category/:filterType" element={<FilterPage />} />
-          
+
           <Route path="users/edit/:id" element={<EditUserProfile/>} />
           <Route path="blood_donor/edit/:id" element={<EditDonorProfile />} />
           <Route path="camp/edit/:id" element={<EditCamp />} />

@@ -23,11 +23,14 @@ import {
 
 export let FilterPage = () => {
   let { category, filterType } = useParams();
+  console.log("this is category",category)
   let [data, setData] = useState([]);
   let [searchTerm, setSearchTerm] = useState("");
   let [sortField, setSortField] = useState("");
   let [sortOrder, setSortOrder] = useState("asc");
   let [currentPage, setCurrentPage] = useState(1);
+   let [approval, setApproval] = useState({});
+
   let navigate = useNavigate();
 
   let recordsPerPage = 5;
@@ -44,7 +47,8 @@ export let FilterPage = () => {
       donor: "http://localhost:3000/blood_donor",
       req: "http://localhost:3000/blood_request",
       camp: "http://localhost:3000/camp",
-    };
+    }
+
     if (endpoints[category]) {
       axios
         .get(endpoints[category])
@@ -118,13 +122,32 @@ export let FilterPage = () => {
     const endpoint = categoryEndpoints[category];
     if (!endpoint) return;
     console.log("endpoint is here ",endpoint)
-    navigate(`/${endpoint}/edit/${id}`);   
+    navigate(`/AdminDashboard/${endpoint}/edit/${id}`);   
   };
 
 
 
+// Blood Request Event Handler Request Status
+ 
+  const handleStatus = (id, e) => {
+    const status = e.target.value;
+    setApproval((prev) => ({
+      ...prev,
+      [id]: status,
+    }));
+  };
 
- // 
+  const handleApproval = (id) => {
+    if (!approval[id]) return;
+    axios.patch(`http://localhost:3000/${categoryEndpoints[category]}/${id}`, {
+        approval: approval[id],
+      })
+      .then((res) => console.log("Updated:", res.data))
+      .catch((err) => console.log(err));
+  };
+
+
+// Templates
 let block_content;
 
 if (category === "user") {
@@ -164,9 +187,24 @@ else if (category === "req") {
     <>
      <div className="gridContainer">
     {currentRecords.map(request=>(
+
    
-      <div className="bloodRequestCard">
-      <h2><FontAwesomeIcon icon={faUser} /> {request.patientName}</h2>
+      <div key={request.id} className="bloodRequestCard">
+      <h2><FontAwesomeIcon icon={faUser} />
+           {request.patientName}
+           <span >
+             <select value={approval[request.id] || request.approval} id="approval" 
+             onChange={(e) => handleStatus(request.id, e)} >
+                  <option value="pending">Pending</option>
+                  <option value="approved">Approved</option>
+                  <option value="cancel">Cancel</option>
+              </select>
+              <button
+                className="approvalBtn"
+                onClick={() => handleApproval(request.id)}>  OK </button>
+           </span>
+      </h2>
+      
       <div className="card-section">
         <p><strong>Gender:</strong> {request.gender}</p>
         <p><strong>Age:</strong> {request.age}</p>
@@ -179,10 +217,12 @@ else if (category === "req") {
         <p><FontAwesomeIcon icon={faNotesMedical} /> <strong>Reason:</strong> {request.reason}</p>
         <p><strong>Doctor's Note:</strong> {request.doctorNote}</p>
       </div>
+      <div><span>Request Status:{request.approval}</span></div>
       <div className="card-section location-contact">
         <p><FontAwesomeIcon icon={faMapMarkerAlt} /> {request.city}, {request.state}</p>
         <p><FontAwesomeIcon icon={faPhone} /> {request.contact}</p>
       </div>
+      
       <div className="actionBtn">
         <button className="actionBtn1">Edit</button>
         <button className="actionBtn2">Remove</button>
@@ -250,7 +290,7 @@ else if (category === 'camp' && filterType === "showallcamp") {
           <p className="description">{el.description}</p>
           <p className="actionButton">
             <button className="btnE" onClick={()=>handleEdit(el.id)}>Edit</button>
-            <button className="btnD" onClick={()=>handleEdit(el.id)}>Remove</button>
+            <button className="btnD" onClick={()=>handleRemove(el.id)}>Remove</button>
           </p>
         </div>
       ))}

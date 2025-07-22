@@ -269,7 +269,8 @@
       "contact": "9876543210",
       "doctorNote": "Mr. Trilok Mehra has sustained second-degree burns over approximately 22% of his body surface area following a domestic accident. He has been under intensive medical care and debridement treatment. Due to ongoing fluid loss, skin graft preparation, and associated blood volume depletion, immediate transfusion support is required.",
       "hospital": "AIIMS Hospital",
-      "reason": "Burn Injury"
+      "reason": "Burn Injury",
+      "approval": "pending"
     },
     {
       "id": "b2c3",
@@ -284,7 +285,8 @@
       "contact": "7987725298",
       "doctorNote": "Mr. Trilok Mehra has sustained second-degree burns over approximately 22% of his body surface area following a domestic accident. He has been under intensive medical care and debridement treatment. Due to ongoing fluid loss, skin graft preparation, and associated blood volume depletion, immediate transfusion support is required.",
       "hospital": "Balaji Hospital",
-      "reason": "Cancer"
+      "reason": "Cancer",
+      "approval": "cancel"
     },
     {
       "id": "c3d4",
@@ -299,7 +301,8 @@
       "contact": "9012345678",
       "doctorNote": "Ms. Ankita Sharma is undergoing chemotherapy for breast cancer. She has been experiencing low hemoglobin levels and requires urgent blood transfusion support to continue treatment effectively.",
       "hospital": "Apollo Lucknow",
-      "reason": "Chemotherapy"
+      "reason": "Chemotherapy",
+      "approval": "approved"
     },
     {
       "id": "d4e5",
@@ -314,7 +317,8 @@
       "contact": "9823456789",
       "doctorNote": "Mr. Ravi Kumar is scheduled for a major orthopedic surgery and requires blood as part of preoperative arrangements. His condition is stable but donation is requested in advance.",
       "hospital": "Medanta Hospital",
-      "reason": "Orthopedic Surgery"
+      "reason": "Orthopedic Surgery",
+      "approval": "approved"
     },
     {
       "id": "e5f6",
@@ -329,7 +333,8 @@
       "contact": "9876783456",
       "doctorNote": "Ms. Pooja Rani has suffered multiple injuries in a road accident and is undergoing emergency surgery. She requires rare AB- blood urgently.",
       "hospital": "Fortis Amritsar",
-      "reason": "Accident Trauma"
+      "reason": "Accident Trauma",
+      "approval": "pending"
     },
     {
       "id": "f6g7",
@@ -344,7 +349,8 @@
       "contact": "9988776655",
       "doctorNote": "Mr. Amitabh Singh is being treated for dengue fever with thrombocytopenia. Platelet-rich plasma and blood transfusion have been recommended by the medical team.",
       "hospital": "Ruby Hall Clinic",
-      "reason": "Dengue"
+      "reason": "Dengue",
+      "approval": "pending"
     },
     {
       "id": "g7h8",
@@ -359,7 +365,8 @@
       "contact": "9765432190",
       "doctorNote": "Ms. Nidhi Verma is a pregnant woman facing complications with low hemoglobin levels. O- blood group is urgently required during delivery.",
       "hospital": "CHL Hospital",
-      "reason": "Pregnancy Complication"
+      "reason": "Pregnancy Complication",
+      "approval": "pending"
     },
     {
       "id": "h8i9",
@@ -374,7 +381,8 @@
       "contact": "9832176534",
       "doctorNote": "Mr. Rahul Tripathi is undergoing treatment for anemia and needs periodic transfusions. This is a planned requirement and not an emergency.",
       "hospital": "Peerless Hospital",
-      "reason": "Anemia"
+      "reason": "Anemia",
+      "approval": "pending"
     },
     {
       "id": "i9j0",
@@ -389,7 +397,8 @@
       "contact": "9445567890",
       "doctorNote": "Ms. Kavya Iyer is recovering from liver surgery and requires blood support due to mild internal bleeding and post-surgical recovery.",
       "hospital": "Apollo Chennai",
-      "reason": "Liver Surgery"
+      "reason": "Liver Surgery",
+      "approval": "pending"
     },
     {
       "id": "j0k1",
@@ -404,7 +413,8 @@
       "contact": "9512346677",
       "doctorNote": "Mr. Deepak Joshi is in critical condition due to a massive hemorrhage and requires urgent blood transfusion to stabilize vital signs.",
       "hospital": "Civil Hospital",
-      "reason": "Internal Bleeding"
+      "reason": "Internal Bleeding",
+      "approval": "pending"
     },
     {
       "id": "k1l2",
@@ -419,7 +429,8 @@
       "contact": "9812233455",
       "doctorNote": "Ms. Sneha Roy is scheduled for a minor gynecological procedure. Blood backup is needed as a precaution.",
       "hospital": "Nemcare Hospital",
-      "reason": "Scheduled Surgery"
+      "reason": "Scheduled Surgery",
+      "approval": "pending"
     },
     {
       "id": "l2m3",
@@ -434,7 +445,8 @@
       "contact": "9304456700",
       "doctorNote": "Mr. Manoj Tiwari is suffering from chronic kidney disease and undergoing dialysis. He requires blood support periodically.",
       "hospital": "IGIMS Patna",
-      "reason": "Dialysis"
+      "reason": "Dialysis",
+      "approval": "pending"
     },
     {
       "id": "m3n4",
@@ -449,7 +461,8 @@
       "contact": "9123456780",
       "doctorNote": "Ms. Harshita Mishra suffered from acute blood loss due to uterine rupture. Immediate AB+ blood is needed for emergency intervention.",
       "hospital": "AIIMS Raipur",
-      "reason": "Uterine Rupture"
+      "reason": "Uterine Rupture",
+      "approval": "pending"
     },
     {
       "id": "n4o5",
@@ -464,7 +477,8 @@
       "contact": "8877665544",
       "doctorNote": "Mr. Pradeep Singh is preparing for a bone marrow transplant and will need blood support during the treatment cycle.",
       "hospital": "RIMS Ranchi",
-      "reason": "Bone Marrow Transplant"
+      "reason": "Bone Marrow Transplant",
+      "approval": "pending"
     },
     {
       "id": "o5p6",
@@ -479,7 +493,8 @@
       "contact": "9898123456",
       "doctorNote": "Mr. Alok Jain is undergoing bypass surgery and O- blood is urgently required due to intraoperative blood loss.",
       "hospital": "Narayana Hrudayalaya",
-      "reason": "Heart Surgery"
+      "reason": "Heart Surgery",
+      "approval": "pending"
     },
     {
       "id": "p6q7",
@@ -494,7 +509,8 @@
       "contact": "9995566778",
       "doctorNote": "Ms. Maya Thomas is being treated for aplastic anemia and needs frequent transfusions as part of her treatment.",
       "hospital": "Aster Medcity",
-      "reason": "Aplastic Anemia"
+      "reason": "Aplastic Anemia",
+      "approval": "pending"
     },
     {
       "id": "q7r8",
@@ -509,7 +525,8 @@
       "contact": "9788877654",
       "doctorNote": "Yash Rawat is a thalassemia patient who requires urgent B- blood due to a delay in scheduled transfusion.",
       "hospital": "Max Hospital Dehradun",
-      "reason": "Thalassemia"
+      "reason": "Thalassemia",
+      "approval": "pending"
     },
     {
       "id": "r8s9",
@@ -524,7 +541,8 @@
       "contact": "9988991122",
       "doctorNote": "Ms. Namrata Shetty is preparing for a laparoscopic gall bladder removal. Blood is requested as a routine precaution.",
       "hospital": "Manipal Hospital Goa",
-      "reason": "Gallbladder Surgery"
+      "reason": "Gallbladder Surgery",
+      "approval": "pending"
     },
     {
       "id": "s9t0",
@@ -539,27 +557,15 @@
       "contact": "9567345120",
       "doctorNote": "Mr. Ishaan Bhatt suffered internal organ damage in a trekking accident. AB- blood is urgently needed for life-saving surgery.",
       "hospital": "IGMC Shimla",
-      "reason": "Trauma Surgery"
+      "reason": "Trauma Surgery",
+      "approval": "pending"
     }
   ],
   "camp": [
     {
-      "id": "c67d",
-      "campName": "Green Enviroment Blood Camp",
-      "organiserName": "Vijay Meena",
-      "location": "Bagoniya Village Near hanuman mandir",
-      "state": "Madhya Pradesh",
-      "city": "Bhopal",
-      "date": "2025-07-21",
-      "time": "09:20",
-      "contact": "7987725298",
-      "email": "himanshu@gmail.com",
-      "description": "Citizens are invited to offer their contribution towards the society by donating blood and saves someones life"
-    },
-    {
       "id": "c68a",
       "campName": "Red Drop Blood Donation Drive",
-      "organiserName": "Anjali Sharma",
+      "organiserName": "Anjali Sharma Vishnu 2",
       "location": "Community Center, Sector 15",
       "state": "Delhi",
       "city": "New Delhi",

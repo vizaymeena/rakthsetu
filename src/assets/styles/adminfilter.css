@@ -434,6 +434,83 @@
   margin-bottom: 0.5rem;
 }
 
+/* Edit Camp Design */
+.EditMainWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid black;
+  gap: 2rem;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.EditCampFormSection{
+   flex: 1;
+  min-width: 320px;
+  max-width: 600px;
+  background: #fff;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+}
+
+.EditCampFormSection h2 {
+  margin-bottom: 1rem;
+  color: #b30000;
+}
+
+.EditCampFormSection form > div {
+  margin-bottom: 1rem;
+}
+
+.EditCampFormSection label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.EditCampFormSection input,
+.EditCampFormSection textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+.editCampButtons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancelBtn{
+  background-color: gray;
+  color: white;
+  padding: 5px 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+   font-weight: 600;
+  transition: 0.5s ease-in-out;
+}
+.cancelBtn:hover{
+  background-color: darkgray;
+  border: 1px thin gray;
+}
+.EditSubmitBtn{
+  background-color: #b30000;
+  letter-spacing: 2px;
+  color: white;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.6s ease-in-out;
+  border: 2px solid rgb(87, 9, 9);
+}
+.EditSubmitBtn:hover{
+  background-color: #fc1616;
+
+}
+
 
 /* Show All Camp Records */
 .campDataContainer {

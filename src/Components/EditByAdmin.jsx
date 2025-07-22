@@ -253,25 +253,37 @@ import '../assets/styles/adminfilter.css'
 export let EditCamp=()=>{
 
   let [campForm,setCampForm] = useState({})
+
   let {id} = useParams()
   let navigate = useNavigate()
+ 
+  // useEffect 
+  useEffect(()=>{
+    axios.get(`http://localhost:3000/camp/${id}`)
+    .then(res=>setCampForm(res.data))
+  },[])
 
-  let [editCamp,setEditCamp]=useState(null)
 
 
   let handleChange=(e)=>{
-
+   let{name,value}=e.target
+   setCampForm(prev=> ({...prev,[name]:value}))
   }
   let handleSubmit=(e)=>{
-    e.preventDefault
+    e.preventDefault()
+    axios.put(`http://localhost:3000/camp/${id}`,campForm)
+
+    console.log("Camp updated successfully")
+
+    navigate(-1)
   }
 
   return(
     
-      <div className="campMainWrapper">
+      <div className="EditMainWrapper">
             {/* Form Section */}
-            <div className="campFormSection">
-                <h2>Add Blood Donation Camp</h2>
+            <div className="EditCampFormSection">
+                <h2>Update Blood Donation Camp</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Camp Name</label>
@@ -333,7 +345,10 @@ export let EditCamp=()=>{
                             name='description' value={campForm.description || ""} onChange={handleChange} />
                     </div>
 
-                    <button type='submit' className="submitBtn">Add Camp</button>
+                    <div className="editCampButtons">
+                       <button type='submit' className="EditSubmitBtn">Update Camp</button>
+                       <button className="cancelBtn" onClick={()=>navigate(-1)}>Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>

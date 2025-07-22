@@ -19,7 +19,8 @@ export default function BloodReq() {
     contact:"",
     doctorNote:"",
     hospital:"",
-    reason:""
+    reason:"",
+    approval:''
   })
 
   let [cities,setCities] = useState([])
