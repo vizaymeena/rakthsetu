@@ -1,142 +1,129 @@
-import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import "../assets/styles/userDashboard.css"
+import { useEffect, useState , useMemo } from "react"
+import axios from "axios"
+import { useLogin } from "../contexts/LoginContext"
+export let UserDashboard=()=>{
+ // states
+  let [data,setData]=useState([])
+  
+  let {user} = useLogin() 
+  console.log(user)
+  let [currentPage,setCurrentPage]=useState(1)
 
-export const UserDashboard = () => {
-  const [userData, setUserData] = useState(null)
+  // const
+  let dataPerPage = 5 
+  let totalPages = Math.ceil((data.length)/dataPerPage)
+  let endIndex = currentPage * dataPerPage 
+  let startIndex =  endIndex - dataPerPage
+  console.log("check Data" ,data)
+  let currentRecord =  data.slice(startIndex,endIndex)
 
-  useEffect(() => {
-    // Simulating API call
-    const mockData = {
-      name: "Vizay",
-      totalDonations: 5,
-      lastDonation: "12 June 2025, 3:00 PM",
-      nextEligibleDate: "12 August 2025",
-      bloodGroup: "B+",
-      upcomingCamp: "Bhopal City Hospital, 29 June 2025",
-    }
 
-    setTimeout(() => {
-      setUserData(mockData)
-    }, 1000)
-  }, [])
+  let navbar = [
+    {label:"Home",path:"/"},
+    {label:"Notification",path:""},
+    {label:"Donations",path:""},
+    {label:"Help",path:""},
+    {label:"Logout",path:""},
+  ]
+ // side effects 
+  useEffect(()=>{
+    if(!user) return 
+    axios.get(`http://localhost:3000/blood_request/?email=${user}`) // json obj
+    .then((res)=>setData(res.data)) // set state
+    .catch((error)=>console.log(error)) // catch error
+  },[user])  // mount on every refresh
+ 
+ 
+  console.log("type of data", typeof(data))
+  console.log(data)
 
-  if (!userData) return <div className="loading">Loading your dashboard...</div>
+  // Event Handlers
 
-  return (
-    <div className="dashboardContainer">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <h2>🩸 RakthSetu</h2>
-        <button className="ctaBtn">🏠 Dashboard</button>
-        <button className="ctaBtn">📅 My Donations</button>
-        <button className="ctaBtn">📝 Update Profile</button>
-        <button className="ctaBtn">📍 Find Camps</button>
-        <button className="ctaBtn logoutBtn">🚪 Logout</button>
-      </div>
 
-      {/* Main Content */}
-      <div className="contentArea">
-        <h1>Welcome, {userData.name} 👋</h1>
+  return(
+    <>
+    <div className="containerDashboard">
 
-        <div className="cardGrid">
-          <div className="card">
-            <h3>Total Donations</h3>
-            <p>{userData.totalDonations}</p>
-          </div>
-          <div className="card">
-            <h3>Last Donation</h3>
-            <p>{userData.lastDonation}</p>
-          </div>
-          <div className="card">
-            <h3>Next Eligible Date</h3>
-            <p>{userData.nextEligibleDate}</p>
-          </div>
-          <div className="card">
-            <h3>Blood Group</h3>
-            <p>{userData.bloodGroup}</p>
-          </div>
-          <div className="card">
-            <h3>Upcoming Camp</h3>
-            <p>{userData.upcomingCamp}</p>
+      <div className="userD_sidebar">
+        <div className="userAbout">
+          <img alt=" no image right now" />
+            <p><strong>dipti anand</strong></p>
+          <div>
+            <button>Edit</button>
           </div>
         </div>
+
+        <nav className="sidebar_nav">
+          {
+            navbar.map((el,key)=>(
+              <Link className="span" key={key} to={el.path}>{el.label}</Link>
+            ))
+          }
+        </nav>
       </div>
 
-      {/* CSS */}
-      <style>{`
-        .dashboardContainer {
-          display: flex;
-          height: 100vh;
-          background-color: #f9f9f9;
-        }
-        .sidebar {
-          width: 250px;
-          background-color: #d62828;
-          padding: 1.5rem;
-          color: white;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .sidebar h2 {
-          margin-bottom: 2rem;
-          font-size: 1.8rem;
-        }
-        .ctaBtn {
-          background-color: #e63946;
-          border: none;
-          padding: 0.8rem 1rem;
-          color: white;
-          border-radius: 8px;
-          cursor: pointer;
-          text-align: left;
-        }
-        .ctaBtn:hover {
-          background-color: #f77f00;
-        }
-        .logoutBtn {
-          margin-top: auto;
-          background-color: #6c757d;
-        }
-        .contentArea {
-          flex: 1;
-          padding: 2rem;
-          overflow-y: auto;
-        }
-        .contentArea h1 {
-          margin-bottom: 1.5rem;
-          font-size: 2rem;
-        }
-        .cardGrid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-          gap: 1rem;
-        }
-        .card {
-          background-color: white;
-          padding: 1.2rem;
-          border-radius: 10px;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .card h3 {
-          margin-bottom: 0.5rem;
-          font-size: 1.1rem;
-          color: #333;
-        }
-        .card p {
-          font-size: 1rem;
-          color: #555;
-        }
-        .loading {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 100vh;
-          font-size: 1.5rem;
-          color: #333;
-        }
-      `}</style>
+      <div className="rightBodyContainer">
+
+        <div>
+          <h1>Hello Mrs Dipti</h1>
+        </div>
+
+        <div>
+
+          <div className="userDash_RequestResults">
+            <h4>Your Request</h4>
+            <div className="gridContainer"> 
+              {currentRecord.map((el, key) => (
+                <div className="requestCard" key={key}>
+                  <div className="cardTitle">
+                    <h4>{el.patientName}</h4>
+                    <p><strong>{el.email}</strong></p>
+                    <p className={`status ${el.approval || "pending"}`}>{el.approval}</p>
+                  </div>
+              
+                  <div className="cardDetails">
+                    <span><strong>Gender:</strong> {el.gender}</span>
+                    <span><strong>Age:</strong> {el.age}</span>
+                    <span><strong>Weight:</strong> {el.weight} kg</span>
+                    <span><strong>Blood Group:</strong> {el.bloodGroup}</span>
+                    <span><strong>Urgency:</strong> {el.urgency}</span>
+                    <span><strong>State:</strong> {el.state}</span>
+                    <span><strong>City:</strong> {el.city}</span>
+                    <span><strong>Contact:</strong> {el.contact}</span>
+                    <span><strong>Hospital:</strong> {el.hospital}</span>
+                    <span><strong>Reason:</strong> {el.reason}</span>
+                     {/* <span><strong>Doctor Note:</strong> {el.doctorNote}</span> */}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+
+          <div className="userDash_DonationResults">
+            <h4>Your Donation</h4>
+            <div>
+
+            </div>
+          </div>
+
+          <div>
+            <h4>Nearby Camps</h4>
+            <div>
+
+            </div>
+
+          </div>
+
+          
+        </div>
+
+
+      </div>
+
     </div>
+    </>
   )
-}
-
-
+} 

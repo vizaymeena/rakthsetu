@@ -3,11 +3,14 @@ import '../assets/styles/bloodrequest.css';
 import { useState } from 'react';
 import { stateCityData } from "../data/staticdata"
 import axios from "axios"
+import { useLogin } from '../contexts/LoginContext';
 
 export default function BloodReq() {
-
+  let {user} = useLogin()
+  console.log(user)
   // states
   let [requestForm , setRequestForm] = useState({
+    email:user,
     patientName:"",
     age:"",
     gender:"",

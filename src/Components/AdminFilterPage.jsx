@@ -29,7 +29,7 @@ export let FilterPage = () => {
   let [sortField, setSortField] = useState("");
   let [sortOrder, setSortOrder] = useState("asc");
   let [currentPage, setCurrentPage] = useState(1);
-   let [approval, setApproval] = useState({});
+  let [approval, setApproval] = useState({});
 
   let navigate = useNavigate();
 
@@ -55,7 +55,7 @@ export let FilterPage = () => {
         .then((res) => setData(res.data))
         .catch((err) => console.log(err));
     }
-  }, [category, filterType]);
+  }, [category, filterType,approval]);
 
   const filteredData = useMemo(() => {
     if (!searchTerm) return data;
@@ -85,7 +85,7 @@ export let FilterPage = () => {
   const totalPages = Math.ceil(sortedData.length / recordsPerPage);
 
   const handleSort = (col) => {
-    if (sortField === col) {
+    if (sortField === col)  {
       setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
     } else {
       setSortField(col);
@@ -142,7 +142,7 @@ export let FilterPage = () => {
     axios.patch(`http://localhost:3000/${categoryEndpoints[category]}/${id}`, {
         approval: approval[id],
       })
-      .then((res) => console.log("Updated:", res.data))
+      .then((res) => setApproval(approval[id]))
       .catch((err) => console.log(err));
   };
 

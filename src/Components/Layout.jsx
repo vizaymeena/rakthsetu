@@ -9,16 +9,11 @@ import '../assets/styles/style.css'
 import { FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { CgMail } from 'react-icons/cg';
 import footImg from '../assets/images/bloodishero.jpg';
-import { useEffect, useState } from 'react';
 
 
 // LAYOUT COMPONENT
 export default function Layout() {
   let {admin,user,setLogin} = useLogin()
-
- 
-  
-
 
   // HANDLE LOGOUT
   let handleLogout=()=>{
