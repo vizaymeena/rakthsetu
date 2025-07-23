@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../assets/styles/bloodrequest.css';
 import { useState } from 'react';
-import { stateCityData } from "../data/staticdata"
+import { stateCityData } from "../data/staticdata.js"
 import axios from "axios"
 import { useLogin } from '../contexts/LoginContext';
 

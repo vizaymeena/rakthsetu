@@ -4,7 +4,7 @@ import axios from "axios"
 import '../assets/styles/donate.css'
 import { useLogin } from "../contexts/LoginContext"
 import { slide02 as image2, slide03 as image3, slide04 as image4 } from '../assets/images/donationPage'
-import { stateCityData } from "../data/staticdata"
+import { stateCityData } from "../data/staticdata.js"
 
 let images = [image2, image3, image4]
 
