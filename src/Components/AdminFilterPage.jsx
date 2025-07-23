@@ -8,17 +8,7 @@ import "../assets/styles/campform.css";
 import { CampFormCard } from "./CampForm";
 
 // react-icons
-import { FaCheck } from "react-icons/fa6";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUser,
-  faTint,
-  faPhone,
-  faHospital,
-  faNotesMedical,
-  faMapMarkerAlt,
-  faHeartbeat,
-} from "@fortawesome/free-solid-svg-icons";
+
 
 
 export let FilterPage = () => {
