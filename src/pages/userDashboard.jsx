@@ -12,8 +12,8 @@ export let UserDashboard=()=>{
   let [currentPage,setCurrentPage]=useState(1)
 
   // const
-  let dataPerPage = 5 
-  let totalPages = Math.ceil((data.length)/dataPerPage)
+  let dataPerPage = 3
+  let totalPages = Math.ceil(data.length/dataPerPage)
   let endIndex = currentPage * dataPerPage 
   let startIndex =  endIndex - dataPerPage
   console.log("check Data" ,data)
@@ -41,7 +41,9 @@ export let UserDashboard=()=>{
 
   // Event Handlers
 
-
+  
+  let prev =()=>{}
+  let next =(currentPage)=> (currentPage+1)
   return(
     <>
     <div className="containerDashboard">
@@ -99,6 +101,16 @@ export let UserDashboard=()=>{
                 </div>
               ))}
             </div>
+            {/* pagination */}
+             <div className="paginationControls">
+              <button onClick={prev} disabled={currentPage === 1}>Prev</button>
+                {[...Array(totalPages)].map((_,index)=>(
+                  
+                    <button className={`pageButton ${currentPage == index+1? "activePage":""}`} key={index}>{index+1}</button>
+                  
+                ))}
+                <button onClick={next} disabled={currentPage === totalPages}>Next</button>
+              </div>
           </div>
 
 
