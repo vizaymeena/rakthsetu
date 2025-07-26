@@ -103,6 +103,52 @@
 }
 
 /* right side */
+.filterContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #a4b7ca;
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.filterContainer label {
+  font-weight: 600;
+  color: #333;
+}
+
+.filterSelect {
+  padding: 4px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: border 0.2s ease;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #0077ff;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+}
+
+.filterBtn {
+  padding: 8px 16px;
+  background-color: #0077ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.filterBtn:hover {
+  background-color: #005fd1;
+}
+
 .rightBodyContainer{
     background-color: rgb(192, 172, 237);
     overflow-y: auto;   /* Enable vertical scrolling */
@@ -112,21 +158,22 @@
     background-color: rgb(192, 172, 237);
 }
 .userDash_RequestResults h4 {
-  font-size: 1.6rem;
+  font-size: 1rem;
   color: #333;
   margin-bottom: 1rem;
 }
 
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(300px,3fr)) !important;
   gap: 1.5rem;
 }
 
 /* Card Styling */
 .requestCard {
-  background-color: #ffffff;
+  background-color: #96a3c7af;
   border-radius: 12px;
+  width: 320px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 1rem;
   display: flex;
@@ -141,7 +188,7 @@
 }
 
 .cardTitle h4 {
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: #c1121f;
   margin-bottom: 0.3rem;
 }
@@ -159,29 +206,30 @@
   font-size: 0.85rem;
   display: inline-block;
   text-transform: capitalize;
-  color: white;
+  color: rgb(255, 252, 252) !important;
   margin-top: 0.5rem;
 }
 
 /* Status Colors */
 .pending {
-  background-color: #fca311;
+  background-color: #fca211bc;
 }
 
 .approved {
-  background-color: #2a9d8f;
+  background-color: #169f18;
 }
 
 .cancel {
   background-color: #e63946;
 }
 
+
 /* Info Grid */
 .cardDetails {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: repeat(1,2fr);
   gap: 0.5rem 1rem;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   color: #444;
 }
 
@@ -206,6 +254,35 @@
   font-size: 0.9rem;
   color: #333;
   box-shadow: inset 0 0 2px rgba(0,0,0,0.05);
+}
+.ctabutton{
+  display: flex;
+  justify-content: space-between;
+}
+.ctabutton button {
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid gray;
+  letter-spacing: 2px;
+  font-weight: 550;
+}
+.ctabutton .cancel{
+  color: white;
+}
+
+
+/* pagination controls */
+.paginationControls{
+  background-color: rgba(173, 210, 217, 0.678);
+  
+  margin-top:5px ;
+}
+.paginationControls .pageButton{
+  background-color: rgba(128, 128, 128, 0.527);
+  border:  2px solid rgba(26, 24, 24, 0.253) !important;
+  border-radius: 20px !important;
+  color: rgb(0, 0, 0);
 }
 
 

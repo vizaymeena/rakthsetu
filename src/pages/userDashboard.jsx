@@ -8,16 +8,28 @@ export let UserDashboard=()=>{
   let [data,setData]=useState([])
   
   let {user} = useLogin() 
-  console.log(user)
   let [currentPage,setCurrentPage]=useState(1)
 
+  // Filters
+  let [filterBy,setFilterBy]=useState("")
+  let [subFilter,setSubFilter] = useState("")
+  let [filteredData,setFilteredData] = useState([])
+
+  let subFilterOptions={
+    patientName:["Asc","Desc"],
+    email:["Asc","Desc"],
+    urgency:["Low","Medium","High"]
+  }
+
   // const
+  let sourceData = filteredData.length >0 ? filteredData : data
   let dataPerPage = 3
-  let totalPages = Math.ceil(data.length/dataPerPage)
+
+  let totalPages = Math.ceil(sourceData.length/dataPerPage)
   let endIndex = currentPage * dataPerPage 
   let startIndex =  endIndex - dataPerPage
-  console.log("check Data" ,data)
-  let currentRecord =  data.slice(startIndex,endIndex)
+  // console.log("check Data" ,data)
+  let displayData =  sourceData.slice(startIndex,endIndex)
 
 
   let navbar = [
@@ -32,18 +44,54 @@ export let UserDashboard=()=>{
     if(!user) return 
     axios.get(`http://localhost:3000/blood_request/?email=${user}`) // json obj
     .then((res)=>setData(res.data)) // set state
-    .catch((error)=>console.log(error)) // catch error
+    // .catch((error)=>console.log(error)) // catch error
   },[user])  // mount on every refresh
  
  
-  console.log("type of data", typeof(data))
-  console.log(data)
+  // Handle Search
+  let handleSearch=()=>{
+    if(!filterBy && !subFilter) return;
+    
+    let sorted = [...data]
+    if(filterBy === "all"){
+      sorted = data
+    }
+    else if(filterBy === 'urgency' && subFilter === 'low'){
+      sorted = sorted.filter((el)=>el.urgency.toLowerCase() === subFilter.toLocaleLowerCase())
+    }
+    else if(filterBy === 'urgency' && subFilter === 'medium'){
+      sorted = sorted.filter((el)=>el.urgency.toLowerCase() === subFilter)
+    }
+    else if( filterBy === "urgency" && subFilter === "high"){
+      sorted = sorted.filter((el)=>el.urgency === subFilter)
+    }
+    
+    else{
+     
+      sorted.sort((a,b)=>{
+        let valueA = a[filterBy].toString().toLowerCase() 
+        let valueB = b[filterBy].toString().toLowerCase()
+
+        if(subFilter === "asc") return valueA > valueB ? 1 : -1 // place a before b
+        if(subFilter === "desc") return valueB > valueA ? -1 : 1 // place b before a 
+        return 0
+      })
+    }
+    setFilteredData(sorted)
+    setCurrentPage(1)
+  }
+ 
+ 
+  
 
   // Event Handlers
 
-  
-  let prev =()=>{}
-  let next =(currentPage)=> (currentPage+1)
+  let goTo =(pageNo)=> setCurrentPage(pageNo)
+  let prev =()=> currentPage > 1 && setCurrentPage((curPage)=>curPage-1)
+  let next =()=> currentPage < totalPages && setCurrentPage((curPage)=>curPage+1)
+
+
+
   return(
     <>
     <div className="containerDashboard">
@@ -76,8 +124,38 @@ export let UserDashboard=()=>{
 
           <div className="userDash_RequestResults">
             <h4>Your Request</h4>
+           <div className="filterContainer">
+              <label htmlFor="filterField">Filter By:</label>
+              <select id="filterField" className="filterSelect"
+               onChange={(e)=>{
+                setFilterBy(e.target.value)
+                setSubFilter("")
+               }}>
+                    <option value="all">All</option>
+                    <option value="patientName">Name</option>
+                    <option value="email">Email</option>
+                    <option value="urgency">Urgency</option>
+              </select>
+
+              {/* show subfilter only if primary filter is selected by user*/}
+              {filterBy!=="all" && filterBy && (
+              <select id="sortOrder" className="filterSelect"
+               onChange={(e)=>{
+                setSubFilter(e.target.value)
+               }}>                
+                  <option value="">Select</option>
+                  {subFilterOptions[filterBy].map((el,index)=>(
+                    <option value={el.toLowerCase()} key={index}>{el}</option>  
+                  ))}
+              </select>
+              )}
+
+              <button onClick={handleSearch} className="filterBtn">Search</button>
+            </div>
+
+
             <div className="gridContainer"> 
-              {currentRecord.map((el, key) => (
+              {displayData.map((el, key) => (
                 <div className="requestCard" key={key}>
                   <div className="cardTitle">
                     <h4>{el.patientName}</h4>
@@ -98,19 +176,26 @@ export let UserDashboard=()=>{
                     <span><strong>Reason:</strong> {el.reason}</span>
                      <span style={{width:'100%'}}><strong style={{width:'100%'}}>Doctor Note:</strong> {el.doctorNote}</span>
                   </div>
+                  <div className="ctabutton">
+                    <button className="edit" >Edit</button>
+                    <button className="cancel" >Cancel</button>
+                  </div>
                 </div>
               ))}
             </div>
             {/* pagination */}
-             <div className="paginationControls">
+             { totalPages > 1 && (
+              <div className="paginationControls">
               <button onClick={prev} disabled={currentPage === 1}>Prev</button>
                 {[...Array(totalPages)].map((_,index)=>(
                   
-                    <button className={`pageButton ${currentPage == index+1? "activePage":""}`} key={index}>{index+1}</button>
+                    <button onClick={()=>goTo(index+1)} className={`pageButton ${currentPage == index+1? "activePage":""}`} key={index}>{index+1}</button>
                   
                 ))}
                 <button onClick={next} disabled={currentPage === totalPages}>Next</button>
               </div>
+             )
+             }
           </div>
 
 

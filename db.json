@@ -259,6 +259,7 @@
     {
       "id": "a1b2",
       "patientName": "Trilok Mehra",
+      "email": "trilokmehta@gmail.com",
       "gender": "male",
       "age": "28",
       "weight": "62.5",
@@ -270,11 +271,13 @@
       "doctorNote": "Mr. Trilok Mehra has sustained second-degree burns over approximately 22% of his body surface area following a domestic accident. He has been under intensive medical care and debridement treatment. Due to ongoing fluid loss, skin graft preparation, and associated blood volume depletion, immediate transfusion support is required.",
       "hospital": "AIIMS Hospital",
       "reason": "Burn Injury",
-      "approval": "pending"
+      "approval": "approved"
     },
     {
       "id": "b2c3",
       "patientName": "Jatin Das",
+      "email": "jatin@gmail.com",
+
       "gender": "male",
       "age": "28",
       "weight": "48",
@@ -291,6 +294,8 @@
     {
       "id": "c3d4",
       "patientName": "Ankita Sharma",
+      "email": "anikitasharma@gmail.com",
+
       "gender": "female",
       "age": "34",
       "weight": "56",
@@ -307,6 +312,8 @@
     {
       "id": "d4e5",
       "patientName": "Ravi Kumar",
+      "email": "ravikumar@gmail.com",
+
       "gender": "male",
       "age": "40",
       "weight": "70",
@@ -323,6 +330,8 @@
     {
       "id": "e5f6",
       "patientName": "Pooja Rani",
+      "email": "poojarani@gmail.com",
+
       "gender": "female",
       "age": "22",
       "weight": "52",
@@ -339,6 +348,8 @@
     {
       "id": "f6g7",
       "patientName": "Amitabh Singh",
+      "email": "amithabhsignh@gmail.com",
+
       "gender": "male",
       "age": "35",
       "weight": "75",
@@ -355,6 +366,8 @@
     {
       "id": "g7h8",
       "patientName": "Nidhi Verma",
+      "email": "nidhiverma@gmail.com",
+
       "gender": "female",
       "age": "30",
       "weight": "60",
@@ -371,6 +384,8 @@
     {
       "id": "h8i9",
       "patientName": "Rahul Tripathi",
+      "email": "raultripathi@gmail.com",
+
       "gender": "male",
       "age": "19",
       "weight": "58",
@@ -387,6 +402,8 @@
     {
       "id": "i9j0",
       "patientName": "Kavya Iyer",
+      "email": "kavyaayier@gmail.com",
+
       "gender": "female",
       "age": "25",
       "weight": "49",
@@ -403,6 +420,8 @@
     {
       "id": "j0k1",
       "patientName": "Deepak Joshi",
+      "email": "deepakjoshi@gmail.com",
+
       "gender": "male",
       "age": "31",
       "weight": "68",
@@ -419,6 +438,8 @@
     {
       "id": "k1l2",
       "patientName": "Sneha Roy",
+      "email": "sneha@gmail.com",
+
       "gender": "female",
       "age": "27",
       "weight": "53",
@@ -435,6 +456,7 @@
     {
       "id": "l2m3",
       "patientName": "Manoj Tiwari",
+      "email": "manojtiwari@gmail.com",
       "gender": "male",
       "age": "45",
       "weight": "72",
@@ -452,6 +474,7 @@
       "id": "m3n4",
       "patientName": "Harshita Mishra",
       "gender": "female",
+      "email": "diptianand@gmail.com",
       "age": "21",
       "weight": "47",
       "bloodGroup": "AB+",
@@ -467,6 +490,7 @@
     {
       "id": "n4o5",
       "patientName": "Pradeep Singh",
+      "email": "diptianand@gmail.com",
       "gender": "male",
       "age": "36",
       "weight": "80",
@@ -483,6 +507,7 @@
     {
       "id": "o5p6",
       "patientName": "Alok Jain",
+      "email": "alokjain@gmail.com",
       "gender": "male",
       "age": "50",
       "weight": "85",
@@ -499,6 +524,7 @@
     {
       "id": "p6q7",
       "patientName": "Maya Thomas",
+      "email": "diptianand@gmail.com",
       "gender": "female",
       "age": "38",
       "weight": "63",
@@ -515,6 +541,7 @@
     {
       "id": "q7r8",
       "patientName": "Yash Rawat",
+      "email": "diptianand@gmail.com",
       "gender": "male",
       "age": "16",
       "weight": "55",
@@ -526,11 +553,12 @@
       "doctorNote": "Yash Rawat is a thalassemia patient who requires urgent B- blood due to a delay in scheduled transfusion.",
       "hospital": "Max Hospital Dehradun",
       "reason": "Thalassemia",
-      "approval": "pending"
+      "approval": "cancel"
     },
     {
       "id": "r8s9",
       "patientName": "Namrata Shetty",
+      "email": "diptianand@gmail.com",
       "gender": "female",
       "age": "33",
       "weight": "59",
@@ -546,6 +574,7 @@
     },
     {
       "id": "s9t0",
+      "email": "ishanbhat@gmail.com",
       "patientName": "Ishaan Bhatt",
       "gender": "male",
       "age": "29",
@@ -559,6 +588,23 @@
       "hospital": "IGMC Shimla",
       "reason": "Trauma Surgery",
       "approval": "pending"
+    },
+    {
+      "id": "9a92",
+      "email": "diptianand@gmail.com",
+      "patientName": "Srinivas Saxena",
+      "age": "29",
+      "gender": "male",
+      "weight": "62",
+      "bloodGroup": "AB-",
+      "urgency": "Medium",
+      "state": "Madhya Pradesh",
+      "city": "Bhopal",
+      "contact": "7447449621",
+      "doctorNote": "Srinivasan a resident of Bhopal is in requirement for the blood group AB- . ",
+      "hospital": "Novel Hospital",
+      "reason": "Accident",
+      "approval": "cancel"
     }
   ],
   "camp": [

@@ -45,7 +45,7 @@ export let FilterPage = () => {
         .then((res) => setData(res.data))
         .catch((err) => console.log(err));
     }
-  }, [category, filterType,approval]);
+  }, [category, filterType]);
 
   const filteredData = useMemo(() => {
     if (!searchTerm) return data;
@@ -291,9 +291,9 @@ else if (category === 'camp' && filterType === "showallcamp") {
 
 
 
-  const goTo = (n) => setCurrentPage(n);
-  const next = () => currentPage < totalPages && setCurrentPage((n) => n + 1);
-  const prev = () => currentPage > 1 && setCurrentPage((n) => n - 1);
+  const goTo = (i) => setCurrentPage(i); // 1
+  const next = () => currentPage < totalPages && setCurrentPage((i) => i + 1); // 0+1
+  const prev = () => currentPage > 1 && setCurrentPage((i) => i - 1); 
 
   return (
     <>
