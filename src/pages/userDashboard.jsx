@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom"
 import "../assets/styles/userDashboard.css"
 import { useEffect, useState , useMemo } from "react"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useLogin } from "../contexts/LoginContext"
+import { Outlet } from "react-router-dom"
+import '../assets/styles/userdashboardcampcard.css';
+
+
 export let UserDashboard=()=>{
  // states
   let [data,setData]=useState([])
-  
+  let [registeredDonor,setRegisteredDonor] = useState({})
+  let [nearByCamps,setNearyByCamps] = useState([])
+
+  let navigate = useNavigate()
   let {user} = useLogin() 
   let [currentPage,setCurrentPage]=useState(1)
 
@@ -32,13 +40,17 @@ export let UserDashboard=()=>{
   let displayData =  sourceData.slice(startIndex,endIndex)
 
 
-  let navbar = [
-    {label:"Home",path:"/"},
-    {label:"Notification",path:""},
-    {label:"Donations",path:""},
-    {label:"Help",path:""},
-    {label:"Logout",path:""},
+    let navbar = [
+    { label: "Home", path: "/" },
+    { label: "Notification", path: "/UserDashboard/notifications" },
+    { label: "Donations", path: "" },
+    { label: "Help", path: "" },
+    { label: "Logout", path: "" },
   ]
+
+
+ 
+
  // side effects 
   useEffect(()=>{
     if(!user) return 
@@ -46,7 +58,25 @@ export let UserDashboard=()=>{
     .then((res)=>setData(res.data)) // set state
     // .catch((error)=>console.log(error)) // catch error
   },[user])  // mount on every refresh
+
+  useEffect(()=>{
+    if(!user) return 
+    axios.get(`http://localhost:3000/blood_donor/?email=${user}`)
+    .then((res)=>{
+      if(!res.data.length < 0) return 
+      setRegisteredDonor(true)
+
+      let {state,city} = res.data[0]
+      
+      axios.get(`http://localhost:3000/camp/?state=${state}&city=${city}`)    
+      .then((res)=>setNearyByCamps(res.data))
+    })
+
+   
+    
+  },[user])
  
+  console.log("NearbyCamp after effects",nearByCamps)
  
   // Handle Search
   let handleSearch=()=>{
@@ -94,6 +124,9 @@ export let UserDashboard=()=>{
 
   return(
     <>
+
+
+    
     <div className="containerDashboard">
 
       <div className="userD_sidebar">
@@ -107,9 +140,22 @@ export let UserDashboard=()=>{
 
         <nav className="sidebar_nav">
           {
-            navbar.map((el,key)=>(
-              <Link className="span" key={key} to={el.path}>{el.label}</Link>
-            ))
+            navbar.map((el)=>{
+
+              if(el.label == "Logout"){
+               return(
+                <span className="span spanLogout" key={el.label} 
+                  style={{cursor:"pointer"}}
+                  onClick={()=>{
+                  sessionStorage.removeItem("user")
+                  navigate("/")
+                }} > {el.label}</span> 
+                )}
+
+                return(
+                  <Link className="span" key={el.label} to={el.path}>{el.label}</Link>
+                )
+              })
           }
         </nav>
       </div>
@@ -118,6 +164,10 @@ export let UserDashboard=()=>{
 
         <div>
           <h4>Hello Mrs Dipti</h4>
+
+          <div>
+            <Outlet/>
+          </div>
         </div>
 
         <div>
@@ -155,8 +205,8 @@ export let UserDashboard=()=>{
 
 
             <div className="gridContainer"> 
-              {displayData.map((el, key) => (
-                <div className="requestCard" key={key}>
+              {displayData.map((el) => (
+                <div className="requestCard" key={el.id || el.email}>
                   <div className="cardTitle">
                     <h4>{el.patientName}</h4>
                     <p><strong>{el.email}</strong></p>
@@ -199,12 +249,56 @@ export let UserDashboard=()=>{
           </div>
 
 
-          <div className="userDash_DonationResults">
-             <h4>Nearby Camps</h4>
-            <div>
 
+         {/* Show camps if user is a registered donor */}
+          
+           <div className="userDash_DonationResults">
+  <h4>Nearby Camps</h4>
+  <div>
+    {registeredDonor &&
+      nearByCamps.map((camp) => (
+        
+        <div key={camp.id} className="campcard">
+          <div className="campgrid">
+            <div className="campmain">
+              <h2 className="camptitle">{camp.campName}</h2>
+              <p className="campdescription">{camp.description}</p>
+            </div>
+            <div className="campdetails">
+              <div>
+                <strong>Organiser:</strong>
+                <span>{camp.organiserName}</span>
+              </div>
+              <div>
+                <strong>Location:</strong>
+                <span>{camp.location}, {camp.city}, {camp.state}</span>
+              </div>
+              <div>
+                <strong>Date & Time:</strong>
+                <span>{camp.date} @ {camp.time}</span>
+              </div>
+              <div>
+                <strong>Contact:</strong>
+                <span>{camp.contact}</span>
+              </div>
+              <div>
+                <strong>Email:</strong>
+                <span>{camp.email}</span>
+              </div>
             </div>
           </div>
+        </div>
+        
+      ))}
+  </div>
+</div>
+
+    
+
+
+
+
+
 
           <div>
            
