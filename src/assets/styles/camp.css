@@ -1,0 +1,87 @@
+
+.filters{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+.filters .searchDiv input[type="search"] {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid #a7b0f1;
+  transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  outline: none;
+  background-color: #f9f9f9;
+}
+
+.filters .searchDiv input[type="search"]:focus {
+  border: 1px solid rgb(161, 216, 161) !important;
+  box-shadow: 0 0 5px rgba(161, 216, 161, 0.5);
+  background-color: #ffffff;
+}
+
+.searchDiv button{
+  padding: 5px 10px;
+  background-color:#a7b0f1;
+  cursor: pointer;
+  color: white;
+  border-radius: 20px;
+  border: 2px solid #acacac7c;
+  transition: background 0.3s ease-in-out,border 0.3s ease-in-out;
+}
+.searchDiv button:hover{
+  background-color: rgb(161, 216, 161);
+  border: 2px solid rgb(161, 216, 161);
+}
+.camp-wrapper {
+  min-height: 100vh;
+  background-color: #fff5f5;
+  padding: 1rem 2rem;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.camp-heading {
+  text-align: center;
+  font-size: 2rem;
+  color: #b91c1c;
+  margin-bottom: 2rem;
+}
+
+.camp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  .camp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .camp-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.camp-card {
+  background-color: #ffffff;
+  border: 1px solid #fecaca;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.camp-title {
+  font-size: 1.2rem;
+  color: #991b1b;
+  margin-bottom: 0.5rem;
+}
+
+.camp-description {
+  font-style: italic;
+  color: #555;
+  margin-top: 0.5rem;
+}
+

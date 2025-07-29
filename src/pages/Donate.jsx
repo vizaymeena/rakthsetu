@@ -221,7 +221,7 @@ export let Donate = () => {
 
               <div className="formRow">
                 <label>Gender</label>
-                <select name="gender" value={form.gender} disabled>
+                <select name="gender" value={form.gender} >
                   <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>

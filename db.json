@@ -138,7 +138,7 @@
     {
       "id": "6196",
       "name": "Priya Verma",
-      "email": "priyaverma@gmail.com",
+      "email": "diptianand@gmail.com",
       "gender": "female",
       "contact": "9876543210",
       "age": "22",
@@ -277,7 +277,6 @@
       "id": "b2c3",
       "patientName": "Jatin Das",
       "email": "jatin@gmail.com",
-
       "gender": "male",
       "age": "28",
       "weight": "48",
@@ -295,7 +294,6 @@
       "id": "c3d4",
       "patientName": "Ankita Sharma",
       "email": "anikitasharma@gmail.com",
-
       "gender": "female",
       "age": "34",
       "weight": "56",
@@ -313,7 +311,6 @@
       "id": "d4e5",
       "patientName": "Ravi Kumar",
       "email": "ravikumar@gmail.com",
-
       "gender": "male",
       "age": "40",
       "weight": "70",
@@ -331,7 +328,6 @@
       "id": "e5f6",
       "patientName": "Pooja Rani",
       "email": "poojarani@gmail.com",
-
       "gender": "female",
       "age": "22",
       "weight": "52",
@@ -349,7 +345,6 @@
       "id": "f6g7",
       "patientName": "Amitabh Singh",
       "email": "amithabhsignh@gmail.com",
-
       "gender": "male",
       "age": "35",
       "weight": "75",
@@ -367,7 +362,6 @@
       "id": "g7h8",
       "patientName": "Nidhi Verma",
       "email": "nidhiverma@gmail.com",
-
       "gender": "female",
       "age": "30",
       "weight": "60",
@@ -385,7 +379,6 @@
       "id": "h8i9",
       "patientName": "Rahul Tripathi",
       "email": "raultripathi@gmail.com",
-
       "gender": "male",
       "age": "19",
       "weight": "58",
@@ -403,7 +396,6 @@
       "id": "i9j0",
       "patientName": "Kavya Iyer",
       "email": "kavyaayier@gmail.com",
-
       "gender": "female",
       "age": "25",
       "weight": "49",
@@ -421,7 +413,6 @@
       "id": "j0k1",
       "patientName": "Deepak Joshi",
       "email": "deepakjoshi@gmail.com",
-
       "gender": "male",
       "age": "31",
       "weight": "68",
@@ -439,7 +430,6 @@
       "id": "k1l2",
       "patientName": "Sneha Roy",
       "email": "sneha@gmail.com",
-
       "gender": "female",
       "age": "27",
       "weight": "53",
@@ -485,7 +475,7 @@
       "doctorNote": "Ms. Harshita Mishra suffered from acute blood loss due to uterine rupture. Immediate AB+ blood is needed for emergency intervention.",
       "hospital": "AIIMS Raipur",
       "reason": "Uterine Rupture",
-      "approval": "pending"
+      "approval": "approved"
     },
     {
       "id": "n4o5",
@@ -626,8 +616,8 @@
       "campName": "Hope Lifesaver Camp",
       "organiserName": "Ravi Kumar",
       "location": "Ravi Nagar, Near Civil Hospital",
-      "state": "Punjab",
-      "city": "Ludhiana",
+      "state": "Uttar Pradesh",
+      "city": "Varanasi",
       "date": "2025-07-23",
       "time": "08:30",
       "contact": "9123456780",
@@ -639,8 +629,8 @@
       "campName": "Unity Blood Donation Camp",
       "organiserName": "Meera Singh",
       "location": "Zila Parishad Bhavan",
-      "state": "Bihar",
-      "city": "Patna",
+      "state": "Uttar Pradesh",
+      "city": "Varanasi",
       "date": "2025-07-24",
       "time": "11:00",
       "contact": "9876543210",
@@ -652,8 +642,8 @@
       "campName": "Blood Warriors Drive",
       "organiserName": "Suresh Patil",
       "location": "Ganesh Mandal Hall, Laxmi Nagar",
-      "state": "Maharashtra",
-      "city": "Nagpur",
+      "state": "Uttar Pradesh",
+      "city": "Varanasi",
       "date": "2025-07-25",
       "time": "09:45",
       "contact": "9345678901",
@@ -665,8 +655,8 @@
       "campName": "LifeLine Blood Camp",
       "organiserName": "Kavita Joshi",
       "location": "Navjeevan College Ground",
-      "state": "Rajasthan",
-      "city": "Jaipur",
+      "state": "Uttar Pradesh",
+      "city": "Varanasi",
       "date": "2025-07-26",
       "time": "10:15",
       "contact": "8887654321",

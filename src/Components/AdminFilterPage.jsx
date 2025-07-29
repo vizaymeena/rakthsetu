@@ -180,7 +180,7 @@ else if (category === "req") {
 
    
       <div key={request.id} className="bloodRequestCard">
-      <h2><FontAwesomeIcon icon={faUser} />
+      <h2>
            {request.patientName}
            <span >
              <select value={approval[request.id] || request.approval} id="approval" 
@@ -199,18 +199,18 @@ else if (category === "req") {
         <p><strong>Gender:</strong> {request.gender}</p>
         <p><strong>Age:</strong> {request.age}</p>
         <p><strong>Weight:</strong> {request.weight} kg</p>
-        <p><strong><FontAwesomeIcon icon={faTint} /> Blood Group:</strong> {request.bloodGroup}</p>
+        <p><strong> Blood Group:</strong> {request.bloodGroup}</p>
         <p><strong>Urgency:</strong> {request.urgency}</p>
       </div>
       <div className="card-section">
-        <p><FontAwesomeIcon icon={faHospital} /> <strong>Hospital:</strong> {request.hospital}</p>
-        <p><FontAwesomeIcon icon={faNotesMedical} /> <strong>Reason:</strong> {request.reason}</p>
+        <p> <strong>Hospital:</strong> {request.hospital}</p>
+        <p> <strong>Reason:</strong> {request.reason}</p>
         <p><strong>Doctor's Note:</strong> {request.doctorNote}</p>
       </div>
       <div><span>Request Status:{request.approval}</span></div>
       <div className="card-section location-contact">
-        <p><FontAwesomeIcon icon={faMapMarkerAlt} /> {request.city}, {request.state}</p>
-        <p><FontAwesomeIcon icon={faPhone} /> {request.contact}</p>
+        <p> {request.city}, {request.state}</p>
+        <p> {request.contact}</p>
       </div>
       
       <div className="actionBtn">
@@ -351,10 +351,7 @@ else if (category === 'camp' && filterType === "showallcamp") {
       )}
 
 
-
       {block_content}
-
-
 
 
       {!hideControls && (

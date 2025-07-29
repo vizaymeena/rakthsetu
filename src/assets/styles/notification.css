@@ -1,0 +1,66 @@
+.notifyMainDiv {
+  padding: 1rem 0.5rem;
+  background-color: #c1c0c1c3;
+  min-height: 100vh; 
+}
+
+.notificationContainer {
+  width: 100%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: 20px;
+}
+
+.notificationTitle {
+  grid-column: 1/-1;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  text-align: center;
+  color: #333;
+}
+
+.notificationCard {
+  background-color: rgb(192, 201, 203);
+  border-left: 5px solid #007bff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.1rem;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+.cardBody{
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardBody button{
+  border: none;
+  background-color: black;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: 530;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.notificationCard.approved {
+  border-color: #28a745;
+}
+
+.notificationCard.cancel {
+  border-color: #dc3545;
+}
+
+.notificationCard h5 {
+  margin: 0 0 0.5rem;
+  color: #212529;
+  font-size: 1.1rem;
+}
+
+.notificationCard p {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}

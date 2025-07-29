@@ -1,0 +1,79 @@
+.userDash_DonationResults {
+  padding: 2rem;
+  background-color: #fff5f5;
+}
+
+.userDash_DonationResults h4 {
+  font-size: 1.5rem;
+  color: #b91c1c;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Grid for multiple cards */
+.userDash_DonationResults > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .userDash_DonationResults > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .userDash_DonationResults > div {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Individual card styling */
+.campcard {
+  background-color: #ffffff;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  transition: 0.3s ease-in-out;
+}
+
+/* Inside grid structure */
+.campgrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.campmain {
+  border-bottom: 1px solid #fcdede;
+  padding-bottom: 1rem;
+}
+
+.camptitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #991b1b;
+  margin-bottom: 0.5rem;
+}
+
+.campdescription {
+  font-style: italic;
+  color: #555;
+}
+
+.campdetails div {
+  margin-bottom: 0.6rem;
+}
+
+.campdetails strong {
+  color: #b91c1c;
+  display: inline-block;
+  width: 120px;
+}
+
+.campdetails span {
+  color: #333;
+}

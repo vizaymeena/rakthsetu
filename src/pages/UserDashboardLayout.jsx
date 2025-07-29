@@ -11,6 +11,7 @@ export default function UserDashboardLayout() {
   const [nearByCamps, setNearyByCamps] = useState([]);
   const navigate = useNavigate();
   const { user } = useLogin();
+  let [notifyState,setNotifyState] = useState()
 
   const navbar = [
     { label: "Home", path: "/" },
@@ -31,8 +32,11 @@ export default function UserDashboardLayout() {
         axios.get(`http://localhost:3000/camp/?state=${state}&city=${city}`)
           .then(res => setNearyByCamps(res.data));
 
-        axios.get(`http://localhost:3000/blood_request/?email=${user}&approval=cancel&approval=approved`)
-          .then(res => setNotifications(res.data));
+        axios.get(`http://localhost:3000/blood_request/?email=${user}`)
+          .then(res => {
+            let filteredData = res.data.filter((el)=>el.approval=="cancel" || el.approval == "approved")
+            setNotifications(filteredData)
+          });
       });
   }, [user]);
 

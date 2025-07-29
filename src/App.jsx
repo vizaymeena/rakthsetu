@@ -9,10 +9,14 @@ import {Wallpaper,BloodDonationSteps,LearnAboutBlood} from './Components/HomePag
 import Register from './pages/Registration'
 import Login from './pages/Login'
 import { AdminDashboard } from './pages/AdminDashboard'
-import { UserDashboard } from './pages/userDashboard'
+import UserDashboardLayout  from './pages/UserDashboardLayout'
+import DashboardHome from './Components/UserDashboardHOme'
+import BloodRequestList from './Components/BloodRequestList'
+import Notifications from './pages/Notifications'
 import { FilterPage } from './Components/AdminFilterPage'
 import { EditUserProfile , EditDonorProfile, EditCamp } from './Components/EditByAdmin'
 import BloodReq from './pages/BloodRequest'
+import BloodCamp from './pages/Camp'
 
 
 
@@ -31,6 +35,7 @@ let AnimatedRoutes=()=>{
           <Route path="Register" element={<Register />} />
           <Route path="Login" element={<Login />} />
           <Route path="Donate" element={<Donate />} />
+          <Route path="BloodCamp" element={<BloodCamp />} />
           <Route path="BloodRequest" element={<BloodReq />} />
           
 
@@ -53,7 +58,14 @@ let AnimatedRoutes=()=>{
 
 
         {/* User Dashboard (without Layout) */}
-        <Route path="/UserDashboard" element={<UserDashboard />} />
+        <Route path="/UserDashboard" element={<UserDashboardLayout />}>
+           <Route index element={ <><BloodRequestList/>,<DashboardHome /></>} />
+           <Route path="notifications" element={<Notifications />} />
+           {/* more nested routes like donations, help etc. */}
+        </Route>
+
+        
+
         
       </Routes>
    
