@@ -2,16 +2,22 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useLogin } from "../contexts/LoginContext";
 import axios from "axios";
-import "../assets/styles/userDashboard.css";
+// import "../assets/styles/userDashboard.css";
 import "../assets/styles/userdashboardcampcard.css";
+import "../assets/styles/userDash.css";
+
+
+import { useNotification } from "../contexts/NotificationContext";
 
 export default function UserDashboardLayout() {
-  const [notifications, setNotifications] = useState([]);
+
   const [registeredDonor, setRegisteredDonor] = useState(false);
   const [nearByCamps, setNearyByCamps] = useState([]);
   const navigate = useNavigate();
   const { user } = useLogin();
-  let [notifyState,setNotifyState] = useState()
+
+  let {notifications} = useNotification()
+ 
 
   const navbar = [
     { label: "Home", path: "/" },
@@ -32,11 +38,6 @@ export default function UserDashboardLayout() {
         axios.get(`http://localhost:3000/camp/?state=${state}&city=${city}`)
           .then(res => setNearyByCamps(res.data));
 
-        axios.get(`http://localhost:3000/blood_request/?email=${user}`)
-          .then(res => {
-            let filteredData = res.data.filter((el)=>el.approval=="cancel" || el.approval == "approved")
-            setNotifications(filteredData)
-          });
       });
   }, [user]);
 

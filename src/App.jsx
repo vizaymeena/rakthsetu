@@ -18,6 +18,10 @@ import { EditUserProfile , EditDonorProfile, EditCamp } from './Components/EditB
 import BloodReq from './pages/BloodRequest'
 import BloodCamp from './pages/Camp'
 
+import { NotificationProvider } from './contexts/NotificationContext'
+import { EditBloodRequest } from './Components/EditByUser'
+
+
 
 
 
@@ -58,11 +62,20 @@ let AnimatedRoutes=()=>{
 
 
         {/* User Dashboard (without Layout) */}
-        <Route path="/UserDashboard" element={<UserDashboardLayout />}>
+        
+        <Route path="/UserDashboard" element={
+          // notification context provided for the userdashboard
+          <NotificationProvider>
+             <UserDashboardLayout />
+          </NotificationProvider>
+        }>
+
            <Route index element={ <><BloodRequestList/>,<DashboardHome /></>} />
            <Route path="notifications" element={<Notifications />} />
            {/* more nested routes like donations, help etc. */}
+           <Route path="userEditRequest" element={<EditBloodRequest/>}/>
         </Route>
+       
 
         
 

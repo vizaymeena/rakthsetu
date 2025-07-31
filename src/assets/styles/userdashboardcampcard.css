@@ -1,79 +1,118 @@
-.userDash_DonationResults {
+/* ==== CAMP FORM SECTION ==== */
+.campMainWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
   padding: 2rem;
-  background-color: #fff5f5;
+  background: #f7f8fc;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-.userDash_DonationResults h4 {
-  font-size: 1.5rem;
-  color: #b91c1c;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-/* Grid for multiple cards */
-.userDash_DonationResults > div {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .userDash_DonationResults > div {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .userDash_DonationResults > div {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Individual card styling */
-.campcard {
-  background-color: #ffffff;
-  border: 1px solid #fecaca;
+.campFormSection {
+  flex: 1;
+  min-width: 300px;
+  padding: 2rem;
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-  padding: 1.5rem;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
 }
 
-/* Inside grid structure */
-.campgrid {
+.campFormSection h2 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.campFormSection form > div {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.campFormSection label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+}
+
+.campFormSection input,
+.campFormSection textarea {
+  padding: 0.75rem;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.campFormSection input:focus,
+.campFormSection textarea:focus {
+  outline: none;
+  border-color: #4b7bec;
+  box-shadow: 0 0 5px rgba(75, 123, 236, 0.3);
+}
+
+.submitBtn {
+  background: #e74c3c;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submitBtn:hover {
+  background: #c0392b;
+}
+
+/* ==== RECENT CAMPS SECTION ==== */
+.campRecentSection {
+  flex: 1;
+  min-width: 300px;
+  padding: 2rem;
+  background: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
+}
+
+.campRecentSection h3 {
+  margin-bottom: 1.5rem;
+  color: #2d3436;
+}
+
+.campCardsGrid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
 }
 
-.campmain {
-  border-bottom: 1px solid #fcdede;
-  padding-bottom: 1rem;
+.campCard {
+  background: #f1f2f6;
+  padding: 1.2rem;
+  border-radius: 10px;
+  border-left: 5px solid #4b7bec;
+  transition: transform 0.3s ease;
 }
 
-.camptitle {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #991b1b;
+.campCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(75, 123, 236, 0.15);
+}
+
+.campCard h4 {
   margin-bottom: 0.5rem;
+  color: #2c3e50;
 }
 
-.campdescription {
-  font-style: italic;
+.campCard p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
   color: #555;
 }
 
-.campdetails div {
-  margin-bottom: 0.6rem;
-}
-
-.campdetails strong {
-  color: #b91c1c;
-  display: inline-block;
-  width: 120px;
-}
-
-.campdetails span {
-  color: #333;
+@media screen and (max-width: 768px) {
+  .campMainWrapper {
+    flex-direction: column;
+  }
 }

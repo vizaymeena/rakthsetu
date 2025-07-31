@@ -2,39 +2,26 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLogin } from "../contexts/LoginContext";
 import "../assets/styles/notification.css";
+import { useNotification } from "../contexts/NotificationContext";
 
 export default function Notifications() {
   const [approvedReq, setApprovedReq] = useState([])
-  let   [clearNotificationIndex,setClearNotificationIndex] = useState()
+  let {notifications , clearNotification} = useNotification()
 
-  const { user } = useLogin();
+  
 
-  useEffect(() => {
-    if (!user) return;
-    axios
-      .get(
-        `http://localhost:3000/blood_request/?email=${user}`
-      )
-      .then((res) =>{
-        let filteredData = res.data.filter((el)=> el.approval == "cancel" || el.approval == "approved" )
-        setApprovedReq(filteredData)
-      });
-  }, [user])
+  
 
-  let clearNotification=(id)=>{
-    axios.get(`http://localhost:3000/blood_request/${}`)
-
-
-  }
+ 
 
   return (
     <div className="notifyMainDiv">
       <div className="notificationContainer">
         <h4 className="notificationTitle">Notifications</h4>
-        {approvedReq.length === 0 ? (
+        {notifications.length === 0 ? (
           <p>No notifications available.</p>
         ) : (
-          approvedReq.map((el, key) => (
+          notifications.map((el, key) => (
             <div
               className={`notificationCard ${el.approval?.toLowerCase()}`}
               key={key}

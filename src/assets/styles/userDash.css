@@ -1,0 +1,293 @@
+/* === General Dashboard Layout === */
+/* Recent request and nearby camp design contians in this css file */
+
+/* Recent Request Made */
+.containerDashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f8fc;
+  font-family: 'Segoe UI', sans-serif;
+   overflow: hidden;
+}
+
+
+.userD_sidebar {
+  height: 100vh;  
+  width: 260px;
+  background: #544c82;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+}
+
+.userAbout {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.userAbout img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.userAbout p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.userAbout button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #f95f62;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.sidebar_nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar_nav .span,
+.sidebar_nav a {
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.sidebar_nav .span:hover,
+.sidebar_nav a:hover {
+  background: #f95f62;
+}
+
+.notification {
+  background: red;
+  color: white;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 15px;
+  margin-left: 8px;
+  font-size: 0.75rem;
+ 
+}
+
+.rightBodyContainer {
+  flex-grow: 1;
+  padding: 2px 10px;
+  height: 100vh;
+  overflow-y: auto;
+  background: #ffffff;
+}
+
+/* === Blood Request Cards === */
+.requestTitle{
+    font-size: 26px;
+    background-color: rgba(255, 248, 220, 0.626);
+    margin-bottom: 5px;
+    padding-left: 5px;
+    border-left: 4px solid rgb(119, 119, 218);
+}
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.requestCard {
+  background: #eef2f3;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.cardTitle h4 {
+  margin-bottom: 5px;
+  color: #283e4a;
+}
+
+.status {
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.status.approved {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.status.cancel {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
+
+.status.pending {
+  background-color: #fff59d;
+  color: #f57f17;
+}
+
+.cardDetails span {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.ctabutton {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.ctabutton button {
+  flex: 1;
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit {
+  background: #42a5f5;
+  color: #fff;
+}
+
+.cancel {
+  background: #ef5350;
+  color: #fff;
+}
+
+/* === Filters === */
+.filterContainer {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filterSelect {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.filterBtn {
+  padding: 6px 15px;
+  background: #283e4a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* === Pagination === */
+.paginationControls {
+  margin-top: 20px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.pageButton,
+.paginationControls button {
+  padding: 5px 10px;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.activePage {
+  background: #283e4a;
+  color: #fff;
+}
+
+/* Nearby Camps */
+.userDash_DonationResults {
+  padding: 2rem;
+  background-color: #f9fbfc;
+}
+
+.userDash_DonationResults h4 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  border-left: 4px solid #4b7bec;
+  padding-left: 0.8rem;
+}
+
+.campcard {
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+/* .campcard:hover {
+  transform: translateY(-4px);
+} */
+
+.campgrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.campmain {
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 1rem;
+}
+
+.camptitle {
+  font-size: 1.6rem;
+  color: #4b7bec;
+  margin-bottom: 0.4rem;
+}
+
+.campdescription {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.campdetails {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.campdetails div strong {
+  color: #2c3e50;
+}
+
+@media (max-width: 768px) {
+  .campdetails {
+    grid-template-columns: 1fr;
+  }
+
+  .camptitle {
+    font-size: 1.4rem;
+  }
+
+  .campdescription {
+    font-size: 0.95rem;
+  }
+}

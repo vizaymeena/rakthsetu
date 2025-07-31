@@ -1,6 +1,6 @@
 .notifyMainDiv {
   padding: 1rem 0.5rem;
-  background-color: #c1c0c1c3;
+  background-color: #dcdcdc86;
   min-height: 100vh; 
 }
 
@@ -22,7 +22,7 @@
 }
 
 .notificationCard {
-  background-color: rgb(192, 201, 203);
+  background-color: rgba(184, 222, 231, 0.463);
   border-left: 5px solid #007bff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 1.1rem;
@@ -35,14 +35,20 @@
 }
 
 .cardBody button{
-  border: none;
+  border: 1.5px solid white;
   background-color: black;
   color: white;
   letter-spacing: 2px;
-  font-weight: 530;
-  padding: 5px;
-  border-radius: 5px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background  0.3s ease-in-out , border  0.3s ease-in-out , color 0.3s ease-in-out;
+}
+.cardBody button:hover{
+  background-color: white;
+  color: black;
+  border:1.5px solid black;
 }
 .notificationCard.approved {
   border-color: #28a745;

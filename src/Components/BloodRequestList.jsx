@@ -1,15 +1,23 @@
-import { useOutletContext } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLogin } from "../contexts/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 export default function BloodRequestList() {
   const { user } = useLogin();
   const [data, setData] = useState([]);
+  let [deleteIndex,setDeleteIndex] = useState()
+
+
+
   const [filteredData, setFilteredData] = useState([]);
   const [filterBy, setFilterBy] = useState("");
   const [subFilter, setSubFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  let navigate = useNavigate()
+  
 
   const subFilterOptions = {
     patientName: ["Asc", "Desc"],
@@ -22,7 +30,7 @@ export default function BloodRequestList() {
     axios
       .get(`http://localhost:3000/blood_request/?email=${user}`)
       .then((res) => setData(res.data));
-  }, [user]);
+  }, [user,deleteIndex]);
 
   const sourceData = filteredData.length > 0 ? filteredData : data;
   const dataPerPage = 3;
@@ -62,9 +70,26 @@ export default function BloodRequestList() {
   const prev = () => currentPage > 1 && setCurrentPage((prev) => prev - 1);
   const next = () => currentPage < totalPages && setCurrentPage((prev) => prev + 1);
 
+
+
+  // Handle Request Edit
+  let HandleEdit=(id)=>{
+    console.log("passing id",id)
+    navigate('userEditRequest',{
+      state:{
+        editIndex:id
+      }
+    })
+  }
+
+  let handleRemove=(id)=>{
+    axios.delete(`http://localhost:3000/blood_request/${id}`)
+    .then((res)=>setDeleteIndex(id))
+  }
+
   return (
     <div className="userDash_RequestResults">
-      <h4>Your Blood Requests</h4>
+     
       <div className="filterContainer">
         <label htmlFor="filterField">Filter By:</label>
         <select
@@ -80,7 +105,7 @@ export default function BloodRequestList() {
           <option value="email">Email</option>
           <option value="urgency">Urgency</option>
         </select>
-
+         
         {filterBy !== "all" && filterBy && (
           <select
             className="filterSelect"
@@ -99,7 +124,7 @@ export default function BloodRequestList() {
           Search
         </button>
       </div>
-
+      <h4 className="requestTitle">Recent Blood Requests</h4>
       <div className="gridContainer">
         {displayData.map((el) => (
           <div className="requestCard" key={el.id || el.email}>
@@ -122,8 +147,8 @@ export default function BloodRequestList() {
               <span><strong>Doctor Note:</strong> {el.doctorNote}</span>
             </div>
             <div className="ctabutton">
-              <button className="edit">Edit</button>
-              <button className="cancel">Cancel</button>
+              <button onClick={()=>HandleEdit(el.id)} className="edit">Edit</button>
+              <button onClick={()=>handleRemove(el.id)}  className="cancel">Cancel</button>
             </div>
           </div>
         ))}

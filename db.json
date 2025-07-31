@@ -271,7 +271,8 @@
       "doctorNote": "Mr. Trilok Mehra has sustained second-degree burns over approximately 22% of his body surface area following a domestic accident. He has been under intensive medical care and debridement treatment. Due to ongoing fluid loss, skin graft preparation, and associated blood volume depletion, immediate transfusion support is required.",
       "hospital": "AIIMS Hospital",
       "reason": "Burn Injury",
-      "approval": "approved"
+      "approval": "approved",
+      "read": false
     },
     {
       "id": "b2c3",
@@ -288,7 +289,8 @@
       "doctorNote": "Mr. Trilok Mehra has sustained second-degree burns over approximately 22% of his body surface area following a domestic accident. He has been under intensive medical care and debridement treatment. Due to ongoing fluid loss, skin graft preparation, and associated blood volume depletion, immediate transfusion support is required.",
       "hospital": "Balaji Hospital",
       "reason": "Cancer",
-      "approval": "cancel"
+      "approval": "cancel",
+      "read": false
     },
     {
       "id": "c3d4",
@@ -305,7 +307,8 @@
       "doctorNote": "Ms. Ankita Sharma is undergoing chemotherapy for breast cancer. She has been experiencing low hemoglobin levels and requires urgent blood transfusion support to continue treatment effectively.",
       "hospital": "Apollo Lucknow",
       "reason": "Chemotherapy",
-      "approval": "approved"
+      "approval": "approved",
+      "read": false
     },
     {
       "id": "d4e5",
@@ -322,7 +325,8 @@
       "doctorNote": "Mr. Ravi Kumar is scheduled for a major orthopedic surgery and requires blood as part of preoperative arrangements. His condition is stable but donation is requested in advance.",
       "hospital": "Medanta Hospital",
       "reason": "Orthopedic Surgery",
-      "approval": "approved"
+      "approval": "approved",
+      "read": false
     },
     {
       "id": "e5f6",
@@ -339,7 +343,8 @@
       "doctorNote": "Ms. Pooja Rani has suffered multiple injuries in a road accident and is undergoing emergency surgery. She requires rare AB- blood urgently.",
       "hospital": "Fortis Amritsar",
       "reason": "Accident Trauma",
-      "approval": "pending"
+      "approval": "pending",
+      "read": false
     },
     {
       "id": "f6g7",
@@ -356,7 +361,8 @@
       "doctorNote": "Mr. Amitabh Singh is being treated for dengue fever with thrombocytopenia. Platelet-rich plasma and blood transfusion have been recommended by the medical team.",
       "hospital": "Ruby Hall Clinic",
       "reason": "Dengue",
-      "approval": "pending"
+      "approval": "pending",
+      "read": false
     },
     {
       "id": "g7h8",
@@ -373,7 +379,8 @@
       "doctorNote": "Ms. Nidhi Verma is a pregnant woman facing complications with low hemoglobin levels. O- blood group is urgently required during delivery.",
       "hospital": "CHL Hospital",
       "reason": "Pregnancy Complication",
-      "approval": "pending"
+      "approval": "pending",
+      "read": false
     },
     {
       "id": "h8i9",
@@ -390,7 +397,8 @@
       "doctorNote": "Mr. Rahul Tripathi is undergoing treatment for anemia and needs periodic transfusions. This is a planned requirement and not an emergency.",
       "hospital": "Peerless Hospital",
       "reason": "Anemia",
-      "approval": "pending"
+      "approval": "pending",
+      "read": false
     },
     {
       "id": "i9j0",
@@ -407,7 +415,8 @@
       "doctorNote": "Ms. Kavya Iyer is recovering from liver surgery and requires blood support due to mild internal bleeding and post-surgical recovery.",
       "hospital": "Apollo Chennai",
       "reason": "Liver Surgery",
-      "approval": "pending"
+      "approval": "pending",
+      "read": false
     },
     {
       "id": "j0k1",
@@ -424,7 +433,8 @@
       "doctorNote": "Mr. Deepak Joshi is in critical condition due to a massive hemorrhage and requires urgent blood transfusion to stabilize vital signs.",
       "hospital": "Civil Hospital",
       "reason": "Internal Bleeding",
-      "approval": "pending"
+      "approval": "pending",
+      "read": false
     },
     {
       "id": "k1l2",
@@ -441,7 +451,8 @@
       "doctorNote": "Ms. Sneha Roy is scheduled for a minor gynecological procedure. Blood backup is needed as a precaution.",
       "hospital": "Nemcare Hospital",
       "reason": "Scheduled Surgery",
-      "approval": "pending"
+      "approval": "pending",
+      "read": false
     },
     {
       "id": "l2m3",
@@ -458,41 +469,8 @@
       "doctorNote": "Mr. Manoj Tiwari is suffering from chronic kidney disease and undergoing dialysis. He requires blood support periodically.",
       "hospital": "IGIMS Patna",
       "reason": "Dialysis",
-      "approval": "pending"
-    },
-    {
-      "id": "m3n4",
-      "patientName": "Harshita Mishra",
-      "gender": "female",
-      "email": "diptianand@gmail.com",
-      "age": "21",
-      "weight": "47",
-      "bloodGroup": "AB+",
-      "urgency": "High",
-      "state": "Chhattisgarh",
-      "city": "Raipur",
-      "contact": "9123456780",
-      "doctorNote": "Ms. Harshita Mishra suffered from acute blood loss due to uterine rupture. Immediate AB+ blood is needed for emergency intervention.",
-      "hospital": "AIIMS Raipur",
-      "reason": "Uterine Rupture",
-      "approval": "approved"
-    },
-    {
-      "id": "n4o5",
-      "patientName": "Pradeep Singh",
-      "email": "diptianand@gmail.com",
-      "gender": "male",
-      "age": "36",
-      "weight": "80",
-      "bloodGroup": "B+",
-      "urgency": "Medium",
-      "state": "Jharkhand",
-      "city": "Ranchi",
-      "contact": "8877665544",
-      "doctorNote": "Mr. Pradeep Singh is preparing for a bone marrow transplant and will need blood support during the treatment cycle.",
-      "hospital": "RIMS Ranchi",
-      "reason": "Bone Marrow Transplant",
-      "approval": "pending"
+      "approval": "pending",
+      "read": false
     },
     {
       "id": "o5p6",
@@ -509,24 +487,8 @@
       "doctorNote": "Mr. Alok Jain is undergoing bypass surgery and O- blood is urgently required due to intraoperative blood loss.",
       "hospital": "Narayana Hrudayalaya",
       "reason": "Heart Surgery",
-      "approval": "pending"
-    },
-    {
-      "id": "p6q7",
-      "patientName": "Maya Thomas",
-      "email": "diptianand@gmail.com",
-      "gender": "female",
-      "age": "38",
-      "weight": "63",
-      "bloodGroup": "A-",
-      "urgency": "Medium",
-      "state": "Kerala",
-      "city": "Kochi",
-      "contact": "9995566778",
-      "doctorNote": "Ms. Maya Thomas is being treated for aplastic anemia and needs frequent transfusions as part of her treatment.",
-      "hospital": "Aster Medcity",
-      "reason": "Aplastic Anemia",
-      "approval": "pending"
+      "approval": "pending",
+      "read": false
     },
     {
       "id": "q7r8",
@@ -543,24 +505,8 @@
       "doctorNote": "Yash Rawat is a thalassemia patient who requires urgent B- blood due to a delay in scheduled transfusion.",
       "hospital": "Max Hospital Dehradun",
       "reason": "Thalassemia",
-      "approval": "cancel"
-    },
-    {
-      "id": "r8s9",
-      "patientName": "Namrata Shetty",
-      "email": "diptianand@gmail.com",
-      "gender": "female",
-      "age": "33",
-      "weight": "59",
-      "bloodGroup": "O+",
-      "urgency": "Low",
-      "state": "Goa",
-      "city": "Panaji",
-      "contact": "9988991122",
-      "doctorNote": "Ms. Namrata Shetty is preparing for a laparoscopic gall bladder removal. Blood is requested as a routine precaution.",
-      "hospital": "Manipal Hospital Goa",
-      "reason": "Gallbladder Surgery",
-      "approval": "pending"
+      "approval": "cancel",
+      "read": true
     },
     {
       "id": "s9t0",
@@ -577,24 +523,8 @@
       "doctorNote": "Mr. Ishaan Bhatt suffered internal organ damage in a trekking accident. AB- blood is urgently needed for life-saving surgery.",
       "hospital": "IGMC Shimla",
       "reason": "Trauma Surgery",
-      "approval": "pending"
-    },
-    {
-      "id": "9a92",
-      "email": "diptianand@gmail.com",
-      "patientName": "Srinivas Saxena",
-      "age": "29",
-      "gender": "male",
-      "weight": "62",
-      "bloodGroup": "AB-",
-      "urgency": "Medium",
-      "state": "Madhya Pradesh",
-      "city": "Bhopal",
-      "contact": "7447449621",
-      "doctorNote": "Srinivasan a resident of Bhopal is in requirement for the blood group AB- . ",
-      "hospital": "Novel Hospital",
-      "reason": "Accident",
-      "approval": "cancel"
+      "approval": "pending",
+      "read": false
     }
   ],
   "camp": [
