@@ -1,0 +1,111 @@
+/* Container */
+.editbloodRequestContainer {
+  min-height: 100vh;
+  width: 100%;
+  padding: 3rem 2rem;
+  background: #f5f8fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* overflow-y: auto; */
+  box-sizing: border-box;
+}
+
+/* Title */
+.editformTitle {
+  font-size: 2.2rem;
+  color: #1d3557;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  padding-left: 5px;
+  border-left: 4px solid rgb(88, 88, 196);
+  text-align: center;
+}
+
+/* Form Layout */
+.editbloodrequestForm {
+  background: #ffffff;
+  width: 100%;
+  max-width: 960px;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem 2rem;
+}
+
+/* Input Wrapper */
+.editformRow {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label */
+.editformRow label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1d3557;
+  margin-bottom: 0.5rem;
+}
+
+/* Inputs and Select */
+.editformInput,
+select,
+textarea {
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  background-color: #f9fafb;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Focus Effects */
+.editformInput:focus,
+select:focus,
+textarea:focus {
+  border-color: #457b9d;
+  background-color: #ffffff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.15);
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  grid-column: span 2;
+}
+
+/* Submit Button */
+.editformButton {
+  grid-column: span 2;
+  margin-top: 1rem;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #1d3557;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease-in-out;
+}
+
+.editformButton:hover {
+  background-color: #16304e;
+}
+
+@media (max-width: 768px) {
+  .editbloodrequestForm {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .editformButton,
+  textarea {
+    grid-column: span 1;
+  }
+}

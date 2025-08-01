@@ -1,38 +1,34 @@
-import { useEffect, useState, useMemo } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import "../assets/styles/adminfilter.css";
-import "../assets/styles/campform.css";
+import { useEffect, useState, useMemo } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import axios from "axios"
+import "../assets/styles/adminfilter.css"
+import "../assets/styles/campform.css"
 
 // campformCard
-import { CampFormCard } from "./CampForm";
-
-// react-icons
-
-
+import { CampFormCard } from "./CampForm"
 
 export let FilterPage = () => {
-  let { category, filterType } = useParams();
-  console.log("this is category",category)
-  let [data, setData] = useState([]);
-  let [searchTerm, setSearchTerm] = useState("");
-  let [sortField, setSortField] = useState("");
-  let [sortOrder, setSortOrder] = useState("asc");
-  let [currentPage, setCurrentPage] = useState(1);
-  let [approval, setApproval] = useState({});
+  let { category, filterType } = useParams()
+  // console.log("this is category",category)
+  let [data, setData] = useState([])
+  let [searchTerm, setSearchTerm] = useState("")
+  let [sortField, setSortField] = useState("")
+  let [sortOrder, setSortOrder] = useState("asc")
+  let [currentPage, setCurrentPage] = useState(1)
+  let [approval, setApproval] = useState({})
 
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
-  let recordsPerPage = 5;
-  if (category === "donor") recordsPerPage = 6;
-  else if (category === "req") recordsPerPage = 8;
+  let recordsPerPage = 5
+  if (category === "donor") recordsPerPage = 6
+  else if (category === "req") recordsPerPage = 8
 
-  let isBloodRequestPage = category === "req";
+  let isBloodRequestPage = category === "req"
 
-  let hideControls = category === "camp" && filterType === "addcamp";
+  let hideControls = category === "camp" && filterType === "addcamp"
 
   useEffect(() => {
-    const endpoints = {
+    let endpoints = {
       user: "http://localhost:3000/users",
       donor: "http://localhost:3000/blood_donor",
       req: "http://localhost:3000/blood_request",
@@ -43,109 +39,113 @@ export let FilterPage = () => {
       axios
         .get(endpoints[category])
         .then((res) => setData(res.data))
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     }
-  }, [category, filterType]);
+  }, [category, filterType,approval])
 
-  const filteredData = useMemo(() => {
-    if (!searchTerm) return data;
-    const x = searchTerm.toLowerCase();
+  let filteredData = useMemo(() => {
+    if (!searchTerm) return data
+    let x = searchTerm.toLowerCase()
     return data.filter(
       (el) =>
         el.fullName?.toLowerCase().includes(x) ||
         el.patientName?.toLowerCase().includes(x) ||
         el.email?.toLowerCase().includes(x) ||
         el.phone?.includes(x)
-    );
-  }, [data, searchTerm]);
+    )
+  }, [data, searchTerm])
 
-  const sortedData = useMemo(() => {
-    if (!sortField) return filteredData;
-    const sorted = [...filteredData].sort((a, b) => {
-      const v1 = (a[sortField] || "").toString().toLowerCase();
-      const v2 = (b[sortField] || "").toString().toLowerCase();
-      return v1.localeCompare(v2);
-    });
-    return sortOrder === "asc" ? sorted : sorted.reverse();
-  }, [filteredData, sortField, sortOrder]);
+  let sortedData = useMemo(() => {
+    if (!sortField) return filteredData
+    let sorted = [...filteredData].sort((a, b) => {
+      let v1 = (a[sortField] || "").toString().toLowerCase()
+      let v2 = (b[sortField] || "").toString().toLowerCase()
+      return v1.localeCompare(v2)
+    })
+    return sortOrder === "asc" ? sorted : sorted.reverse()
+  }, [filteredData, sortField, sortOrder])
 
-  const last = currentPage * recordsPerPage;
-  const first = last - recordsPerPage;
-  const currentRecords = sortedData.slice(first, last);
-  const totalPages = Math.ceil(sortedData.length / recordsPerPage);
+  let last = currentPage * recordsPerPage
+  let first = last - recordsPerPage
+  let currentRecords = sortedData.slice(first, last)
+  let totalPages = Math.ceil(sortedData.length / recordsPerPage)
 
-  const handleSort = (col) => {
+  let handleSort = (col) => {
     if (sortField === col)  {
-      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
     } else {
-      setSortField(col);
-      setSortOrder("asc");
+      setSortField(col)
+      setSortOrder("asc")
     }
-    setCurrentPage(1);
-  };
+    setCurrentPage(1)
+  }
 
-  const categoryEndpoints = {
+  let categoryEndpoints = {
     user: "users",
     donor: "blood_donor",
     req: "blood_request",
     camp: "camp",
-  };
+  }
 
-  const handleRemove = (id) => {
-    const endpoint = categoryEndpoints[category];
-    if (!endpoint) return;
+  let handleRemove = (id) => {
+    let endpoint = categoryEndpoints[category]
+    if (!endpoint) return
     axios
       .delete(`http://localhost:3000/${endpoint}/${id}`)
       .then(() => axios.get(`http://localhost:3000/${endpoint}`))
       .then((res) => {
-        const fresh = res.data;
-        setData(fresh);
-        const newTotal = Math.ceil(fresh.length / recordsPerPage);
+        let fresh = res.data
+        setData(fresh)
+        let newTotal = Math.ceil(fresh.length / recordsPerPage)
         if (currentPage > newTotal) {
-          setCurrentPage(newTotal || 1);
+          setCurrentPage(newTotal || 1)
         }
       })
-      .catch((err) => console.error("Delete error:", err));
-  };
+      .catch((err) => console.error("Delete error:", err))
+  }
 
-  const handleEdit = (id) => {
-    const endpoint = categoryEndpoints[category];
-    if (!endpoint) return;
+  let handleEdit = (id) => {
+    let endpoint = categoryEndpoints[category]
+    if (!endpoint) return
     console.log("endpoint is here ",endpoint)
-    navigate(`/AdminDashboard/${endpoint}/edit/${id}`);   
-  };
+    navigate(`/AdminDashboard/${endpoint}/edit/${id}`)   
+  }
 
 
 
 // Blood Request Event Handler Request Status
  
-  const handleStatus = (id, e) => {
-    const status = e.target.value;
+  let handleStatus = (id, e) => {
+    let status = e.target.value
     setApproval((prev) => ({
       ...prev,
       [id]: status,
-    }));
-  };
+    }))
+  }
 
-  const handleApproval = (id) => {
-    if (!approval[id]) return;
-    axios.patch(`http://localhost:3000/${categoryEndpoints[category]}/${id}`, {
+  let handleApproval = (id) => {
+    if (!approval[id]) return
+        axios.patch(`http://localhost:3000/${categoryEndpoints[category]}/${id}`, {
         approval: approval[id],
       })
       .then((res) => setApproval(approval[id]))
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
 
 
 // Templates
-let block_content;
+let block_content
 
+// Display Users
 if (category === "user") {
   block_content = (
+    <>
+    <h1 className="pageHeading">All Users</h1>
     <div className="tableContainer">
       <table className="dataTable">
         <thead>
           <tr>
+            <th>Unique Id</th>
             <th>Name</th>
             <th>Email</th>
             <th>Gender</th>
@@ -155,10 +155,11 @@ if (category === "user") {
         </thead>
         <tbody>
           {currentRecords.map(el => (
-            <tr key={el.id}>
-              <td>{el.fullName}</td>
+            <tr key={el.id}> 
+              <td>{el.id}</td>
+              <td style={{textTransform:"uppercase"}}>{el.fullName}</td>
               <td>{el.email}</td>
-              <td>{el.gender}</td>
+              <td style={{textTransform:"uppercase"}} >{el.gender}</td>
               <td>{el.phone}</td>
               <td>
                 <button className="editBtn" onClick={() => handleEdit(el.id)}>Edit</button>
@@ -169,12 +170,15 @@ if (category === "user") {
         </tbody>
       </table>
     </div>
-  );
+    </>
+  )
 }
 
+// Display Request
 else if (category === "req") {
   block_content = (
     <>
+    <h1 className="pageHeading">All Requests</h1>
      <div className="gridContainer">
     {currentRecords.map(request=>(
 
@@ -207,15 +211,20 @@ else if (category === "req") {
         <p> <strong>Reason:</strong> {request.reason}</p>
         <p><strong>Doctor's Note:</strong> {request.doctorNote}</p>
       </div>
-      <div><span>Request Status:{request.approval}</span></div>
+      <div><span>Request Status: <span className={
+        request.approval=="approved"?"requestApproved":
+        request.approval=="pending"?"requestPending":
+        "requestCancel"}>
+      
+      {request.approval}</span></span></div>
       <div className="card-section location-contact">
         <p> {request.city}, {request.state}</p>
         <p> {request.contact}</p>
       </div>
       
       <div className="actionBtn">
-        <button className="actionBtn1">Edit</button>
-        <button className="actionBtn2">Remove</button>
+        <button onClick={()=>handleEdit(request.id)} className="actionBtn1">Edit</button>
+        <button onClick={()=>handleRemove(request.id)} className="actionBtn2">Remove</button>
       </div>
     </div>
   
@@ -225,9 +234,14 @@ else if (category === "req") {
   )
 }
 
+// Display Donors
 else if (category === "donor") {
   block_content = (
+    <>
+    <h1 className="pageHeading">All Donors</h1>
+    
    <div className="donorCardContainer">
+    
   {currentRecords.map(donor => (
     <div className="donorCard" key={donor.id}>
       <div className="donorHeader">
@@ -255,18 +269,22 @@ else if (category === "donor") {
     </div>
   ))}
 </div>
-
-  );
+</>
+  )
 }
 
+// Display Camp Form
 else if (category === 'camp' && filterType === 'addcamp') {
   block_content = (
    <CampFormCard/>
-  );
+  )
 }
 
+// Display All Camps
 else if (category === 'camp' && filterType === "showallcamp") {
   block_content = (
+    <>
+    <h1 className="pageHeading">All Camps</h1>
     <div className="campDataContainer">
       {currentRecords.map((el, key) => (
         <div className="campCard" key={key}>
@@ -285,15 +303,16 @@ else if (category === 'camp' && filterType === "showallcamp") {
         </div>
       ))}
     </div>
+    </>
   )
 }
 
 
 
-
-  const goTo = (i) => setCurrentPage(i); // 1
-  const next = () => currentPage < totalPages && setCurrentPage((i) => i + 1); // 0+1
-  const prev = () => currentPage > 1 && setCurrentPage((i) => i - 1); 
+// Pagination Next,Prev And Numbers  Button Logic
+  let goTo = (i) => setCurrentPage(i) // 1
+  let next = () => currentPage < totalPages && setCurrentPage((i) => i + 1) // 0+1
+  let prev = () => currentPage > 1 && setCurrentPage((i) => i - 1) 
 
   return (
     <>
@@ -306,8 +325,8 @@ else if (category === 'camp' && filterType === "showallcamp") {
               placeholder="Search name, email, or phone..."
               value={searchTerm}
               onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setCurrentPage(1);
+                setSearchTerm(e.target.value)
+                setCurrentPage(1)
               }}
             />
           </div>
@@ -370,5 +389,5 @@ else if (category === 'camp' && filterType === "showallcamp") {
         </div>
       )}
     </>
-  );
-};
+  )
+}

@@ -39,62 +39,84 @@
 
 /* Table wrapper for overflow */
 .tableContainer {
+  width: 100%;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
   overflow-x: auto;
+  min-height: 60vh;
 }
 
-/* Table styling */
+/* Table basics */
 .dataTable {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1rem;
-  background: #fafafa;
+  font-family: 'Segoe UI', sans-serif;
 }
-.dataTable th,
-.dataTable td {
-  border: 1px solid #e0e0e0;
-  padding: 0.1rem 1rem;
-  text-align: left;
+
+/* Header styling */
+.dataTable thead {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
 }
+
 .dataTable th {
-  background: #f4f4f7;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+  padding: 14px 20px;
+  text-align: left;
+  color: #343a40;
+  font-weight: 600;
+  font-size: 15px;
 }
-.dataTable tbody tr:nth-child(even) {
-  background: #fcfcfc;
+
+/* Row styling */
+.dataTable tr {
+  border-bottom: 1px solid #e2e6ea;
+  transition: background 0.2s;
 }
+
 .dataTable tbody tr:hover {
-  background: #e8f4ff;
-}
-.actionButtonDiv{
-  display: flex;
-  gap: 10px;
+  background-color: #f1f3f5;
 }
 
-/* Button styling */
-.editBtn,
-.removeBtn {
-  padding: 0.4rem 0.8rem;
+/* Cell content */
+.dataTable td {
+  padding: 14px 20px;
+  font-size: 14px;
+  color: #495057;
+}
+
+/* Action buttons */
+.editBtn, .removeBtn {
+  padding: 6px 12px;
+  margin-right: 8px;
   border: none;
-  border-radius: 3px;
-  font-size: 0.9rem;
+  border-radius: 6px;
+  font-size: 13px;
   cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-.editBtn {
-  background-color: #1976d2;
-  color: #fff;
-}
-.removeBtn {
-  background-color: #d32f2f;
-  color: #fff;
-}
-.editBtn:hover,
-.removeBtn:hover {
-  opacity: 0.85;
+  transition: all 0.3s ease;
 }
 
+.editBtn {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.editBtn:hover {
+  background-color: #0b5ed7;
+}
+
+
+.removeBtn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.removeBtn:hover {
+  background-color: #bb2d3b;
+}
 /* Pagination */
 .paginationControls {
   display: flex;
@@ -158,7 +180,13 @@
 
 
 /* Blood Donor Card Design */
+.pageHeading{
+  padding-left: 5px;
+  border-left: 4px solid rgba(99, 99, 212, 0.856);
+}
 .donorName{
+  letter-spacing: 1.2px;
+  font-weight: 550;
   color: rgb(69, 22, 150) !important;
 }
 .donorSection {
@@ -260,91 +288,147 @@
   color: white;
 }
 
-/* blood request design */
+/* BLOOD REQUEST DESIGN ON ADMIN PAGE  */
 .gridContainer {
-  width: 100%;
-  max-width: 1200px; /* Optional: to limit crazy-wide containers */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  box-sizing: border-box;
-  gap: 0.5rem;
-  overflow: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .bloodRequestCard {
-  background-color: #fff;
-  border-radius: 15px;
-  padding: 1.5rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  font-family: "Segoe UI", sans-serif;
-  color: #333;
-  transition: transform 0.2s;
-  width: 100%; /* Full width inside grid cell */
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: inset 0px 4px 10px rgb(193, 193, 193);
+  border-left: 6px solid #e63946; /* urgency color stripe */
 }
 
+.bloodRequestCard:hover {
+ box-shadow: 0px 4px 30px -5px rgba(24, 206, 78, 0.461);
+
+}
 
 .bloodRequestCard h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #c62828;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1d3557;
+  margin-bottom: 1rem;
+}
+
+.bloodRequestCard h2 select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  background-color: #f1f1f1;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+.approvalBtn {
+  background-color: #1d3557;
+  color: white;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.approvalBtn:hover {
+  background-color: #16324c;
 }
 
 .card-section {
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-.card-section strong {
-  color: #444;
-}
-
-.location-contact {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  font-size: 0.95rem;
 }
 
 .card-section p {
-  margin: 5px 0;
+  margin: 0;
+  color: #333;
 }
-.actionBtn{
+
+/* Location and Contact */
+.location-contact {
+  border-top: 1px solid #eee;
+  padding-top: 0.75rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #555;
 }
+
+.bloodRequestCard > div:nth-last-child(2) {
+  font-size: 0.85rem;
+  color: #457b9d;
+  font-weight: 500;
+}
+
+.actionBtn {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
 .actionBtn1,
-.actionBtn2{
-  width: 100px;
-  padding: 8px 8px;
-  letter-spacing: 2px;
-  font-weight: 550;
+.actionBtn2 {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  border: 2px solid transparent;
-  transition: 0.3s ease-in-out;
-}
-.actionBtn1{
-  background-color: green;
-  color: white;
-}
-.actionBtn2{
-  background-color: red;
-  color: white;
-}
-.actionBtn1:hover,.actionBtn2:hover{
-  transform: scale(0.9);
-}
-.actionBtn1:hover{
-  background-color: rgb(4, 65, 4);
-}
-.actionBtn2:hover{
-  background-color: rgb(88, 4, 4);
+  transition: background-color 0.25s ease;
 }
 
+.actionBtn1 {
+  background-color: #e9c46a;
+  color: rgb(78, 78, 78);
+}
 
+.actionBtn1:hover {
+  background-color: #e8ad18;
+}
+
+.actionBtn2 {
+  background-color: #ef476f;
+  color: #fff;
+}
+
+.actionBtn2:hover {
+  background-color: #d9375a;
+}
+
+.requestApproved{
+  color: green !important;
+  text-transform: uppercase;
+}
+.requestCancel{
+  color: red;
+  text-transform: uppercase;
+}
+.requestPending{
+  color: gray;
+  text-transform: uppercase;
+
+}
+.requestApproved,.requestCancel,.requestPending{
+  font-weight: 600;
+  letter-spacing: 2px;
+}
 
 
 

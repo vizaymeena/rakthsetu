@@ -1,8 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import '../assets/styles/edituser.css'
+import { stateCityData } from "../data/staticdata"
 
+import '../assets/styles/edituser.css'
+import '../assets/styles/editBloodRequest.css'
 
 
 // edit user profile
@@ -67,7 +69,7 @@ export let EditUserProfile = () => {
 }
 
 
-import { stateCityData } from "../data/staticdata"
+
 export let EditDonorProfile = () => {
   let [user, setUser] = useState({
     name: "",
@@ -250,6 +252,7 @@ export let EditDonorProfile = () => {
 
 
 import '../assets/styles/adminfilter.css'
+import { useLogin } from "../contexts/LoginContext"
 export let EditCamp=()=>{
 
   let [campForm,setCampForm] = useState({})
@@ -355,4 +358,163 @@ export let EditCamp=()=>{
 
   )
 
+}
+
+
+// Edit Blood Request 
+export let EditRequest=()=>{
+  let { admin } = useLogin()
+  let [editRequestForm,setEditRequestForm]=useState({})
+  let [cities,setCities] = useState([])
+  let {id} = useParams()
+  let navigate = useNavigate()
+  
+
+  useEffect(()=>{
+   axios.get(`http://localhost:3000/blood_request/${id}`).then((res)=>setEditRequestForm(res.data))
+  },[id])
+
+  useEffect(()=>{
+    if(!admin) return
+    console.log("requestForm state:",editRequestForm.state)
+    let matchedState = stateCityData?.find(el=>el.state == editRequestForm.state)
+    if(!matchedState) return 
+    console.log("Matched STate",matchedState)
+    setCities(matchedState.cities)
+  },[editRequestForm.state,id])
+  
+
+
+  let handleChange=(e)=>{
+    let { name,value } = e.target
+    setEditRequestForm((prev)=>(
+      {...prev,[name]:value})
+    )
+  }
+  let handleUpdate=(e)=>{
+    e.preventDefault()
+    axios.put(`http://localhost:3000/blood_request/${id}`, editRequestForm)
+    navigate(-1)
+  }
+
+
+
+   return (
+      <div className="editbloodRequestContainer">
+        <h1 className="editformTitle">Blood Request Form</h1>
+        <form className="editbloodrequestForm" onSubmit={handleUpdate}>
+          
+          <div className="editformRow">
+            <label>Patient Name:</label>
+            <input type="text" className="formInput" placeholder="Enter patient name" name="patientName" value={editRequestForm.patientName || ""} onChange={handleChange} />
+          </div>
+  
+          <div className="editformRow">
+            <label>Age:</label>
+            <input type="number" className="editformInput" placeholder="Age" name="age" value={editRequestForm.age  || ""} onChange={handleChange} />
+          </div>
+          <div className="editformRow">
+            <label>Gender:</label>
+            <select name="gender" value={editRequestForm.gender  || ""} onChange={handleChange}>
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+  
+          <div className="editformRow">
+            <label>Weight (kg):</label>
+            <input type="number" className="editformInput" placeholder="Weight in kg" name='weight' value={editRequestForm.weight  || ""} onChange={handleChange} />
+          </div>
+  
+          <div className="editformRow">
+            <label>Blood Group:</label>
+            <select className="editformInput" value={editRequestForm.bloodGroup  || ""} name="bloodGroup" onChange={handleChange}>
+              <option>Select</option>
+              <option>A+</option>
+              <option>A-</option>
+              <option>B+</option>
+              <option>B-</option>
+              <option>AB+</option>
+              <option>AB-</option>
+              <option>O+</option>
+              <option>O-</option>
+            </select>
+          </div>
+  
+          <div className="editformRow">
+            <label>Urgency:</label>
+            <select className="editformInput" value={editRequestForm.urgency  || "" } name='urgency' onChange={handleChange}>
+              <option>Select</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+              <option>Critical</option>
+            </select>
+          </div>
+  
+          <div className="editformRow">
+            <label>Contact:</label>
+            <input type="text" className="editformInput" placeholder="Phone number" value={editRequestForm.contact  || "" } name='contact' onChange={handleChange} />
+          </div>
+  
+          <div className="editformRow">
+            <label>Hospital(at Required):</label>
+            <input type="text" className="editformInput" placeholder="Hospital name" name='hospital' value={editRequestForm.hospital  || "" } onChange={handleChange} />
+          </div>
+  
+          <div className="editformRow">
+            <label>Reason:</label>
+             <select className="editformInput" value={editRequestForm.reason  || "" } name='reason' onChange={handleChange}>
+                <option value="">Select Reason</option>
+                <option value="Surgery">Surgery</option>
+                <option value="Accident">Accident / Trauma</option>
+                <option value="Childbirth">Childbirth Complications</option>
+                <option value="Cancer">Cancer Treatment</option>
+                <option value="Anemia">Anemia</option>
+                <option value="Thalassemia">Thalassemia</option>
+                <option value="Hemophilia">Hemophilia</option>
+                <option value="Transplant">Organ Transplant</option>
+                <option value="Burn">Burn Victim</option>
+                <option value="Chronic">Chronic Disease</option>
+                <option value="SevereLoss">Severe Blood Loss</option>
+                <option value="ICU">ICU Patient</option>
+                <option value="Other">Other</option>
+              </select>
+          </div>
+  
+          <div className='editformRow'>
+            <label htmlFor="">State</label>
+            <select value={editRequestForm.state  || "" } name='state' onChange={handleChange}>
+              <option value="">Select</option>
+              {stateCityData?.map((el,key)=><option key={key}>{el.state}</option>)}
+            </select>
+          </div>
+  
+          <div className='editformRow'>
+            <label htmlFor="">City</label>
+            <select value={editRequestForm.city  || "" } name='city' onChange={handleChange}>
+              <option value="">Select</option>
+              { cities.map((el,key)=><option key={key}>{el}</option>) }
+            </select>
+          </div>
+  
+          <div className="editformRow">
+            <label>Doctor's Note:</label>
+            <textarea name="doctorNote" id="" rows={8} cols={80} maxLength={500} placeholder='doctor note max length 200 words' 
+            value={editRequestForm.doctorNote  || "" } 
+            onChange={handleChange} optional="true"></textarea>
+          </div>
+  
+          
+  
+         
+          <div className="editformRow">
+            <button type="submit" className="editformButton">Update Request</button>
+          </div>
+  
+        </form>
+      </div>
+   )
 }

@@ -44,7 +44,7 @@ export const AdminDashboard = () => {
   return (
     <div className="dashboard">
       <aside className="sidebar">
-        <Link className="logo" to="/">🩸 Rakth Setu</Link>
+        <Link className="logo" to="/">Rakth Setu</Link>
 
         <nav className="navMenu">
           {sidebarSections.map((section) => (

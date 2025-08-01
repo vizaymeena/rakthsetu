@@ -19,7 +19,7 @@ import BloodReq from './pages/BloodRequest'
 import BloodCamp from './pages/Camp'
 
 import { NotificationProvider } from './contexts/NotificationContext'
-import { EditBloodRequest } from './Components/EditByUser'
+import { EditRequest } from './Components/EditByAdmin'
 
 
 
@@ -55,6 +55,8 @@ let AnimatedRoutes=()=>{
           <Route path="users/edit/:id" element={<EditUserProfile/>} />
           <Route path="blood_donor/edit/:id" element={<EditDonorProfile />} />
           <Route path="camp/edit/:id" element={<EditCamp />} />
+          <Route path="blood_request/edit/:id" element={<EditRequest />} />
+
          
         </Route>
 
@@ -69,11 +71,9 @@ let AnimatedRoutes=()=>{
              <UserDashboardLayout />
           </NotificationProvider>
         }>
-
            <Route index element={ <><BloodRequestList/>,<DashboardHome /></>} />
            <Route path="notifications" element={<Notifications />} />
-           {/* more nested routes like donations, help etc. */}
-           <Route path="userEditRequest" element={<EditBloodRequest/>}/>
+           <Route path="userEditRequest" element={<EditRequest/>}/>
         </Route>
        
 
