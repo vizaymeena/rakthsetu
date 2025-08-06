@@ -178,7 +178,7 @@ export default function BloodReq() {
 
         <div className="formRow">
           <label>Doctor's Note:</label>
-          <textarea name="doctorNote" id="" rows={8} cols={80} maxLength={500} placeholder='doctor note max length 200 words' 
+          <textarea name="doctorNote" id="" rows={8} cols={60} maxLength={500} placeholder='doctor note max length 500 words' 
           value={requestForm.doctorNote} 
           onChange={handleChange} optional="true"></textarea>
         </div>

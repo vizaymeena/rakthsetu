@@ -1,195 +1,198 @@
-/* === General Reset === */
+/* HOSPITAL NAVBAR THEME - MODERN PROFESSIONAL */
+
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background-color: #f8f9fa;
-  color: #333;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-ul {
-  list-style: none;
-}
-img {
-  max-width: 100%;
-  height: auto;
+  background-color: #f9f9f9;
+  color: #2d2d2d;
 }
 
-/* === Header === */
 .siteHeader {
-  background-color: #fff;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #eee;
+  width: 100%;
+  background: linear-gradient(90deg, #b91c1c, #ef4444);
+  padding: 0rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
+
 .navContainer {
+  max-width: 1300px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
+
 .logo h1 a {
-  color: #d32f2f;
   font-size: 1.8rem;
   font-weight: bold;
+  color: white;
+  text-decoration: none;
 }
 
-/* === Nav Links === */
-.navLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
 .navLinks a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #fdd;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: background 0.3s ease;
-}
-.navLinks a:hover {
-  background-color: #ffe5e5;
+  border-radius: 6px;
+  transition: background 0.3s;
 }
 
-/* === User Area === */
+.navLinks a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
 .userArea {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
+
 .userCard {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-.profilePic {
-  width: 35px;
-  height: 35px;
-  object-fit: cover;
-  border: 2px solid #d32f2f;
-}
-.userEmail {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-.logoutBtn, .registerBtn {
+  background: #fef2f2;
   padding: 0.4rem 0.8rem;
-  background-color: #d32f2f;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-.logoutBtn:hover, .registerBtn:hover {
-  background-color: #b71c1c;
+  border-radius: 8px;
 }
 
-/* === Main === */
-.site-main {
-  padding: 2rem;
+.userCard .profilePic {
+  width: 32px;
+  height: 32px;
+  background: #ddd;
+  border-radius: 50%;
 }
+
+.userCard .userEmail {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #b91c1c;
+}
+
+.logoutBtn {
+  background: #dc2626;
+  border: none;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logoutBtn:hover {
+  background: #991b1b;
+}
+
+.registerBtn {
+  background: white;
+  color: #dc2626;
+  font-weight: bold;
+  border: 2px solid #dc2626;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.registerBtn:hover {
+  background: #dc2626;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+}
+
+
 
 /* === Footer === */
 .site-footer {
-  background-color: #1c1c1c;
+  background: linear-gradient(to right, #67000d, #990e1c);
   color: #fff;
-  padding: 3rem 2rem 1rem;
+  padding: 1rem 1rem 0.2rem;
+  margin-top: 3rem;
 }
+
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 2rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
+  align-items: start;
 }
+
 .footer-brand {
   text-align: center;
 }
 .footer-logo {
-  width: 100px;
-  margin-bottom: 1rem;
+  width: 80px;
+  margin-bottom: 0.8rem;
 }
 .footer-tagline {
   font-style: italic;
-  color: #bbb;
+  color: #f8caca;
+  font-size: 0.95rem;
 }
 
 .footer-section h3 {
   margin-bottom: 0.8rem;
+  font-size: 1.2rem;
   color: #fff;
-  font-size: 1.1rem;
+  border-bottom: 2px solid #ff9999;
+  display: inline-block;
+  padding-bottom: 0.2rem;
 }
 .footer-section ul li {
   margin-bottom: 0.4rem;
 }
 .footer-section ul li a {
-  color: #ccc;
-  font-size: 0.9rem;
+  color: #ffecec;
+  font-size: 0.95rem;
   transition: color 0.3s ease;
 }
 .footer-section ul li a:hover {
-  color: #fff;
+  color: #ffffff;
+  text-decoration: underline;
 }
+
 address {
   font-style: normal;
-  color: #bbb;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  color: #ffecec;
+  line-height: 1.5;
+}
+.social-icons {
+  margin-top: 1rem;
 }
 .social-icons a {
-  color: #ccc;
+  color: #ffdede;
   font-size: 1.3rem;
-  margin-right: 0.8rem;
-  transition: color 0.3s ease;
+  margin-right: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 .social-icons a:hover {
-  color: #ff4d4d;
+  color: #ecea52;
+  transform: scale(1.15);
 }
 
 .footer-bottom {
   text-align: center;
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid #444;
+  border-top: 1px solid #aa2a2a;
   font-size: 0.85rem;
-  color: #aaa;
-}
-
-/* === Responsive Styles === */
-@media (max-width: 768px) {
-  .navLinks {
-    justify-content: center;
-    margin-top: 1rem;
-  }
-  .userArea {
-    margin-top: 1rem;
-    justify-content: center;
-  }
-  .userCard {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo h1 a {
-    font-size: 1.4rem;
-  }
-  .navLinks {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .social-icons {
-    justify-content: center;
-  }
+  color: #f3dcdc;
 }

@@ -184,7 +184,7 @@
       "surgery_illness": "no",
       "medical_history": "no",
       "consent": true,
-      "active": "no"
+      "active": false
     },
     {
       "id": "6200",
@@ -235,7 +235,7 @@
       "surgery_illness": "no",
       "medical_history": "yes",
       "consent": true,
-      "active": "no"
+      "active": false
     },
     {
       "id": "6203",
@@ -258,20 +258,20 @@
   "blood_request": [
     {
       "id": "a1b2",
-      "patientName": "Trilok Mehra",
+      "patientName": "Trilok Mehra Patil",
       "email": "trilokmehta@gmail.com",
       "gender": "male",
       "age": "28",
       "weight": "62.5",
       "bloodGroup": "A+",
       "urgency": "High",
-      "state": "Delhi",
-      "city": "New Delhi",
+      "state": "Uttar Pradesh",
+      "city": "Lucknow",
       "contact": "9876543210",
       "doctorNote": "Mr. Trilok Mehra has sustained second-degree burns over approximately 22% of his body surface area following a domestic accident. He has been under intensive medical care and debridement treatment. Due to ongoing fluid loss, skin graft preparation, and associated blood volume depletion, immediate transfusion support is required.",
       "hospital": "AIIMS Hospital",
       "reason": "Burn Injury",
-      "approval": "approved",
+      "approval": "pending",
       "read": false
     },
     {
@@ -290,24 +290,6 @@
       "hospital": "Balaji Hospital",
       "reason": "Cancer",
       "approval": "cancel",
-      "read": false
-    },
-    {
-      "id": "c3d4",
-      "patientName": "Ankita Sharma",
-      "email": "anikitasharma@gmail.com",
-      "gender": "female",
-      "age": "34",
-      "weight": "56",
-      "bloodGroup": "O+",
-      "urgency": "High",
-      "state": "Uttar Pradesh",
-      "city": "Lucknow",
-      "contact": "9012345678",
-      "doctorNote": "Ms. Ankita Sharma is undergoing chemotherapy for breast cancer. She has been experiencing low hemoglobin levels and requires urgent blood transfusion support to continue treatment effectively.",
-      "hospital": "Apollo Lucknow",
-      "reason": "Chemotherapy",
-      "approval": "approved",
       "read": false
     },
     {
@@ -670,6 +652,29 @@
       "contact": "7987725298",
       "email": "vizaymeena@gmail.com",
       "description": "This Blood camp is organised by dr vijay meena in order to fullfill the global need of blood in times of urgency "
+    }
+  ],
+  "reviews": [
+    {
+      "id": "5a60",
+      "name": "Vijay Meena",
+      "message": "This website really helped me in my needy times "
+    },
+    {
+      "id": "142d",
+      "name": "Vikas Saxena",
+      "message": "Really a good website"
+    },
+     {
+      "id": "142d",
+      "name": "Ajay Saxena",
+      "message": "great intutive"
+    }
+    ,
+     {
+      "id": "142d",
+      "name": "nitya",
+      "message": "brilliance"
     }
   ]
 }

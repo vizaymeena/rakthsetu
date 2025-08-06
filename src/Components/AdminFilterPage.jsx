@@ -2,7 +2,6 @@ import { useEffect, useState, useMemo } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import axios from "axios"
 import "../assets/styles/adminfilter.css"
-import "../assets/styles/campform.css"
 
 // campformCard
 import { CampFormCard } from "./CampForm"

@@ -22,9 +22,10 @@ export let Wallpaper = () => {
       <div className='wallpaperDiv' data-aos="fade-up">
         <img src={image1} alt="" />
         <div className='positionAbs'>
-          <p>
-            Every 2 seconds, someone in India needs blood...
-          </p>
+          <div className='slogan'>
+            <h1>"3 lives. 15 minutes. 1 act of courage."</h1>
+            <p>That's all it takes to become a hero. Step forward. Roll up your sleeve. Save a life today.</p>
+          </div>
         </div>
         <div className='clientActions'>
           <button className='request_button' data-aos="zoom-in" data-aos-delay="300">Request Blood</button>

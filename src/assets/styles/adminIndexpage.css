@@ -1,0 +1,134 @@
+:root {
+  --primary-color: #2d6cdf;
+  --bg-light: #e2e7ed18;
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --text-dark: #333;
+  --text-light: #666;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --accent-danger: #d32f2f;
+  --accent-success: #388e3c;
+  --accent-warning: #f9a825;
+}
+
+body {
+  background-color: var(--bg-light);
+}
+
+/* === Container === */
+.adminContainer {
+  padding: 1.5rem;
+  /* min-height: 100vh; */
+  background-color: var(--bg-light)
+}
+
+/* === Header === */
+.adminPersonal{
+  height: 82px;
+  /* border:2px solid  #333; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.greetingText {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.adminEmail {
+  color: lightcoral;
+  margin-left: 10px;
+  font-weight: 500;
+}
+.profileImg{
+  height: 80px;
+  border-radius: 50%;
+  width: 80px;
+  border: 2px solid yellow;
+
+}
+
+/* === Dashboard Grid === */
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem ;
+}
+
+/* === Cards === */
+.statCard {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.statCard h3 {
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.statCount {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* === Donor Breakdown === */
+.donorBreakdown p,
+.requestBreakdown p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin: 0.5rem 0;
+}
+
+.inactiveCount {
+  color: var(--accent-warning);
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.activeCount {
+  color: var(--accent-success);
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.pendingCount {
+  color: var(--accent-warning);
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.approvedCount {
+  color: var(--accent-success);
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.cancelledCount {
+  color: var(--accent-danger);
+  font-size: 25px;
+  font-weight: 600;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .adminContainer {
+    padding: 1rem;
+  }
+}
+
+.reviewsBox{
+  min-height: 100vh;
+  background-color: var(--bg-light);
+}

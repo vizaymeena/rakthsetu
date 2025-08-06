@@ -1,20 +1,20 @@
- 
- /* Blood Request Page Design */
- .bloodRequestContainer {
+/* === Blood Request Form === */
+.bloodRequestContainer {
   margin-top: 100px;
   padding: 30px;
-  margin: 50px  auto 0px;
-  
+  margin: 50px auto 0px;
   max-width: 50%;
-  background-color: #e6e8ea;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
   border-radius: 12px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .formTitle {
   font-size: 28px;
   margin-bottom: 20px;
-  color: #d62828;
+  color: #2d6cdf; /* Calming hospital blue */
+  text-align: center;
+  font-weight: bold;
 }
 
 .bloodRequestForm {
@@ -33,42 +33,51 @@
 
 .formRow label {
   min-width: 120px;
-  font-weight: 500;
-  color: #333;
+  font-weight: 600;
+  color: #444;
 }
 
-.formInput {
+.formInput,
+.formRow select,
+.formRow textarea {
   flex: 1;
   padding: 10px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #ccd5db;
   border-radius: 8px;
+  background-color: #fefefe;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formInput:focus,
+.formRow select:focus,
+.formRow textarea:focus {
+  border-color: #2d6cdf;
+  box-shadow: 0 0 0 3px rgba(45, 108, 223, 0.2);
   outline: none;
-  transition: border 0.3s ease;
 }
 
-.formInput:focus {
-  border-color: #d62828;
+.formRow textarea {
+  resize: vertical;
+  min-height: 100px;
 }
-
 
 .formButton {
   width: 100%;
   margin-top: 25px;
-  display: block;
   padding: 12px 24px;
-  background-color: #d62828;
+  background-color: #2d6cdf;
   color: #fff;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .formButton:hover {
-  background-color: #b71c1c;
-} 
-
+  background-color: #1a4db8;
+  transform: translateY(-1px);
+}
 
 
 /* User Blood Request Edit Design */
@@ -177,7 +186,7 @@
     flex-direction: column;
   }
 
-  .userFormRow {
+  .ormRow {
     flex: 1 1 100%;
   }
 }

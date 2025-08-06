@@ -1,4 +1,16 @@
 /* Wallpaper / Hero Section */
+
+.slogan h1{
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: lightgray;
+  text-align: center;
+}
+.slogan p{
+  margin-bottom: 1rem;
+  text-align: center;
+  color: lightblue;
+}
 .wallpaperDiv {
   position: relative;
   width: 100%;
