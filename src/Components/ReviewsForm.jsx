@@ -33,22 +33,10 @@ let ReviewForm = () => {
       <p>Your feedback inspires others to save lives!</p>
 
       <form className="review-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={review.name}
-          onChange={handleChange}
-          placeholder="Your Name"
-          required
-        />
-        <textarea
-          name="message"
-          value={review.message}
-          onChange={handleChange}
-          placeholder="Write your thoughts..."
-          rows="4"
-          required
-        />
+        <input type="text" name="name" value={review.name} onChange={handleChange} placeholder="Your Name" required />
+
+        <textarea name="message" value={review.message} onChange={handleChange} placeholder="Write your thoughts...upto 150 words" maxLength={150} rows="4" required />
+
         <button type="submit">Submit Review</button>
 
         {submitted && <div className="review-success">❤️ Thank you for your feedback!</div>}

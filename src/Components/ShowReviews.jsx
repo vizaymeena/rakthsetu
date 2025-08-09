@@ -13,10 +13,11 @@ const ReviewSlider = () => {
       .catch(err => console.error('Failed to fetch reviews:', err));
   }, []);
 
+
   useEffect(() => {
     const interval = setInterval(() => {
       setStartIndex((prevIndex) =>
-        (prevIndex + cardsPerSlide) % reviews.length
+        (prevIndex + cardsPerSlide) % reviews.length    // 0 + 3 % 4 = 3
       );
     }, 4000);
 
@@ -33,18 +34,22 @@ const ReviewSlider = () => {
   };
 
   return (
+    <>
+    <h2 className='userFeedbacks'>User Feedbacks</h2>
     <div className="review-slider-grid">
-  {reviews.length >= 3 ? (
-    getCurrentSlide().map((review, index) => (
-      <div className="review-card" key={index}>
-        <p className="review-message">“{review?.message || "No message"}”</p>
-        <p className="review-author">– {review?.name || "Anonymous"}</p>
-      </div>
-    ))
-  ) : (
-    <p className="review-message">Not enough reviews yet. Be the first to leave one!</p>
-  )}
-</div>
+   
+      {reviews.length >= 3 ? (
+        getCurrentSlide().map((review, index) => (
+          <div className="review-card" key={index}>
+            <p className="review-message">“{review?.message || "No message"}”</p>
+            <p className="review-author">– {review?.name || "Anonymous"}</p>
+          </div>
+        ))
+      ) : (
+        <p className="review-message">Not enough reviews yet. Be the first to leave one!</p>
+      )}
+    </div>
+    </>
 
   );
 };

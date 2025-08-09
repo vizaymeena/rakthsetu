@@ -6,6 +6,7 @@ import { useState,useEffect } from "react";
 export default function AdminHome() {
   let { admin } = useLogin();
   let [users,setUsers]=useState(0)
+  let [reviews,setReviews] = useState([])
   let [bloodReq,setBloodReq] = useState({
     pending:0,
     approved:0,
@@ -44,6 +45,10 @@ export default function AdminHome() {
     }))
   })
   },[])
+
+  useEffect(()=>{
+    axios.get(`http://localhost:3000/reviews`).then((res)=>setReviews(res.data)).catch(err=> console.log(err))
+  },[reviews.length])
 
   return (
     <>
@@ -87,8 +92,21 @@ export default function AdminHome() {
 
 
     <div className="reviewsBox">
-      <h4>Reviews And FeedBacks</h4>
+     <h3>Reviews And FeedBacks</h3>
+     <div className="reviewChildBox">
+       {reviews.length > 0 ? (
+         reviews.map((el, key) => (
+          <div className="reviewUser" key={key}>
+           <h4> <span>{key+1} - </span> {el.name}</h4>
+           <p>{el.message}</p>
+          </div>
+         ))
+       ) : (
+         <p>No reviews yet.</p>
+       )}
+     </div>
     </div>
+
     </>
   );
 }
